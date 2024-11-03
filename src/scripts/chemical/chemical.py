@@ -21,6 +21,7 @@ for i in range(1, 119):
             "atomic_number": e.atomic_number,
             "mass_number": iso.mass_number,
             "mass": iso.mass,
+            "is_radioactive": iso.is_radioactive,
             "abundance": iso.abundance,
             "name_isotope": None
         })

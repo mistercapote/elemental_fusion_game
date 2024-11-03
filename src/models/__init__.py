@@ -1,2 +1,2 @@
-from element import *
-from fusion import *
+from .element import *
+from .fusion import *
