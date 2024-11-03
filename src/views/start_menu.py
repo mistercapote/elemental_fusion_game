@@ -4,7 +4,7 @@ import math
 
 def start_menu(screen):
     round = True
-    hidrogenio = Element("Hidrogenio", "H", 1, 1, 1, 25, (0,0,255), "Elemente mais abundante")
+    hidrogenio = Element("Hidrogenio", "H", 1, 1, 1, 25, (0,0,255), "Elemento mais abundante")
     circle_center = [CENTER_X//4, CENTER_Y]
     circle_radius = 25
 

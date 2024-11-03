@@ -5,7 +5,7 @@ import numpy as np
 import moviepy.editor as mp
 from utils import draw_text
 from constants import *
-from views import story_menu, config_menu, start_menu
+from views import story_menu, config_menu, start_menu, table_menu
 
 def iniciar():
     video_clip = mp.VideoFileClip("assets/videos/video_opening.mp4")
@@ -27,8 +27,9 @@ while running:
     #Define buttons
     play_button = draw_text(screen, "Start", CENTER_X, CENTER_Y - 70)
     story_button = draw_text(screen, "Story", CENTER_X, CENTER_Y)
-    config_button = draw_text(screen, "Settings", CENTER_X, CENTER_Y + 70)
-    exit_button = draw_text(screen, "Exit", CENTER_X, CENTER_Y + 140)
+    table_button = draw_text(screen, "Periodic Table", CENTER_X, CENTER_Y + 70)
+    config_button = draw_text(screen, "Settings", CENTER_X, CENTER_Y + 140)
+    exit_button = draw_text(screen, "Exit", CENTER_X, CENTER_Y + 210)
     
     #Clean display
     screen.fill(BLACK)
@@ -64,6 +65,11 @@ while running:
                 video_clip.close()
                 story_menu.story_menu(screen)
                 video_clip = iniciar()
+            elif table_button.collidepoint(event.pos):
+                pygame.mixer.music.stop()
+                video_clip.close()
+                table_menu.table_menu(screen)
+                video_clip = iniciar()
             elif config_button.collidepoint(event.pos):
                 pygame.mixer.music.stop()
                 video_clip.close()
@@ -82,14 +88,18 @@ while running:
         story_button = draw_text(screen, "Story", CENTER_X, CENTER_Y, 50, GRAY)
     else:
         story_button = draw_text(screen, "Story", CENTER_X, CENTER_Y)
+    if table_button.collidepoint(pygame.mouse.get_pos()):
+        table_button = draw_text(screen, "Periodic Table", CENTER_X, CENTER_Y + 70, 50, GRAY)
+    else:
+        table_button = draw_text(screen, "Periodic Table", CENTER_X, CENTER_Y + 70)
     if config_button.collidepoint(pygame.mouse.get_pos()):
-        config_button = draw_text(screen, "Settings", CENTER_X, CENTER_Y + 70, 50, GRAY)
+        config_button = draw_text(screen, "Settings", CENTER_X, CENTER_Y + 140, 50, GRAY)
     else:
-        config_button = draw_text(screen, "Settings", CENTER_X, CENTER_Y + 70)
+        config_button = draw_text(screen, "Settings", CENTER_X, CENTER_Y + 140)
     if exit_button.collidepoint(pygame.mouse.get_pos()):
-        exit_button = draw_text(screen, "Exit", CENTER_X, CENTER_Y + 140, 50, GRAY)
+        exit_button = draw_text(screen, "Exit", CENTER_X, CENTER_Y + 210, 50, GRAY)
     else:
-        exit_button = draw_text(screen, "Exit", CENTER_X, CENTER_Y + 140)
+        exit_button = draw_text(screen, "Exit", CENTER_X, CENTER_Y + 210)
     
     pygame.display.flip()
 

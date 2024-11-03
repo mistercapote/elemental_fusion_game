@@ -14,6 +14,7 @@ for i in range(1, 119):
         "group": e.group_id,
         "period": e.period,
         "atomic_radius": e.atomic_radius,
+        "color": (150, 150, 150),
         "description": e.description
     })
     for iso in e.isotopes:
@@ -26,8 +27,8 @@ for i in range(1, 119):
             "name_isotope": None
         })
 
-element_path = 'assets/json/element.json'
-isotope_path = 'assets/json/isotope.json'
+element_path = 'element.json'
+isotope_path = 'isotope.json'
 
 with open(element_path, 'w') as json_file:
     json.dump(element_data, json_file, indent=4)

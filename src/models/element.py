@@ -1,5 +1,7 @@
 import pygame
 from constants import *
+import json
+import random
 
 class Element:
     def __init__(self, name, symbol, atomic_number, group, period, atomic_radius, color, description):
@@ -12,13 +14,41 @@ class Element:
         self.color = color
         self.description = description
 
-    def draw_element(self, screen, x, y):
-        font = pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.ttf", self.atomic_radius//2)
+
+    def __str__(self):
+        return f"{self.symbol}"
+
+    def draw_element(self, screen, x, y, raio=25):
+        font = pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.ttf", 20)
         surface = font.render(self.symbol, True, BLACK)
-        pygame.draw.circle(screen, self.color, (x,y), self.atomic_radius)
+        pygame.draw.circle(screen, self.color, (x,y), raio)
         rect_text = surface.get_rect(center=(x,y))
         screen.blit(surface, rect_text)
-        
+        return rect_text
+
+    def draw_card():
+        pass
+
+    @classmethod
+    def from_dict(cls, data):
+        """Cria uma instância da classe a partir de um dicionário."""
+        return cls(
+            name = data["name"],
+            symbol = data["symbol"],
+            atomic_number = data["atomic_number"],
+            group = data["group"], # 1 a 18
+            period = data["period"], # 1 a 7
+            atomic_radius = data["atomic_radius"], # em pm
+            color = data["color"],
+            description = data["description"]
+        )
+
+    @staticmethod
+    def load_elements_from_json(filepath):
+        """Carrega dados de elementos a partir de um arquivo JSON e cria objetos Element."""
+        with open(filepath, "r") as f:
+            elements_data = json.load(f)
+        return [Element.from_dict(data) for data in elements_data]
 
 class Isotope(Element):
     def __init__(self, name, symbol, atomic_number, group, period, description, mass_number, mass, is_radioactive, abundance, name_isotope):
