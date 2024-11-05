@@ -1,21 +1,14 @@
 from views import *
 from models.element import Element
-import math
 
 def start_menu(screen):
     round = True
     hidrogenio = Element("Hidrogenio", "H", 1, 1, 1, 25, (0,0,255), "Elemento mais abundante")
     circle_center = [CENTER_X//4, CENTER_Y]
     circle_radius = 25
-
     dragging = False
     circle_drag_center = None
-    nucleo_radius = 70
-
-    def nucleo(angle, radius):
-        x = 3*CENTER_X//2 + radius * math.cos(angle)
-        y = CENTER_Y + radius * math.sin(angle)
-        return [x,y]
+    nucleo_radius = 100
 
     in_nucleo = []
     angle = 0
@@ -28,9 +21,9 @@ def start_menu(screen):
         pygame.draw.line(screen, WHITE, [CENTER_X, 0], [CENTER_X, HEIGHT_MAX], 5)
         back_button = draw_text(screen, "Back", CENTER_X-100, HEIGHT_MAX-50)
     
-        hidrogenio.draw_element(screen, *circle_center)
+        hidrogenio.draw_ball(screen, *circle_center)
         if circle_drag_center:
-            hidrogenio.draw_element(screen, *circle_drag_center)
+            hidrogenio.draw_ball(screen, *circle_drag_center)
             
             #Hidrogenio, helio...
         
@@ -71,12 +64,12 @@ def start_menu(screen):
         if in_nucleo:
             especial_angle = 0
             for each_particule in in_nucleo:
-                circle_nucleo_center = nucleo(angle + especial_angle, nucleo_radius)
-                each_particule.draw_element(screen, *circle_nucleo_center)
+                circle_nucleo_center = nucleo_pos(angle + especial_angle, nucleo_radius)
+                each_particule.draw_ball(screen, *circle_nucleo_center)
                 especial_angle += math.pi
             if len(in_nucleo)==2:
                 if nucleo_radius > 0:
-                    nucleo_radius -= 0.1
+                    nucleo_radius -= 0.2
                 else:
                     #fundir(*in_nucleo)
                     pass

@@ -47,20 +47,21 @@ while running:
     #Clean display
     screen.fill(BLACK)
 
-    #Video Loop
-    current_time = video_clip.reader.pos / video_clip.fps
-    if current_time >= video_clip.duration:
-        current_time = 0  # Reinicia o tempo atual
-
     #Update videoframe
+    current_time = video_clip.reader.pos / video_clip.fps
+    if current_time >= video_clip.duration: current_time = 0 
     frame = video_clip.get_frame(current_time)
-    frame_surface = pygame.surfarray.make_surface(frame.swapaxes(0, 1))
-    screen.blit(frame_surface, (0, 0))
+    screen.blit(pygame.surfarray.make_surface(frame.swapaxes(0, 1)), (0, 0))
     clock.tick(video_clip.fps)
 
     #Title
+<<<<<<< HEAD
     draw_text(screen, game_state["title"], CENTER_X, 160, 100)
 
+=======
+    draw_text(screen, "KILL THAT STAR", CENTER_X, 160, 100)
+    
+>>>>>>> d4523097d84419b7404bf62548cf1d161766a740
     #Get mouse events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

@@ -18,16 +18,27 @@ class Element:
     def __str__(self):
         return f"{self.symbol}"
 
-    def draw_element(self, screen, x, y, raio=25):
+    def draw_ball(self, screen, x, y, raio=25):
         font = pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.ttf", 20)
-        surface = font.render(self.symbol, True, BLACK)
+        surface = font.render(self.symbol, True, (0,0,0))
         pygame.draw.circle(screen, self.color, (x,y), raio)
         rect_text = surface.get_rect(center=(x,y))
         screen.blit(surface, rect_text)
         return rect_text
 
-    def draw_card():
-        pass
+
+    def draw_card(self, screen, x, y, coef=1):
+        WIDTH_MAX = 1280
+        HEIGHT_MAX = 720
+        SQUARE_WIDTH = WIDTH_MAX // 20
+        SQUARE_HEIGHT = HEIGHT_MAX // 12
+        font = pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.ttf", 20)
+        surface = font.render(self.symbol, True, (0,0,0))
+        #desenhar forma card
+        pygame.draw.polygon(screen, self.color, [(x+coef,y+coef), (x+SQUARE_WIDTH-coef, y+coef), (x+SQUARE_WIDTH-coef, y+SQUARE_HEIGHT-coef), (x+coef, y+SQUARE_HEIGHT-coef)])
+        rect_text = surface.get_rect(center=(x+SQUARE_WIDTH//2,y+SQUARE_HEIGHT//2))
+        screen.blit(surface, rect_text)
+        return rect_text
 
     @classmethod
     def from_dict(cls, data):
