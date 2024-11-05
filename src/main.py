@@ -22,12 +22,11 @@ game_state = {
     "title": "KILL THAT STAR"
 }
 
-isotopes_found = [ELEMENTS[0]]
+isotopes_found = [ISOTOPES[0]]
 
 def update_for_level_2(game_state):
     game_state["current_phase"] = 2
     game_state["title"] = "PARTICLE ACCELERATOR"
-
 
 #Initialization
 pygame.init()

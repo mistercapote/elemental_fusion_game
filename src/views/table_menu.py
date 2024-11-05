@@ -12,7 +12,7 @@ def table_menu(screen, isotopes_found):
         else:
             left_x = int(element.group) * SQUARE_WIDTH
             top_y = int(element.period) * SQUARE_HEIGHT
-        if element in isotopes_found:
+        if list(filter(lambda x: x.atomic_number == element.atomic_number, isotopes_found)):
             in_found = True
             element.draw_card(screen, left_x, top_y)
         else:

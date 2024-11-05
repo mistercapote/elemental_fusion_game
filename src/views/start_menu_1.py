@@ -1,5 +1,5 @@
 from views import *
-from models.element import Element
+from models.element import *
 
 def start_menu(screen, isotopes_found):
     running = True
@@ -7,19 +7,34 @@ def start_menu(screen, isotopes_found):
     angle = 0
     nucleo_radius = 100
 
+    def fusion(element_a, element_b):
+        def confere(element_a, element_b, fusion):
+            a = f"{element_a.symbol}-{element_a.mass_number}"
+            if element_b == None:
+                pass #decay
+            elif isinstance(element_b, FundamentalParticle):
+                b = f"{element_a.symbol}"
+            elif isinstance(element_b, Isotope):
+                b = f"{element_b.symbol}-{element_b.mass_number}"
+            return (fusion.element_a == a and fusion.element_b == b) or (fusion.element_a == b and fusion.element_b == a) 
+        
+        fusion = list(filter(lambda x: confere(element_a, element_b, x), FUSIONS))
+        if fusion: return fusion[0].product
+        else: return None
+
     def show(isotopes_found):
         found = []
         www = WIDTH_MAX//20
         hhh = HEIGHT_MAX//3
-        for element in isotopes_found:
+        for isotope in isotopes_found:
             found.append({
-                "element": element,
+                "isotope": isotope,
                 "center": (www, hhh),
                 "drag_center": None,
                 "dragging": False,
                 "radius": 25
                 })
-            if element.atomic_number % 9 == 0:
+            if isotope.atomic_number % 9 == 0:
                 www = WIDTH_MAX//20
                 hhh += HEIGHT_MAX//12
             else:
@@ -37,10 +52,10 @@ def start_menu(screen, isotopes_found):
         draw_text(screen, "Elements", CENTER_X//4, CENTER_Y//2)
         pygame.draw.line(screen, WHITE, [CENTER_X, 0], [CENTER_X, HEIGHT_MAX], 5)
         
-        for element in found:
-            element["element"].draw_ball(screen, element["center"][0], element["center"][1])
-            if element["drag_center"]:
-                element["element"].draw_ball(screen, element["drag_center"][0], element["drag_center"][1])
+        for isotope in found:
+            isotope["isotope"].draw_ball(screen, isotope["center"][0], isotope["center"][1])
+            if isotope["drag_center"]:
+                isotope["isotope"].draw_ball(screen, isotope["drag_center"][0], isotope["drag_center"][1])
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -49,35 +64,35 @@ def start_menu(screen, isotopes_found):
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 running = False
                 
-            for element in found:
+            for isotope in found:
                 
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if back_button.collidepoint(event.pos):
                         running = False
-                    distance = ((pygame.mouse.get_pos()[0] - element["center"][0]) ** 2 + (pygame.mouse.get_pos()[1] - element["center"][1]) ** 2) ** 0.5
-                    if distance < element["radius"]:
-                        element["dragging"] = True  # Começa a arrastar
-                        element["drag_center"] = list(element["center"]) 
+                    distance = ((pygame.mouse.get_pos()[0] - isotope["center"][0]) ** 2 + (pygame.mouse.get_pos()[1] - isotope["center"][1]) ** 2) ** 0.5
+                    if distance < isotope["radius"]:
+                        isotope["dragging"] = True  # Começa a arrastar
+                        isotope["drag_center"] = list(isotope["center"]) 
 
                 if event.type == pygame.MOUSEBUTTONUP:
-                    element["dragging"] = False
-                    if element["drag_center"]:
-                        if element["drag_center"][0] > CENTER_X:
+                    isotope["dragging"] = False
+                    if isotope["drag_center"]:
+                        if isotope["drag_center"][0] > CENTER_X:
                             if len(in_nucleo) < 2:
-                                in_nucleo.append(element["element"])
-                            element["drag_center"] = None
+                                in_nucleo.append(isotope["isotope"])
+                            isotope["drag_center"] = None
                         else:
                             #é desfeito, efeito de encolher
-                            element["drag_center"] = None
+                            isotope["drag_center"] = None
                             pass
                 if event.type == pygame.MOUSEMOTION:
-                    if element["dragging"]:
+                    if isotope["dragging"]:
                         new_pos = list(event.pos)
                         # Impede que a cópia ultrapasse as bordas da tela
-                        new_pos[0] = max(element["radius"], min(new_pos[0], WIDTH_MAX - element["radius"]))
-                        new_pos[1] = max(element["radius"], min(new_pos[1], HEIGHT_MAX - element["radius"]))
+                        new_pos[0] = max(isotope["radius"], min(new_pos[0], WIDTH_MAX - isotope["radius"]))
+                        new_pos[1] = max(isotope["radius"], min(new_pos[1], HEIGHT_MAX - isotope["radius"]))
 
-                        element["drag_center"] = new_pos
+                        isotope["drag_center"] = new_pos
 
         if in_nucleo:
             especial_angle = 0
@@ -89,15 +104,22 @@ def start_menu(screen, isotopes_found):
                 if nucleo_radius > 0:
                     nucleo_radius -= 0.2
                 else:
+                    product_fusion = fusion(*in_nucleo)
+                    if product_fusion:
+                        for each in product_fusion:
+                            each = each.split("-")
+                            isotope = list(filter(lambda x: x.symbol == each[0] and x.mass_number == int(each[1]), ISOTOPES))[0]
+                            if isotope not in isotopes_found:
+                                isotopes_found.append(isotope)
+                            else:
+                                pass #reacao ja ocorreu
+                            break
+                    else:
+                        print("Fusão não existe")
                     in_nucleo = []
                     angle = 0
                     nucleo_radius = 100
-                    if ELEMENTS[1] not in isotopes_found:
-                        isotopes_found.append(ELEMENTS[1])
-                    else:
-                        pass #reacao ja ocorreu
                     found = show(isotopes_found)
-                    pass
         if back_button.collidepoint(pygame.mouse.get_pos()):
             back_button = draw_text(screen, "Back", CENTER_X-100, HEIGHT_MAX-50, 50, GRAY)
         else:
