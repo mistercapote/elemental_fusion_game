@@ -32,13 +32,30 @@ class Element:
         HEIGHT_MAX = 720
         SQUARE_WIDTH = WIDTH_MAX // 20
         SQUARE_HEIGHT = HEIGHT_MAX // 12
-        font = pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.ttf", 20)
-        surface = font.render(self.symbol, True, (0,0,0))
-        #desenhar forma card
-        pygame.draw.polygon(screen, self.color, [(x+coef,y+coef), (x+SQUARE_WIDTH-coef, y+coef), (x+SQUARE_WIDTH-coef, y+SQUARE_HEIGHT-coef), (x+coef, y+SQUARE_HEIGHT-coef)])
-        rect_text = surface.get_rect(center=(x+SQUARE_WIDTH//2,y+SQUARE_HEIGHT//2))
-        screen.blit(surface, rect_text)
-        return rect_text
+        font_large = pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.ttf", 20)
+        font_small= pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.ttf", 12)
+        if self == None:
+            name_text = font_small.render("", True, (0,0,0))
+            symbol_text = font_large.render("?", True, (0,0,0))
+            number_text = font_small.render("", True, (0,0,0))
+            pygame.draw.polygon(screen, (150,150,150), [(x+coef,y+coef), (x+SQUARE_WIDTH-coef, y+coef), (x+SQUARE_WIDTH-coef, y+SQUARE_HEIGHT-coef), (x+coef, y+SQUARE_HEIGHT-coef)])
+        else:
+            name_text = font_small.render(self.name, True, (0,0,0))
+            symbol_text = font_large.render(self.symbol, True, (0,0,0))
+            number_text = font_small.render(f"{self.atomic_number}", True, (0,0,0))
+            pygame.draw.polygon(screen, self.color, [(x+coef,y+coef), (x+SQUARE_WIDTH-coef, y+coef), (x+SQUARE_WIDTH-coef, y+SQUARE_HEIGHT-coef), (x+coef, y+SQUARE_HEIGHT-coef)])
+            
+        number_rect_text = number_text.get_rect(center=(x+SQUARE_WIDTH//8+coef,y+SQUARE_HEIGHT//8+coef))
+        symbol_rect_text = symbol_text.get_rect(center=(x+SQUARE_WIDTH//2,y+SQUARE_HEIGHT//2))
+        
+        screen.blit(number_text, number_rect_text)
+        screen.blit(symbol_text, symbol_rect_text)
+
+        if coef != 1:
+            name_rect_text = name_text.get_rect(center=(x+SQUARE_WIDTH//2,y+7*SQUARE_HEIGHT//8-coef))
+            screen.blit(name_text, name_rect_text)
+        # name_rect_text, symbol_rect_text, number_rect_text
+        return 
 
     @classmethod
     def from_dict(cls, data):

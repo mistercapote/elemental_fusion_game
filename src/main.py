@@ -5,25 +5,28 @@ import numpy as np
 import moviepy.editor as mp
 from utils import draw_text
 from constants import *
-from views import story_menu, config_menu, start_menu, table_menu
+from views import story_menu_1, config_menu, start_menu_1, table_menu
 
-
-def iniciar(video, audio):
-    video_clip = mp.VideoFileClip(video)
-    pygame.mixer.music.load(audio)
+def start_media(current_phase):
+    if current_phase == 1:
+        video_clip = mp.VideoFileClip("assets/videos/video_opening.mp4")
+        pygame.mixer.music.load("assets/audio/audio_opening.mp3")
+    if current_phase == 2:
+        video_clip = mp.VideoFileClip("")
+        pygame.mixer.music.load("")
     pygame.mixer.music.play(-1)
     return video_clip
 
 game_state = {
     "current_phase": 1,
-    "title": "Kill THAT STAR",
-    "video_clip": iniciar("assets/videos/video_opening.mp4","assets/audio/audio_opening.mp3")
+    "title": "KILL THAT STAR"
 }
 
-def update_for_level_2():
+isotopes_found = [ELEMENTS[0]]
+
+def update_for_level_2(game_state):
     game_state["current_phase"] = 2
     game_state["title"] = "PARTICLE ACCELERATOR"
-    game_state["video_clip"] = iniciar("", "")
 
 
 #Initialization
@@ -32,7 +35,7 @@ pygame.mixer.init()
 screen = pygame.display.set_mode((WIDTH_MAX, HEIGHT_MAX))
 pygame.display.set_caption("Elemental Fusion Game")
 clock = pygame.time.Clock()
-video_clip = game_state["video_clip"]
+video_clip = start_media(game_state["current_phase"])
 
 #Loop 
 running = True
@@ -67,23 +70,23 @@ while running:
             if play_button.collidepoint(event.pos):
                 pygame.mixer.music.stop()
                 video_clip.close()
-                start_menu.start_menu(screen)
-                video_clip = game_state[video_clip]
+                isotopes_found = start_menu_1.start_menu(screen, isotopes_found)
+                video_clip = start_media(game_state["current_phase"])
             elif story_button.collidepoint(event.pos):
                 pygame.mixer.music.stop()
                 video_clip.close()
-                story_menu.story_menu(screen)
-                video_clip = game_state[video_clip]
+                story_menu_1.story_menu(screen)
+                video_clip = start_media(game_state["current_phase"])
             elif table_button.collidepoint(event.pos):
                 pygame.mixer.music.stop()
                 video_clip.close()
-                table_menu.table_menu(screen)
-                video_clip = game_state[video_clip]
+                table_menu.table_menu(screen, isotopes_found)
+                video_clip = start_media(game_state["current_phase"])
             elif config_button.collidepoint(event.pos):
                 pygame.mixer.music.stop()
                 video_clip.close()
                 config_menu.config_menu(screen)
-                video_clip = game_state[video_clip]
+                video_clip = start_media(game_state["current_phase"])
             elif exit_button.collidepoint(event.pos):
                 pygame.quit()
                 sys.exit()

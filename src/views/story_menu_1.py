@@ -1,22 +1,23 @@
 from views import *
 
 def story_menu(screen):
-    round = True
-    while round:
+    running = True
+    while running:
+        back_button = draw_text(screen, "Back", 18*SQUARE_WIDTH, 11*SQUARE_HEIGHT)
         screen.fill(BLACK)
         draw_text(screen, "Story", 60, 250, 100)
-        
-        # Botão para voltar ao menu
-        botao_voltar = draw_text(screen, "Back", 350, 450)
-        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                if botao_voltar.collidepoint(event.pos):
-                    round = False  # Volta ao menu principal
+                if back_button.collidepoint(event.pos):
+                    running = False
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                round = False  # ESC também volta ao menu principal
-
+                running = False 
+        if back_button.collidepoint(pygame.mouse.get_pos()):
+            back_button = draw_text(screen, "Back", 18*SQUARE_WIDTH, 11*SQUARE_HEIGHT, 50, GRAY)
+        else:
+            back_button = draw_text(screen, "Back", 18*SQUARE_WIDTH, 11*SQUARE_HEIGHT)
+    
         pygame.display.flip()
