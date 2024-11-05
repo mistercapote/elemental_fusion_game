@@ -7,19 +7,32 @@ from utils import draw_text
 from constants import *
 from views import story_menu, config_menu, start_menu, table_menu
 
-def iniciar():
-    video_clip = mp.VideoFileClip("assets/videos/video_opening.mp4")
-    pygame.mixer.music.load("assets/audio/audio_opening.mp3")
+
+def iniciar(video, audio):
+    video_clip = mp.VideoFileClip(video)
+    pygame.mixer.music.load(audio)
     pygame.mixer.music.play(-1)
     return video_clip
+
+game_state = {
+    "current_phase": 1,
+    "title": "Kill THAT STAR",
+    "video_clip": iniciar("assets/videos/video_opening.mp4","assets/audio/audio_opening.mp3")
+}
+
+def update_for_level_2():
+    game_state["current_phase"] = 2
+    game_state["title"] = "PARTICLE ACCELERATOR"
+    game_state["video_clip"] = iniciar("", "")
+
 
 #Initialization
 pygame.init()
 pygame.mixer.init() 
 screen = pygame.display.set_mode((WIDTH_MAX, HEIGHT_MAX))
-pygame.display.set_caption("Kill that star!")
+pygame.display.set_caption("Elemental Fusion Game")
 clock = pygame.time.Clock()
-video_clip = iniciar()
+video_clip = game_state["video_clip"]
 
 #Loop 
 running = True
@@ -46,7 +59,7 @@ while running:
     clock.tick(video_clip.fps)
 
     #Title
-    draw_text(screen, "KILL THAT STAR", CENTER_X, 160, 100)
+    draw_text(screen, game_state["title"], CENTER_X, 160, 100)
 
     #Get mouse events
     for event in pygame.event.get():
@@ -59,22 +72,22 @@ while running:
                 pygame.mixer.music.stop()
                 video_clip.close()
                 start_menu.start_menu(screen)
-                video_clip = iniciar()
+                video_clip = game_state[video_clip]
             elif story_button.collidepoint(event.pos):
                 pygame.mixer.music.stop()
                 video_clip.close()
                 story_menu.story_menu(screen)
-                video_clip = iniciar()
+                video_clip = game_state[video_clip]
             elif table_button.collidepoint(event.pos):
                 pygame.mixer.music.stop()
                 video_clip.close()
                 table_menu.table_menu(screen)
-                video_clip = iniciar()
+                video_clip = game_state[video_clip]
             elif config_button.collidepoint(event.pos):
                 pygame.mixer.music.stop()
                 video_clip.close()
                 config_menu.config_menu(screen)
-                video_clip = iniciar()
+                video_clip = game_state[video_clip]
             elif exit_button.collidepoint(event.pos):
                 pygame.quit()
                 sys.exit()
