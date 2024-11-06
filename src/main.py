@@ -5,15 +5,15 @@ import numpy as np
 import moviepy.editor as mp
 from utils import draw_text
 from constants import *
-from views import story_menu_1, config_menu, start_menu_1, table_menu
+from views import story_menu_1, config_menu, start_menu_1, start_menu_2, table_menu
 
 def start_media(current_phase):
     if current_phase == 1:
         video_clip = mp.VideoFileClip("assets/videos/video_opening.mp4")
         pygame.mixer.music.load("assets/audio/audio_opening.mp3")
     if current_phase == 2:
-        video_clip = mp.VideoFileClip("")
-        pygame.mixer.music.load("")
+        video_clip = mp.VideoFileClip("assets/videos/video_opening_2.mp4")
+        pygame.mixer.music.load("assets/audio/audio_opening.mp3")
     pygame.mixer.music.play(-1)
     return video_clip
 
@@ -27,6 +27,8 @@ isotopes_found = [ISOTOPES[0]]
 def update_for_level_2(game_state):
     game_state["current_phase"] = 2
     game_state["title"] = "PARTICLE ACCELERATOR"
+
+# update_for_level_2(game_state)
 
 #Initialization
 pygame.init()
@@ -57,7 +59,10 @@ while running:
     clock.tick(video_clip.fps)
 
     #Title
-    draw_text(screen, game_state["title"], CENTER_X, 160, 100)
+    if game_state["current_phase"]== 1:
+        draw_text(screen, game_state["title"], CENTER_X, 160, 100)
+    else:
+        draw_text(screen, game_state["title"], CENTER_X, 160, 90)
 
     #Get mouse events
     for event in pygame.event.get():
@@ -69,12 +74,20 @@ while running:
             if play_button.collidepoint(event.pos):
                 pygame.mixer.music.stop()
                 video_clip.close()
-                isotopes_found = start_menu_1.start_menu(screen, isotopes_found)
+                if game_state["current_phase"] == 1:
+                    isotopes_found = start_menu_1.start_menu(screen, isotopes_found)
+                else:
+                    start_menu_2.start_menu(screen)
+
                 video_clip = start_media(game_state["current_phase"])
             elif story_button.collidepoint(event.pos):
                 pygame.mixer.music.stop()
                 video_clip.close()
-                story_menu_1.story_menu(screen)
+                if game_state["current_phase"] == 1:
+                    story_menu_1.story_menu(screen)
+                else:
+                    story_menu_1.story_menu(screen)
+
                 video_clip = start_media(game_state["current_phase"])
             elif table_button.collidepoint(event.pos):
                 pygame.mixer.music.stop()

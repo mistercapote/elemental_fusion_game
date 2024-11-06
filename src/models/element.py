@@ -129,7 +129,7 @@ class Isotope(Element):
             mass = data["mass"], # em U
             is_radioactive = data["is_radioactive"],
             abundance = data["abundance"], # em %
-            name_isotope = data["name_isotope"] if data["name_isotope"] else f"{element.name}-{data["mass_number"]}"
+            name_isotope = data["name_isotope"] if data["name_isotope"] else f"{element.name}-{data['mass_number']}"
         )
             
 

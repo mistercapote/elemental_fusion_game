@@ -5,7 +5,7 @@ def story_menu(screen):
     while running:
         back_button = draw_text(screen, "Back", 18*SQUARE_WIDTH, 11*SQUARE_HEIGHT)
         screen.fill(BLACK)
-        draw_text(screen, "Story", 60, 250, 100)
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
