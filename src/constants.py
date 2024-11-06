@@ -1,6 +1,8 @@
 #Constant
 from models.element import Element, Isotope
 from models.fusion import Fusion
+import pygame
+
 WIDTH_MAX = 1280
 HEIGHT_MAX = 720
 
@@ -14,8 +16,13 @@ WHITE = (255, 255, 255)
 GRAY = (200, 200, 200)
 BLACK = (0, 0, 0)
 
+
+FONT_LARGE = pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.ttf", 20)
+FONT_SMALL= pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.ttf", 12)
+        
+
 ELEMENTS = Element.load_elements_from_json("data/json/element.json")
-ISOTOPES = Isotope.load_elements_from_json_2(ELEMENTS, "data/json/element.json", "data/json/isotope.json")
+ISOTOPES = Isotope.load_elements_from_json_2(ELEMENTS, "data/json/isotope.json")
 FUSIONS = Fusion.load_elements_from_json("data/json/fusion.json")
 
 # for i in ISOTOPES:
