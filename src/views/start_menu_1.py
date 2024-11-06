@@ -1,52 +1,55 @@
 from views import *
 from models.element import *
 
+def start_nucleo():
+    return [], 0, 100
+
+def fusion(element_a, element_b):
+    def confere(element_a, element_b, fusion):
+        a = f"{element_a.symbol}-{element_a.mass_number}"
+        if element_b == None:
+            b = None
+        elif isinstance(element_b, FundamentalParticle):
+            b = f"{element_a.symbol}"
+        elif isinstance(element_b, Isotope):
+            b = f"{element_b.symbol}-{element_b.mass_number}"
+        return (fusion.element_a == a and fusion.element_b == b) or (fusion.element_a == b and fusion.element_b == a) 
+    
+    fusion = list(filter(lambda x: confere(element_a, element_b, x), FUSIONS))
+    if fusion: return fusion[0].product
+    else: return None
+
+def show(isotopes_found):
+    found = []
+    www = WIDTH_MAX//20
+    hhh = HEIGHT_MAX//3
+    line_break = 0
+    for isotope in isotopes_found:
+        line_break +=1
+        found.append({
+            "isotope": isotope,
+            "center": (www, hhh),
+            "drag_center": None,
+            "dragging": False,
+            "radius": 25
+            })
+        if line_break % 9 == 0:
+            www = WIDTH_MAX//20
+            hhh += HEIGHT_MAX//12
+        else:
+            www += WIDTH_MAX//20
+    return found
+
 def start_menu(screen, isotopes_found):
     running = True
-    in_nucleo = []
-    angle = 0
-    nucleo_radius = 100
-
-    def fusion(element_a, element_b):
-        def confere(element_a, element_b, fusion):
-            a = f"{element_a.symbol}-{element_a.mass_number}"
-            if element_b == None:
-                pass #decay
-            elif isinstance(element_b, FundamentalParticle):
-                b = f"{element_a.symbol}"
-            elif isinstance(element_b, Isotope):
-                b = f"{element_b.symbol}-{element_b.mass_number}"
-            return (fusion.element_a == a and fusion.element_b == b) or (fusion.element_a == b and fusion.element_b == a) 
-        
-        fusion = list(filter(lambda x: confere(element_a, element_b, x), FUSIONS))
-        if fusion: return fusion[0].product
-        else: return None
-
-    def show(isotopes_found):
-        found = []
-        www = WIDTH_MAX//20
-        hhh = HEIGHT_MAX//3
-        for isotope in isotopes_found:
-            found.append({
-                "isotope": isotope,
-                "center": (www, hhh),
-                "drag_center": None,
-                "dragging": False,
-                "radius": 25
-                })
-            if isotope.atomic_number % 9 == 0:
-                www = WIDTH_MAX//20
-                hhh += HEIGHT_MAX//12
-            else:
-                www += WIDTH_MAX//20
-        return found
-        
+    in_nucleo, angle, nucleo_radius = start_nucleo()
     found = show(isotopes_found)
 
     while running:
         angle += 0.01
         back_button = draw_text(screen, "Back", CENTER_X-100, HEIGHT_MAX-50)
-        
+        clean_button = draw_text(screen, "Clean", CENTER_X+100, HEIGHT_MAX-50)
+
         screen.fill(BLACK)
         draw_text(screen, "Particles", CENTER_X//4, CENTER_Y//8)
         draw_text(screen, "Elements", CENTER_X//4, CENTER_Y//2)
@@ -69,6 +72,8 @@ def start_menu(screen, isotopes_found):
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if back_button.collidepoint(event.pos):
                         running = False
+                    if clean_button.collidepoint(event.pos):
+                        in_nucleo, angle, nucleo_radius = start_nucleo()
                     distance = ((pygame.mouse.get_pos()[0] - isotope["center"][0]) ** 2 + (pygame.mouse.get_pos()[1] - isotope["center"][1]) ** 2) ** 0.5
                     if distance < isotope["radius"]:
                         isotope["dragging"] = True  # Começa a arrastar
@@ -111,19 +116,33 @@ def start_menu(screen, isotopes_found):
                             isotope = list(filter(lambda x: x.symbol == each[0] and x.mass_number == int(each[1]), ISOTOPES))[0]
                             if isotope not in isotopes_found:
                                 isotopes_found.append(isotope)
+                                if isotope.is_radioactive:
+                                    product_fusion = fusion(isotope, None)
+                                    if product_fusion:
+                                        for each in product_fusion:
+                                            each = each.split("-")
+                                            isotope = list(filter(lambda x: x.symbol == each[0] and x.mass_number == int(each[1]), ISOTOPES))[0]
+                                            if isotope not in isotopes_found:
+                                                isotopes_found.append(isotope)
+                                            else:
+                                                pass
+                                            break
                             else:
                                 pass #reacao ja ocorreu
                             break
                     else:
                         print("Fusão não existe")
-                    in_nucleo = []
-                    angle = 0
-                    nucleo_radius = 100
+                    in_nucleo, angle, nucleo_radius = start_nucleo()
                     found = show(isotopes_found)
         if back_button.collidepoint(pygame.mouse.get_pos()):
             back_button = draw_text(screen, "Back", CENTER_X-100, HEIGHT_MAX-50, 50, GRAY)
         else:
             back_button = draw_text(screen, "Back", CENTER_X-100, HEIGHT_MAX-50)
+        
+        if clean_button.collidepoint(pygame.mouse.get_pos()):
+            clean_button = draw_text(screen, "Clean", CENTER_X+100, HEIGHT_MAX-50, 50, GRAY)
+        else:
+            clean_button = draw_text(screen, "Clean", CENTER_X+100, HEIGHT_MAX-50)
     
         pygame.display.flip()
     return isotopes_found
