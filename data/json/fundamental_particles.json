@@ -1,0 +1,110 @@
+[
+    {
+        "name": "Proton",
+        "symbol": "p",
+        "mass": 1.00727647,
+        "charge": 1, 
+        "spin": 0.5,
+        "color": [
+            214,
+            41,
+            41
+        ]
+    },
+    {
+        "name": "Anti proton",
+        "symbol": "p_", 
+        "mass": 1.00727647,
+        "charge": -1, 
+        "spin": 0.5,
+        "color": [
+            214,
+            41,
+            41
+        ]
+    },
+    {
+        "name": "Neutron",
+        "symbol": "n",
+        "mass": 1.00866491588,
+        "charge": 0, 
+        "spin": 0.5,
+        "color": [
+            150,
+            150,
+            150            
+        ]
+    },
+    {
+        "name": "Anti neutron",
+        "symbol": "n_", 
+        "mass": 1.00866491588,
+        "charge": 0, 
+        "spin": 0.5,
+        "color": [
+            150,
+            150,
+            150            
+        ]
+    },
+    {
+        "name": "Electron",
+        "symbol": "e",
+        "mass":  0.00054858,
+        "charge": -1, 
+        "spin": 0.5,
+        "color": [
+            53,
+            96,
+            199            
+        ]
+    },
+    {
+        "name": "Positron",
+        "symbol": "e+",
+        "mass":  0.00054858,
+        "charge": 1, 
+        "spin": 0.5,
+        "color": [
+            53,
+            96,
+            199            
+        ]
+    },
+    {
+        "name": "Electron neutrino",
+        "symbol": "ve",
+        "mass": 1.25e-37,
+        "charge": 0, 
+        "spin": 0.5,
+        "color": [
+            103,
+            100,
+            194          
+        ]
+    },
+    {
+        "name": "Electron antineutrino",
+        "symbol": "ve_",
+        "mass": 1.25e-37,
+        "charge": 0, 
+        "spin": 0.5,
+        "color": [
+            103,
+            100,
+            194             
+        ]
+    },
+    {
+        "name": "Photon",
+        "symbol": "y",
+        "mass": 0,
+        "charge": 0, 
+        "spin": 1,
+        "color": [
+            236,
+            255,
+            64
+        ]
+    }
+]
