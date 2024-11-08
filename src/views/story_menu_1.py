@@ -9,13 +9,13 @@ def draw_text(screen, text, x, y, size, color):
     screen.blit(surface, rect)
     return rect
 
-def scroll_text(game, text, speed=1, size=35, color=(255, 255, 255), back_button_color=(255, 255, 255)):
+def scroll_text(game, text, imagem, speed=1, size=35, color=(255, 255, 255), back_button_color=(255, 255, 255)):
     # Posição inicial
     y_pos = game.screen.get_height()
     lines = text.splitlines()
     running = True
 
-    imagem = pygame.image.load("assets/images/fundo_story_menu.png").convert()
+    imagem = pygame.image.load(imagem).convert()
     imagem = pygame.transform.scale(imagem, game.screen.get_size())
     back_button_pos = (60, 50)
     clock = pygame.time.Clock() 
@@ -51,4 +51,5 @@ def story_menu(game):
     pygame.mixer.music.load("assets/audio/Star Wars - Main Theme.mp3")
     pygame.mixer.music.play(-1)
 
-    scroll_text(game, story_text, speed=2)
+    imagem = "assets/images/fundo_story_menu.png"
+    scroll_text(game, story_text, imagem, speed=2)

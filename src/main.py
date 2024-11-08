@@ -8,11 +8,13 @@ from views import start_menu_1, start_menu_2, story_menu_1, story_menu_2, table_
 pygame.init()
 pygame.mixer.init() 
 game = Game()
+# game.update_for_level_2()
 pygame.display.set_caption(game.caption)
 video_clip = game.start_media()
 
 #Definindo os botões da tela inicial
-start_button = ButtonOpening(game.screen, "Start", CENTER_X, CENTER_Y - 70, start_menu_1.start_menu)
+if game.current_phase == 1: start_button = ButtonOpening(game.screen, "Start", CENTER_X, CENTER_Y - 70, start_menu_1.start_menu)
+else: start_button = ButtonOpening(game.screen, "Start", CENTER_X, CENTER_Y - 70, start_menu_2.start_menu)
 story_button = ButtonOpening(game.screen, "Story", CENTER_X, CENTER_Y, story_menu_1.story_menu)
 table_button = ButtonOpening(game.screen, "Periodic Table", CENTER_X, CENTER_Y + 70, table_menu.table_menu)
 settings_button = ButtonOpening(game.screen, "Settings", CENTER_X, CENTER_Y + 140, settings_menu.settings_menu)

@@ -12,6 +12,9 @@ class Game:
         self.caption = "Elemental Fusion Game"
         self.video = "assets/videos/video_opening.mp4"
         self.music = "assets/audio/audio_opening.mp3"
+        self.story_text = "assets/texts/story_level_1.txt"
+        self.story_image = "assets/images/fundo_story_menu.png"
+        self.story_music ="assets/audio/Star Wars - Main Theme.mp3"
         self.clock = pygame.time.Clock()
         self.isotopes_found = [ISOTOPES[0]]
         self.particles_found = [PARTICLES[0], PARTICLES[2]]
