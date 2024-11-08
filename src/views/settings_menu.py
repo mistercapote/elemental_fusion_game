@@ -1,13 +1,13 @@
 from views import *
 from models.draw import ButtonStarting
 
-def story_menu(game):
+def settings_menu(game):
     back_button = ButtonStarting(game.screen, "Back", 18*SQUARE_WIDTH, 11*SQUARE_HEIGHT)
-    
+        
     running = True
     while running:
         game.screen.fill(BLACK)
-        # draw_text(screen, "Sotry", 60, 250, 100)
+        # draw_text(screen, "Settings", 60, 250, 100)
         back_button.draw(game.screen, pygame.mouse.get_pos())
 
         for event in pygame.event.get():
@@ -15,5 +15,6 @@ def story_menu(game):
                 game.quit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 running = back_button.check_click(event, running)
-                
+
+        
         pygame.display.flip()

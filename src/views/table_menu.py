@@ -1,6 +1,5 @@
 from views import *
-from models.draw import Card
-import time
+from models.draw import Card, ButtonStarting
 
 def start_box(isotopes_found):
     box = []
@@ -20,45 +19,33 @@ def start_box(isotopes_found):
     return box
 
 
-def table_menu(screen, isotopes_found):
-    box = start_box(isotopes_found)
-    # a, b = 1, 1
+def table_menu(game):
+    box = start_box(game.isotopes_found)
+    back_button = ButtonStarting(game.screen, "Back", 2*SQUARE_WIDTH, 11*SQUARE_HEIGHT)
+
     running = True
     while running:
-        # print(b-a)
-        # a = time.time()
-        back_button = draw_text(screen, "Back", 2*SQUARE_WIDTH, 11*SQUARE_HEIGHT)
         xm, ym = pygame.mouse.get_pos()
-        screen.fill(BLACK)
+        game.screen.fill(BLACK)
         
-        #Hover
+        #Hover elements
         hover_card = None
         for card in box:
             if not hover_card:
                 if xm > card.xpos and xm < card.xpos + SQUARE_WIDTH and ym > card.ypos and ym < card.ypos + SQUARE_HEIGHT:
                     hover_card = card
                     continue
-            if card != hover_card:
-                card.draw_card(screen)
+            card.draw_card(game.screen)  
+        if hover_card: hover_card.draw_card(game.screen, -10)
         
-        if hover_card:
-            hover_card.draw_card(screen, -10)
-        
-        if back_button.collidepoint(pygame.mouse.get_pos()):
-            back_button = draw_text(screen, "Back", 2*SQUARE_WIDTH, 11*SQUARE_HEIGHT, 50, GRAY)
-        else:
-            back_button = draw_text(screen, "Back", 2*SQUARE_WIDTH, 11*SQUARE_HEIGHT)
-        
+        #Hover effect
+        back_button.draw(game.screen, pygame.mouse.get_pos())
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+                game.quit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                if back_button.collidepoint(event.pos):
-                    running = False 
-            elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                running = False 
-        # b = time.time()
+                running = back_button.check_click(event, running)
+                
         pygame.display.flip()
 

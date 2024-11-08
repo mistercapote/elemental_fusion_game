@@ -1,132 +1,50 @@
 import pygame
-import sys
-import pandas as pd
-import numpy as np
-import moviepy.editor as mp
-from utils import draw_text
 from constants import *
-from views import story_menu_1, config_menu, start_menu_1, start_menu_2, table_menu
+from models.draw import ButtonOpening
+from models.game import Game
+from views import start_menu_1, start_menu_2, story_menu_1, story_menu_2, table_menu, settings_menu
 
-def start_media(current_phase):
-    if current_phase == 1:
-        video_clip = mp.VideoFileClip("assets/videos/video_opening.mp4")
-        pygame.mixer.music.load("assets/audio/audio_opening.mp3")
-    if current_phase == 2:
-        video_clip = mp.VideoFileClip("assets/videos/video_opening_2.mp4")
-        pygame.mixer.music.load("assets/audio/audio_opening.mp3")
-    pygame.mixer.music.play(-1)
-    return video_clip
-
-game_state = {
-    "current_phase": 1,
-    "title": "KILL THAT STAR"
-}
-
-isotopes_found = [ISOTOPES[0]]
-
-def update_for_level_2(game_state):
-    game_state["current_phase"] = 2
-    game_state["title"] = "PARTICLE ACCELERATOR"
-
-# update_for_level_2(game_state)
-
-#Initialization
+#Inicialização
 pygame.init()
 pygame.mixer.init() 
-screen = pygame.display.set_mode((WIDTH_MAX, HEIGHT_MAX))
-pygame.display.set_caption("Elemental Fusion Game")
-clock = pygame.time.Clock()
-video_clip = start_media(game_state["current_phase"])
+game = Game()
+pygame.display.set_caption(game.caption)
+video_clip = game.start_media()
 
-#Loop 
+#Definindo os botões da tela inicial
+start_button = ButtonOpening(game.screen, "Start", CENTER_X, CENTER_Y - 70, start_menu_1.start_menu)
+story_button = ButtonOpening(game.screen, "Story", CENTER_X, CENTER_Y, story_menu_1.story_menu)
+table_button = ButtonOpening(game.screen, "Periodic Table", CENTER_X, CENTER_Y + 70, table_menu.table_menu)
+settings_button = ButtonOpening(game.screen, "Settings", CENTER_X, CENTER_Y + 140, settings_menu.settings_menu)
+exit_button = ButtonOpening(game.screen, "Exit", CENTER_X, CENTER_Y + 210, game.quit)
+
+#Loop princial
 running = True
 while running:
-    #Define buttons
-    play_button = draw_text(screen, "Start", CENTER_X, CENTER_Y - 70)
-    story_button = draw_text(screen, "Story", CENTER_X, CENTER_Y)
-    table_button = draw_text(screen, "Periodic Table", CENTER_X, CENTER_Y + 70)
-    config_button = draw_text(screen, "Settings", CENTER_X, CENTER_Y + 140)
-    exit_button = draw_text(screen, "Exit", CENTER_X, CENTER_Y + 210)
-    
-    #Clean display
-    screen.fill(BLACK)
+    game.screen.fill(BLACK) #Limpar tela
+    game.updateVideoFrame(video_clip) #Atualizar video de fundo
+    game.draw_title() #Escrever titulo
 
-    #Update videoframe
-    current_time = video_clip.reader.pos / video_clip.fps
-    if current_time >= video_clip.duration: current_time = 0 
-    frame = video_clip.get_frame(current_time)
-    screen.blit(pygame.surfarray.make_surface(frame.swapaxes(0, 1)), (0, 0))
-    clock.tick(video_clip.fps)
-
-    #Title
-    if game_state["current_phase"]== 1:
-        draw_text(screen, game_state["title"], CENTER_X, 160, 100)
-    else:
-        draw_text(screen, game_state["title"], CENTER_X, 160, 90)
-
-    #Get mouse events
+    #Para cada evento detectado
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            video_clip.close()
-            pygame.quit()
-            sys.exit()
+            game.quit()
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if play_button.collidepoint(event.pos):
-                pygame.mixer.music.stop()
-                video_clip.close()
-                if game_state["current_phase"] == 1:
-                    isotopes_found = start_menu_1.start_menu(screen, isotopes_found)
-                else:
-                    start_menu_2.start_menu(screen)
-
-                video_clip = start_media(game_state["current_phase"])
-            elif story_button.collidepoint(event.pos):
-                pygame.mixer.music.stop()
-                video_clip.close()
-                if game_state["current_phase"] == 1:
-                    story_menu_1.story_menu(screen)
-                else:
-                    story_menu_1.story_menu(screen)
-
-                video_clip = start_media(game_state["current_phase"])
-            elif table_button.collidepoint(event.pos):
-                pygame.mixer.music.stop()
-                video_clip.close()
-                table_menu.table_menu(screen, isotopes_found)
-                video_clip = start_media(game_state["current_phase"])
-            elif config_button.collidepoint(event.pos):
-                pygame.mixer.music.stop()
-                video_clip.close()
-                config_menu.config_menu(screen)
-                video_clip = start_media(game_state["current_phase"])
-            elif exit_button.collidepoint(event.pos):
-                pygame.quit()
-                sys.exit()
+            #Ao clicar em cada botão
+            game, video_clip = start_button.check_click(event, game, video_clip)
+            _, video_clip = story_button.check_click(event, game, video_clip)
+            _, video_clip = table_button.check_click(event, game, video_clip)
+            _, video_clip = settings_button.check_click(event, game, video_clip)
+            exit_button.check_click(event, game, video_clip)
 
     #Hover effect
-    if play_button.collidepoint(pygame.mouse.get_pos()):
-        play_button = draw_text(screen, "Start", CENTER_X, CENTER_Y - 70, 50, GRAY)
-    else:
-        play_button = draw_text(screen, "Start", CENTER_X, CENTER_Y - 70)
-    if story_button.collidepoint(pygame.mouse.get_pos()):
-        story_button = draw_text(screen, "Story", CENTER_X, CENTER_Y, 50, GRAY)
-    else:
-        story_button = draw_text(screen, "Story", CENTER_X, CENTER_Y)
-    if table_button.collidepoint(pygame.mouse.get_pos()):
-        table_button = draw_text(screen, "Periodic Table", CENTER_X, CENTER_Y + 70, 50, GRAY)
-    else:
-        table_button = draw_text(screen, "Periodic Table", CENTER_X, CENTER_Y + 70)
-    if config_button.collidepoint(pygame.mouse.get_pos()):
-        config_button = draw_text(screen, "Settings", CENTER_X, CENTER_Y + 140, 50, GRAY)
-    else:
-        config_button = draw_text(screen, "Settings", CENTER_X, CENTER_Y + 140)
-    if exit_button.collidepoint(pygame.mouse.get_pos()):
-        exit_button = draw_text(screen, "Exit", CENTER_X, CENTER_Y + 210, 50, GRAY)
-    else:
-        exit_button = draw_text(screen, "Exit", CENTER_X, CENTER_Y + 210)
-    
-    pygame.display.flip()
+    start_button.draw(game.screen, pygame.mouse.get_pos())
+    story_button.draw(game.screen, pygame.mouse.get_pos())
+    table_button.draw(game.screen, pygame.mouse.get_pos())
+    settings_button.draw(game.screen, pygame.mouse.get_pos())
+    exit_button.draw(game.screen, pygame.mouse.get_pos())
 
+    pygame.display.flip()
 
 
 

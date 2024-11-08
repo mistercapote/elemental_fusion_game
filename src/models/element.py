@@ -14,12 +14,6 @@ class Element:
         self.color = color
         self.description = description
 
-
-    def __str__(self):
-        return f"{self.symbol}"
-
-    
-
     @classmethod
     def from_dict(cls, data):
         """Cria uma instância da classe a partir de um dicionário."""
@@ -48,28 +42,12 @@ class Isotope(Element):
         self.mass = mass # em U
         self.is_radioactive = is_radioactive
         self.abundance = abundance # em %
-        self.name_isotope = name_isotope if name_isotope else f"{name}-{mass_number}"
+        self.name_isotope = name_isotope if name_isotope else f"{symbol}-{mass_number}"
         self.neutrons = mass_number - atomic_number
         
-    def __str__(self):
-        # get card
-        pass
-
-    def draw_ball(self, screen, x, y, raio=25):
-        font_large = pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.ttf", 20)
-        font_small= pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.ttf", 12)
-        pygame.draw.circle(screen, self.color, (x,y), raio)
-        mass_number_text = font_small.render(f"{self.mass_number}", True, (0,0,0))
-        symbol_text = font_large.render(self.symbol, True, (0,0,0))
-
-
-        rect_mass_number_text = mass_number_text.get_rect(center=(x-1*raio//2,y-raio//3))
-        rect_symbol_text = symbol_text.get_rect(center=(x,y))
-
-        screen.blit(mass_number_text, rect_mass_number_text)
-        screen.blit(symbol_text, rect_symbol_text)
-
-        return
+    def __eq__(self, other):
+        if not isinstance(other, Isotope): return False
+        return self.atomic_number == other.atomic_number and self.mass_number == other.mass_number
     
     @staticmethod
     def load_elements_from_json_2(ELEMENTS, isotope_path):
@@ -80,7 +58,6 @@ class Isotope(Element):
         for isotope in isotope_data:
             element = list(filter(lambda x: x.atomic_number == isotope["atomic_number"], ELEMENTS))[0]
             lista.append(Isotope.from_dict_2(isotope, element))
-        
         return lista
 
     @classmethod
@@ -99,11 +76,31 @@ class Isotope(Element):
             mass = data["mass"], # em U
             is_radioactive = data["is_radioactive"],
             abundance = data["abundance"], # em %
-            name_isotope = data["name_isotope"] if data["name_isotope"] else f"{element.name}-{data['mass_number']}"
+            name_isotope = data["name_isotope"] if data["name_isotope"] else f"{element.symbol}-{data['mass_number']}"
         )
             
-
-
 class FundamentalParticle:
-    pass
+    def __init__(self, name, symbol, mass, charge, spin, color):
+        self.name = name
+        self.symbol = symbol
+        self.mass = mass
+        self.charge = charge
+        self.spin = spin
+        self.color = color
+    
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            name = data["name"],
+            symbol = data["symbol"],
+            mass = data["mass"],
+            charge = data["charge"],
+            spin = data["spin"],
+            color = data["color"],
+        )
 
+    @staticmethod
+    def load_elements_from_json(filepath):
+        with open(filepath, "r") as f:
+            particles_data = json.load(f)
+        return [FundamentalParticle.from_dict(data) for data in particles_data]

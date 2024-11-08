@@ -12,33 +12,9 @@
         ]
     },
     {
-        "name": "Anti proton",
-        "symbol": "p_", 
-        "mass": 1.00727647,
-        "charge": -1, 
-        "spin": 0.5,
-        "color": [
-            214,
-            41,
-            41
-        ]
-    },
-    {
         "name": "Neutron",
         "symbol": "n",
-        "mass": 1.00866491588,
-        "charge": 0, 
-        "spin": 0.5,
-        "color": [
-            150,
-            150,
-            150            
-        ]
-    },
-    {
-        "name": "Anti neutron",
-        "symbol": "n_", 
-        "mass": 1.00866491588,
+        "mass": 1.00866492,
         "charge": 0, 
         "spin": 0.5,
         "color": [
@@ -74,7 +50,7 @@
     {
         "name": "Electron neutrino",
         "symbol": "ve",
-        "mass": 1.25e-37,
+        "mass": 1e-9,
         "charge": 0, 
         "spin": 0.5,
         "color": [
@@ -86,7 +62,7 @@
     {
         "name": "Electron antineutrino",
         "symbol": "ve_",
-        "mass": 1.25e-37,
+        "mass": 1e-9,
         "charge": 0, 
         "spin": 0.5,
         "color": [

@@ -22,22 +22,39 @@ class Fusion:
         return energy_mev
     
     @classmethod
-    def from_dict(cls, data):
+    def from_dict(cls, ISOTOPES, PARTICLES, data):
         """Cria uma instância da classe a partir de um dicionário."""
+        def aux(data):
+            if data["element_b"] == None:
+                return None
+            elif "-" in data["element_b"]:
+                return next((obj for obj in ISOTOPES if obj.name_isotope == data["element_b"]), None) 
+            else:
+                return next((obj for obj in PARTICLES if obj.symbol == data["element_b"]), None) 
+        
+        def aux2(data):
+            resultado = []
+            for each in data["product"]:
+                if "-" in each:
+                    resultado.append(next((obj for obj in ISOTOPES if obj.name_isotope == each), None) )
+                else:
+                    resultado.append(next((obj for obj in PARTICLES if obj.symbol == each), None) )
+            return resultado
+
         return cls(
             process = data["process"], # Nome do processo quimico que a fusão pertence
-            element_a = data["element_a"], # Objeto da classe Isotope
-            element_b = data["element_b"], # Objeto da classe Isotope ou FuntamentalParticle ou None
-            product = data["product"], # Lista de Objetos das classes Isotope e FuntamentalParticle
+            element_a = next((obj for obj in ISOTOPES if obj.name_isotope == data["element_a"]), None), # Objeto da classe Isotope
+            element_b = aux(data), # Objeto da classe Isotope ou FuntamentalParticle ou None
+            product = aux2(data), # Lista de Objetos das classes Isotope e FuntamentalParticle
             description = data["description"] # Texto falando um pouco sobre a fusão
         )
 
     @staticmethod
-    def load_elements_from_json(filepath):
+    def load_elements_from_json(ISOTOPES, PARTICLES, filepath):
         """Carrega dados de elementos a partir de um arquivo JSON e cria objetos Element."""
         with open(filepath, "r") as f:
             fusion_data = json.load(f)
-        return [Fusion.from_dict(data) for data in fusion_data]
+        return [Fusion.from_dict(ISOTOPES, PARTICLES, data) for data in fusion_data]
 
 class Decay:
     def alpha_decay():
