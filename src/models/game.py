@@ -14,7 +14,7 @@ class Game:
         self.music = "assets/audio/audio_opening.mp3"
         self.story_text = "assets/texts/story_level_1.txt"
         self.story_image = "assets/images/fundo_story_menu.png"
-        self.story_music ="assets/audio/Star Wars - Main Theme.mp3"
+        self.story_music = "assets/audio/Star Wars - Main Theme.mp3"
         self.clock = pygame.time.Clock()
         self.isotopes_found = [ISOTOPES[0]]
         self.particles_found = [PARTICLES[0], PARTICLES[2]]
@@ -55,6 +55,13 @@ class Game:
         frame = video_clip.get_frame(current_time)
         self.screen.blit(pygame.surfarray.make_surface(frame.swapaxes(0, 1)), (0, 0))
         self.clock.tick(video_clip.fps)
+
+    def get_story_image(self):
+        return pygame.transform.scale(pygame.image.load(self.story_image).convert(), [WIDTH_MAX, HEIGHT_MAX])
+    
+    def get_story_text(self):
+        with open(self.story_text, "r", encoding="utf-8") as file:
+            return file.read()
     
 class Nucleo:
     def __init__(self): 
