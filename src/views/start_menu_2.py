@@ -1,22 +1,22 @@
 import pygame
 import sys
 from views import *
+from constants import *
 
-def start_menu(screen):
+def start_menu(game):
 
-    screen_width, screen_height = screen.get_size()
+    screen = pygame.display.set_mode((WIDTH_MAX, HEIGHT_MAX))
 
     #personagem provisório
     player_color = (0, 128, 255)
     player_width, player_height = 50, 50
-    player_x = screen_width // 2
-    player_y = screen_height // 2
+    player_x = WIDTH_MAX // 2
+    player_y = HEIGHT_MAX // 2
     player_speed = 5
 
 
     running = True
     while running:
-        back_button = draw_text(screen, "Back", 18*SQUARE_WIDTH, 11*SQUARE_HEIGHT)
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -37,12 +37,12 @@ def start_menu(screen):
         # impede que o personagem saia da tela
         if player_x < 0:
             player_x = 0
-        if player_x > screen_width - player_width:
-            player_x = screen_width - player_width
+        if player_x > WIDTH_MAX - player_width:
+            player_x = WIDTH_MAX - player_width
         if player_y < 0:
             player_y = 0
-        if player_y > screen_height - player_height:
-            player_y = screen_height - player_height
+        if player_y > HEIGHT_MAX - player_height:
+            player_y = HEIGHT_MAX - player_height
 
         
         screen.fill((0, 0, 0))  # Limpa a tela
