@@ -1,4 +1,5 @@
 from models.element import Isotope
+import numpy as np
 import json
 
 class Fusion:
@@ -13,13 +14,11 @@ class Fusion:
     def get_energy(self):
         U_TO_KG = 1.66053906660e-27
         J_TO_MEV =  6.242e12
-        C_2 = 2.99792458e16
-
+        C_2 = (2.99792458e8)**2
         m_initial = self.element_a.mass + self.element_b.mass if self.element_b else self.element_a.mass
-        m_final = sum(map(lambda x: x.mass, filter(lambda x: isinstance(x, Isotope), self.product)))
-
+        m_final = sum([obj.mass for obj in self.product if isinstance(obj, Isotope)])
         energy_mev = (m_initial - m_final) * U_TO_KG * C_2 * J_TO_MEV
-        return energy_mev
+        return round(energy_mev, 4)
     
     @classmethod
     def from_dict(cls, ISOTOPES, PARTICLES, data):

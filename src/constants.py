@@ -24,7 +24,3 @@ PARTICLES = FundamentalParticle.load_elements_from_json("data/json/fundamental_p
 ELEMENTS = Element.load_elements_from_json("data/json/element.json")
 ISOTOPES = Isotope.load_elements_from_json_2(ELEMENTS, "data/json/isotope.json")
 FUSIONS = Fusion.load_elements_from_json(ISOTOPES, PARTICLES, "data/json/fusion.json")
-
-
-# for i in FUSIONS:
-#     print(i.element_a, i.element_b)

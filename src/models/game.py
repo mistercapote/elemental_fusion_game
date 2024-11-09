@@ -53,34 +53,72 @@ class Game:
         self.screen.blit(pygame.surfarray.make_surface(frame.swapaxes(0, 1)), (0, 0))
         self.clock.tick(video_clip.fps)
     
-
-# class Video:
-#     def __init__(self):
-#         self.path = 
-#         self.clip = 
-#         self.fps =
-
-
-
 class Nucleo:
     def __init__(self): 
-        self.elements = []
-        self.pos1 = None
-        self.pos2 = None
+        self.start_nucleo()
+
+    def start_nucleo(self):
+        self.reacting = [] 
+        self.pos = []
         self.angle = 0
         self.radius = 100
 
-    def start_nucleo(self):
-        self.elements = [] 
-        self.angle = 0
-        self.radius = 100
+    def reacting_lenght(self):
+        return len(self.reacting)
+    
+    def reacting_append(self, ball):
+        return self.reacting.append(ball)
 
     def update_position(self):
         def position(radius, angle):
             return [3*CENTER_X//2 + radius * np.cos(angle),
                     CENTER_Y + radius * np.sin(angle)
             ]
-        self.pos1 = position(self.radius, self.angle)
-        self.pos2 = position(self.radius, self.angle+np.pi)
-        
+        self.pos = [position(self.radius, self.angle),
+                  position(self.radius, self.angle+np.pi)
+        ]
     
+    def controler(self, game):
+        found = []
+        if self.reacting:
+            self.update_position()
+            self.reacting[0].draw_nucleo_ball(game.screen, *self.pos[0])
+            if len(self.reacting)==2:
+                self.reacting[1].draw_nucleo_ball(game.screen, *self.pos[1])
+                if self.radius > 0:
+                    self.radius -= 0.5
+                else:
+                    a = self.reacting[0].entity
+                    b = self.reacting[1].entity
+                    game, found = self.recursive_fusion(game, found, a, b)
+                    self.start_nucleo()
+        return self, game, found
+                    
+
+    def recursive_fusion(self, game, found, a, b):
+        fusions = [obj for obj in FUSIONS if (obj.element_a == a and obj.element_b == b) or (obj.element_a == b and obj.element_b == a)]
+        if fusions: 
+            chosen_fusion = fusions[np.random.randint(0, len(fusions))]
+            if chosen_fusion not in game.fusions_found:
+                game.fusions_found.append(chosen_fusion.product)
+                print(chosen_fusion.get_energy())
+                for each in chosen_fusion.product:
+                    if isinstance(each, Isotope) and each not in game.isotopes_found:
+                        game.isotopes_found.append(each)
+                        found.append(each)
+                        #pop-up
+                        if each.is_radioactive:
+                            game, found = self.recursive_fusion(game, found, each, None)
+                    elif isinstance(each, FundamentalParticle) and each not in game.particles_found:
+                        game.particles_found.append(each)
+                        found.append(each)
+            else:
+                print(f"Fusão já ocorreu")
+        else:
+            print(f"Fusão para {a.name} e algo mais não existe")
+        return game, found
+
+class Achievement:
+    pass
+        
+

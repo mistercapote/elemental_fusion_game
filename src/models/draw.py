@@ -2,6 +2,7 @@ import pygame
 from constants import *
 from models.game import Game
 from abc import ABC, abstractmethod
+
 class Button(ABC):
     def __init__(self, screen, text, x, y, action=None):
         self.text = text
@@ -27,7 +28,6 @@ class Button(ABC):
     @abstractmethod
     def check_click(self):
         pass
-    
 
 class ButtonOpening(Button):
     def check_click(self, event, game, video_clip):
@@ -41,13 +41,9 @@ class ButtonOpening(Button):
     
 class ButtonStarting(Button):
     def check_click(self, event, *parameters):
-        print(1, parameters)
         if self.rect.collidepoint(event.pos):
-            print(2, parameters)
             if self.action:
-                print(3, *parameters)
                 resultado = self.action(*parameters)
-                print(4, resultado)
                 return resultado
             else:
                 return not parameters[0]
@@ -55,7 +51,6 @@ class ButtonStarting(Button):
             return parameters[0]
         return parameters
     
-
 class Card:
     def __init__(self, element, x, y):
         self.element = element
@@ -91,12 +86,53 @@ class Card:
 
 
 class Ball(ABC):
-    def __init__(self, entity, x, y):
+    def __init__(self, entity):
         self.entity = entity
-        self.xpos = x
-        self.ypos = y
         self.drag_center = None
         self.dragging = False
+        self.xpos, self.ypos = self.position()
+
+    def check_down(self): 
+        mouse = pygame.mouse.get_pos()
+        #Confere se a posicao do mouse está sobre a ball
+        distance = ((mouse[0] - self.xpos) ** 2 + (mouse[1] - self.ypos) ** 2) ** 0.5
+        if distance < self.radius:
+            self.dragging = True 
+            self.drag_center = [self.xpos, self.ypos]
+
+    def check_up(self, nucleo): 
+        self.dragging = False
+        if self.drag_center:
+            if self.drag_center[0] > CENTER_X:
+                if nucleo.reacting_lenght() < 2:
+                    nucleo.reacting_append(self)
+                self.drag_center = None
+            else:
+                #é desfeito, efeito de encolher
+                self.drag_center = None
+                pass
+        return nucleo
+    
+    def check_motion(self, event): 
+        #Atualiza a ball arrastavel para a posicao do mouse
+        if self.dragging:
+            new_pos = list(event.pos)
+            #Lógica para colidir com os limites da tela
+            new_pos[0] = max(self.radius, min(new_pos[0], WIDTH_MAX - self.radius))
+            new_pos[1] = max(self.radius, min(new_pos[1], HEIGHT_MAX - self.radius))
+            self.drag_center = new_pos
+
+    @staticmethod
+    def turn_ball(entity):
+        if isinstance(entity, Element): 
+            return ElementBall(entity) 
+        elif isinstance(entity, FundamentalParticle): 
+            return ParticleBall(entity)
+
+    @staticmethod
+    def start_draw():
+        ElementBall.start_draw()
+        ParticleBall.start_draw()
 
     @abstractmethod
     def draw_ball(self, screen):
@@ -110,16 +146,33 @@ class Ball(ABC):
     def draw_nucleo_ball(self, screen, x, y):
         pass
 
+    @abstractmethod
+    def position(self):
+        pass
+
 
 class ElementBall(Ball):
-    radius = 25
 
+    @staticmethod
+    def start_draw():
+        ElementBall.www = WIDTH_MAX//20
+        ElementBall.hhh = HEIGHT_MAX//3
+        ElementBall.line_break = 0
+        ElementBall.radius = 25
+    
+    def position(self):
+        if ElementBall.line_break % 9 == 0:
+            ElementBall.www = WIDTH_MAX//20
+            ElementBall.hhh += HEIGHT_MAX//12
+        else:
+            ElementBall.www += WIDTH_MAX//20
+        ElementBall.line_break +=1
+        return ElementBall.www, ElementBall.hhh
+    
     def draw_ball(self, screen):
-        font_large = pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.ttf", 20)
-        font_small= pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.ttf", 12)
         pygame.draw.circle(screen, self.entity.color, (self.xpos, self.ypos), self.radius)
-        mass_number_text = font_small.render(f"{self.entity.mass_number}", True, (0,0,0))
-        symbol_text = font_large.render(self.entity.symbol, True, (0,0,0))
+        mass_number_text = FONT_SMALL.render(f"{self.entity.mass_number}", True, (0,0,0))
+        symbol_text = FONT_LARGE.render(self.entity.symbol, True, (0,0,0))
 
         rect_mass_number_text = mass_number_text.get_rect(center=(self.xpos-self.radius//2, self.ypos-self.radius//3))
         rect_symbol_text = symbol_text.get_rect(center=(self.xpos,self.ypos))
@@ -128,11 +181,9 @@ class ElementBall(Ball):
         screen.blit(symbol_text, rect_symbol_text)
 
     def draw_drag_ball(self, screen):
-        font_large = pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.ttf", 20)
-        font_small= pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.ttf", 12)
         pygame.draw.circle(screen, self.entity.color, (self.drag_center[0], self.drag_center[1]), self.radius)
-        mass_number_text = font_small.render(f"{self.entity.mass_number}", True, (0,0,0))
-        symbol_text = font_large.render(self.entity.symbol, True, (0,0,0))
+        mass_number_text = FONT_SMALL.render(f"{self.entity.mass_number}", True, (0,0,0))
+        symbol_text = FONT_LARGE.render(self.entity.symbol, True, (0,0,0))
 
         rect_mass_number_text = mass_number_text.get_rect(center=(self.drag_center[0]-self.radius//2, self.drag_center[1]-self.radius//3))
         rect_symbol_text = symbol_text.get_rect(center=(self.drag_center[0],self.drag_center[1]))
@@ -141,11 +192,9 @@ class ElementBall(Ball):
         screen.blit(symbol_text, rect_symbol_text)
 
     def draw_nucleo_ball(self, screen, x, y):
-        font_large = pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.ttf", 20)
-        font_small= pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.ttf", 12)
         pygame.draw.circle(screen, self.entity.color, (x, y), self.radius)
-        mass_number_text = font_small.render(f"{self.entity.mass_number}", True, (0,0,0))
-        symbol_text = font_large.render(self.entity.symbol, True, (0,0,0))
+        mass_number_text = FONT_SMALL.render(f"{self.entity.mass_number}", True, (0,0,0))
+        symbol_text = FONT_LARGE.render(self.entity.symbol, True, (0,0,0))
 
         rect_mass_number_text = mass_number_text.get_rect(center=(x-self.radius//2, y-self.radius//3))
         rect_symbol_text = symbol_text.get_rect(center=(x,y))
@@ -155,26 +204,38 @@ class ElementBall(Ball):
 
 
 class ParticleBall(Ball):
-    radius = 15
 
+    @staticmethod
+    def start_draw():
+        ParticleBall.www = WIDTH_MAX//20
+        ParticleBall.hhh = HEIGHT_MAX//7
+        ParticleBall.line_break = 0
+        ParticleBall.radius = 15
+
+    def position(self):
+        if ParticleBall.line_break % 9 == 0:
+            ParticleBall.www = WIDTH_MAX//20
+            ParticleBall.hhh += HEIGHT_MAX//14
+        else:
+            ParticleBall.www += WIDTH_MAX//20
+        ParticleBall.line_break +=1
+        return ParticleBall.www, ParticleBall.hhh
+    
     def draw_ball(self, screen):
-        font_small = pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.ttf", 12)
         pygame.draw.circle(screen, self.entity.color, (self.xpos, self.ypos), self.radius)
-        symbol_text = font_small.render(self.entity.symbol, True, (0,0,0))
+        symbol_text = FONT_SMALL.render(self.entity.symbol, True, (0,0,0))
         rect_symbol_text = symbol_text.get_rect(center=(self.xpos,self.ypos))
         screen.blit(symbol_text, rect_symbol_text)
 
     def draw_drag_ball(self, screen):
-        font_small= pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.ttf", 12)
         pygame.draw.circle(screen, self.entity.color, (self.drag_center[0], self.drag_center[1]), self.radius)
-        symbol_text = font_small.render(self.entity.symbol, True, (0,0,0))
+        symbol_text = FONT_SMALL.render(self.entity.symbol, True, (0,0,0))
         rect_symbol_text = symbol_text.get_rect(center=(self.drag_center[0],self.drag_center[1]))
         screen.blit(symbol_text, rect_symbol_text)
 
     def draw_nucleo_ball(self, screen, x, y):
-        font_small= pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.ttf", 8)
         pygame.draw.circle(screen, self.entity.color, (x, y), self.radius)
-        symbol_text = font_small.render(self.entity.symbol, True, (0,0,0))
+        symbol_text = FONT_SMALL.render(self.entity.symbol, True, (0,0,0))
         rect_symbol_text = symbol_text.get_rect(center=(x,y))
         screen.blit(symbol_text, rect_symbol_text)
 
