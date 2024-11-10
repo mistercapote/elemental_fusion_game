@@ -16,7 +16,6 @@ class Element:
 
     @classmethod
     def from_dict(cls, data):
-        """Cria uma instância da classe a partir de um dicionário."""
         return cls(
             name = data["name"],
             symbol = data["symbol"],
@@ -30,7 +29,6 @@ class Element:
 
     @staticmethod
     def load_elements_from_json(filepath):
-        """Carrega dados de elementos a partir de um arquivo JSON e cria objetos Element."""
         with open(filepath, "r") as f:
             elements_data = json.load(f)
         return [Element.from_dict(data) for data in elements_data]
@@ -49,20 +47,8 @@ class Isotope(Element):
         if not isinstance(other, Isotope): return False
         return self.atomic_number == other.atomic_number and self.mass_number == other.mass_number
     
-    @staticmethod
-    def load_elements_from_json_2(ELEMENTS, isotope_path):
-        with open(isotope_path, "r") as f:
-            isotope_data = json.load(f)
-
-        lista = []
-        for isotope in isotope_data:
-            element = list(filter(lambda x: x.atomic_number == isotope["atomic_number"], ELEMENTS))[0]
-            lista.append(Isotope.from_dict_2(isotope, element))
-        return lista
-
     @classmethod
     def from_dict_2(cls, data, element):
-        """Cria uma instância da classe a partir de um dicionário."""
         return cls(
             name=element.name,
             symbol=element.symbol,
@@ -78,6 +64,18 @@ class Isotope(Element):
             abundance = data["abundance"], # em %
             name_isotope = data["name_isotope"] if data["name_isotope"] else f"{element.symbol}-{data['mass_number']}"
         )
+    
+    @staticmethod
+    def load_elements_from_json_2(ELEMENTS, isotope_path):
+        with open(isotope_path, "r") as f:
+            isotope_data = json.load(f)
+
+        lista = []
+        for isotope in isotope_data:
+            element = list(filter(lambda x: x.atomic_number == isotope["atomic_number"], ELEMENTS))[0]
+            lista.append(Isotope.from_dict_2(isotope, element))
+        return lista
+
             
 class FundamentalParticle:
     def __init__(self, name, symbol, mass, charge, spin, color):
