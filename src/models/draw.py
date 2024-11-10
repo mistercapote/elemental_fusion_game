@@ -8,19 +8,19 @@ class Button(ABC):
         self.text = text
         self.xpos = x
         self.ypos = y
-        self.size = 40
+        self.hovered = False
         self.color = WHITE
         self.rect = self.rects(screen)
         self.action = action
 
     def draw(self, screen, mouse=(0,0)):
-        if self.rect.collidepoint(mouse): self.size, self.color = 50, GRAY
-        else: self.size, self.color = 40, WHITE
+        if self.rect.collidepoint(mouse): self.hovered = True
+        else: self.hovered = False
         self.rects(screen)
 
     def rects(self, screen):
-        font = pygame.font.Font("assets/font/Bungee_Inline/BungeeInline-Regular.ttf", self.size)
-        surface = font.render(self.text, True, self.color)
+        if self.hovered: surface = FONT_BUTTON_HOVER.render(self.text, True, GRAY)
+        else: surface = FONT_BUTTON.render(self.text, True, WHITE)
         rect = surface.get_rect(center=(self.xpos,self.ypos))
         screen.blit(surface, rect)
         return rect
@@ -63,21 +63,20 @@ class Card:
                        (self.xpos+SQUARE_WIDTH-coef, self.ypos+SQUARE_HEIGHT-coef), 
                        (self.xpos+coef, self.ypos+SQUARE_HEIGHT-coef)]
         if not self.element:
-            name_text = FONT_SMALL.render("", True, (0,0,0))
-            symbol_text = FONT_LARGE.render("?", True, (0,0,0))
-            number_text = FONT_SMALL.render("", True, (0,0,0))
+            name_text = FONT_SMALL.render("", True, BLACK)
+            symbol_text = FONT_LARGE.render("?", True, BLACK)
+            number_text = FONT_SMALL.render("", True, BLACK)
             pygame.draw.polygon(screen, (150,150,150), coordenates) 
         else:
-            name_text = FONT_SMALL.render(self.element.name, True, (0,0,0))
-            symbol_text = FONT_LARGE.render(self.element.symbol, True, (0,0,0))
-            number_text = FONT_SMALL.render(f"{self.element.atomic_number}", True, (0,0,0))
+            name_text = FONT_SMALL.render(self.element.name, True, BLACK)
+            symbol_text = FONT_LARGE.render(self.element.symbol, True, BLACK)
+            number_text = FONT_SMALL.render(f"{self.element.atomic_number}", True, BLACK)
             pygame.draw.polygon(screen, self.element.color, coordenates) 
 
-        
         number_rect_text = number_text.get_rect(center=(self.xpos+SQUARE_WIDTH//8+coef, self.ypos+SQUARE_HEIGHT//8+coef))
-        symbol_rect_text = symbol_text.get_rect(center=(self.xpos+SQUARE_WIDTH//2, self.ypos+SQUARE_HEIGHT//2))
-        
         screen.blit(number_text, number_rect_text)
+        
+        symbol_rect_text = symbol_text.get_rect(center=(self.xpos+SQUARE_WIDTH//2, self.ypos+SQUARE_HEIGHT//2))
         screen.blit(symbol_text, symbol_rect_text)
 
         if coef != 1:
@@ -134,16 +133,14 @@ class Ball(ABC):
         ElementBall.start_draw()
         ParticleBall.start_draw()
 
-    @abstractmethod
     def draw_ball(self, screen):
-        pass
+        self.draw(screen, self.xpos, self.ypos)
 
-    @abstractmethod
     def draw_drag_ball(self, screen):
-        pass
+        self.draw(screen, self.drag_center[0], self.drag_center[1])
 
     @abstractmethod
-    def draw_nucleo_ball(self, screen, x, y):
+    def draw(self, screen, x, y):
         pass
 
     @abstractmethod
@@ -168,40 +165,17 @@ class ElementBall(Ball):
             ElementBall.www += WIDTH_MAX//20
         ElementBall.line_break +=1
         return ElementBall.www, ElementBall.hhh
-    
-    def draw_ball(self, screen):
-        pygame.draw.circle(screen, self.entity.color, (self.xpos, self.ypos), self.radius)
-        mass_number_text = FONT_SMALL.render(f"{self.entity.mass_number}", True, (0,0,0))
-        symbol_text = FONT_LARGE.render(self.entity.symbol, True, (0,0,0))
 
-        rect_mass_number_text = mass_number_text.get_rect(center=(self.xpos-self.radius//2, self.ypos-self.radius//3))
-        rect_symbol_text = symbol_text.get_rect(center=(self.xpos,self.ypos))
-
-        screen.blit(mass_number_text, rect_mass_number_text)
-        screen.blit(symbol_text, rect_symbol_text)
-
-    def draw_drag_ball(self, screen):
-        pygame.draw.circle(screen, self.entity.color, (self.drag_center[0], self.drag_center[1]), self.radius)
-        mass_number_text = FONT_SMALL.render(f"{self.entity.mass_number}", True, (0,0,0))
-        symbol_text = FONT_LARGE.render(self.entity.symbol, True, (0,0,0))
-
-        rect_mass_number_text = mass_number_text.get_rect(center=(self.drag_center[0]-self.radius//2, self.drag_center[1]-self.radius//3))
-        rect_symbol_text = symbol_text.get_rect(center=(self.drag_center[0],self.drag_center[1]))
-
-        screen.blit(mass_number_text, rect_mass_number_text)
-        screen.blit(symbol_text, rect_symbol_text)
-
-    def draw_nucleo_ball(self, screen, x, y):
+    def draw(self, screen, x, y):
         pygame.draw.circle(screen, self.entity.color, (x, y), self.radius)
-        mass_number_text = FONT_SMALL.render(f"{self.entity.mass_number}", True, (0,0,0))
-        symbol_text = FONT_LARGE.render(self.entity.symbol, True, (0,0,0))
-
+        
+        mass_number_text = FONT_SMALL.render(f"{self.entity.mass_number}", True, BLACK)
         rect_mass_number_text = mass_number_text.get_rect(center=(x-self.radius//2, y-self.radius//3))
-        rect_symbol_text = symbol_text.get_rect(center=(x,y))
-
         screen.blit(mass_number_text, rect_mass_number_text)
+        
+        symbol_text = FONT_LARGE.render(self.entity.symbol, True, BLACK)
+        rect_symbol_text = symbol_text.get_rect(center=(x,y))
         screen.blit(symbol_text, rect_symbol_text)
-
 
 class ParticleBall(Ball):
 
@@ -220,23 +194,12 @@ class ParticleBall(Ball):
             ParticleBall.www += WIDTH_MAX//20
         ParticleBall.line_break +=1
         return ParticleBall.www, ParticleBall.hhh
-    
-    def draw_ball(self, screen):
-        pygame.draw.circle(screen, self.entity.color, (self.xpos, self.ypos), self.radius)
-        symbol_text = FONT_SMALL.render(self.entity.symbol, True, (0,0,0))
-        rect_symbol_text = symbol_text.get_rect(center=(self.xpos,self.ypos))
-        screen.blit(symbol_text, rect_symbol_text)
 
-    def draw_drag_ball(self, screen):
-        pygame.draw.circle(screen, self.entity.color, (self.drag_center[0], self.drag_center[1]), self.radius)
-        symbol_text = FONT_SMALL.render(self.entity.symbol, True, (0,0,0))
-        rect_symbol_text = symbol_text.get_rect(center=(self.drag_center[0],self.drag_center[1]))
-        screen.blit(symbol_text, rect_symbol_text)
-
-    def draw_nucleo_ball(self, screen, x, y):
+    def draw(self, screen, x, y):
         pygame.draw.circle(screen, self.entity.color, (x, y), self.radius)
-        symbol_text = FONT_SMALL.render(self.entity.symbol, True, (0,0,0))
+        symbol_text = FONT_SMALL.render(self.entity.symbol, True, BLACK)
         rect_symbol_text = symbol_text.get_rect(center=(x,y))
         screen.blit(symbol_text, rect_symbol_text)
+
 
     

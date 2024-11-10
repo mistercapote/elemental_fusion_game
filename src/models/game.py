@@ -27,8 +27,7 @@ class Game:
         self.music = "assets/audio/audio_opening.mp3"
 
     def draw_title(self):
-        font = pygame.font.Font("assets/font/Bungee_Inline/BungeeInline-Regular.ttf", 90)
-        surface = font.render(self.title, True, WHITE)
+        surface = FONT_GIGANT.render(self.title, True, WHITE)
         rect = surface.get_rect(center=(CENTER_X, 2*HEIGHT_MAX//9))
         self.screen.blit(surface, rect)
         return rect
@@ -92,9 +91,9 @@ class Nucleo:
         found = []
         if self.reacting:
             self.update_position()
-            self.reacting[0].draw_nucleo_ball(game.screen, *self.pos[0])
+            self.reacting[0].draw(game.screen, *self.pos[0])
             if len(self.reacting)==2:
-                self.reacting[1].draw_nucleo_ball(game.screen, *self.pos[1])
+                self.reacting[1].draw(game.screen, *self.pos[1])
                 if self.radius > 0:
                     self.radius -= 0.5
                 else:
