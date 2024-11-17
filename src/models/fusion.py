@@ -10,6 +10,10 @@ class Fusion:
         self.product = product # Lista de Objetos das classes Isotope e FuntamentalParticle
         self.description = description # Texto falando um pouco sobre a fusão
 
+    def __eq__(self, other):
+        if not isinstance(other, Fusion): return False
+        return self.element_a == other.element_a and self.element_b == other.element_b
+
     # Energia gerada pela reação
     def get_energy(self):
         U_TO_KG = 1.66053906660e-27
