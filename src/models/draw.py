@@ -51,9 +51,15 @@ class ButtonStarting(Button):
             return parameters[0]
         return parameters
     
+class ButtonPopUp(Button):
+    def check_click(self, event, game):
+        if self.rect.collidepoint(event.pos):
+            game.popup.pop(0)
+        return game
+    
 class Card:
-    def __init__(self, element, x, y):
-        self.element = element
+    def __init__(self, entity, x, y):
+        self.entity = entity
         self.xpos = x
         self.ypos = y
 
@@ -62,27 +68,30 @@ class Card:
                        (self.xpos+SQUARE_WIDTH-coef, self.ypos+coef), 
                        (self.xpos+SQUARE_WIDTH-coef, self.ypos+SQUARE_HEIGHT-coef), 
                        (self.xpos+coef, self.ypos+SQUARE_HEIGHT-coef)]
-        if not self.element:
+        if not self.entity:
             name_text = FONT_SMALL.render("", True, BLACK)
             symbol_text = FONT_LARGE.render("?", True, BLACK)
-            number_text = FONT_SMALL.render("", True, BLACK)
-            pygame.draw.polygon(screen, (150,150,150), coordenates) 
+            pygame.draw.polygon(screen, GRAY, coordenates) 
         else:
-            name_text = FONT_SMALL.render(self.element.name, True, BLACK)
-            symbol_text = FONT_LARGE.render(self.element.symbol, True, BLACK)
-            number_text = FONT_SMALL.render(f"{self.element.atomic_number}", True, BLACK)
-            pygame.draw.polygon(screen, self.element.color, coordenates) 
-
-        number_rect_text = number_text.get_rect(center=(self.xpos+SQUARE_WIDTH//8+coef, self.ypos+SQUARE_HEIGHT//8+coef))
-        screen.blit(number_text, number_rect_text)
+            name_text = FONT_SMALL.render(self.entity.name, True, BLACK)
+            symbol_text = FONT_LARGE.render(self.entity.symbol, True, BLACK)
+            pygame.draw.polygon(screen, self.entity.color, coordenates) 
+        
+        if coef != 1:
+            name_rect_text = name_text.get_rect(center=(self.xpos+SQUARE_WIDTH//2, self.ypos+7*SQUARE_HEIGHT//8-coef))
+            screen.blit(name_text, name_rect_text)
         
         symbol_rect_text = symbol_text.get_rect(center=(self.xpos+SQUARE_WIDTH//2, self.ypos+SQUARE_HEIGHT//2))
         screen.blit(symbol_text, symbol_rect_text)
 
-        if coef != 1:
-            name_rect_text = name_text.get_rect(center=(self.xpos+SQUARE_WIDTH//2, self.ypos+7*SQUARE_HEIGHT//8-coef))
-            screen.blit(name_text, name_rect_text)
-
+        if isinstance(self.entity, Element):
+            number_text = FONT_SMALL.render(f"{self.entity.atomic_number}", True, BLACK)
+            number_rect_text = number_text.get_rect(center=(self.xpos+SQUARE_WIDTH//8+coef, self.ypos+SQUARE_HEIGHT//8+coef))
+            screen.blit(number_text, number_rect_text)
+            if isinstance(self.entity, Isotope):
+                mass_text = FONT_SMALL.render(f"{self.entity.mass_number}", True, BLACK)
+                mass_rect_text = mass_text.get_rect(center=(self.xpos+7*SQUARE_WIDTH//8-coef, self.ypos+SQUARE_HEIGHT//8+coef))
+                screen.blit(mass_text, mass_rect_text)
 
 class Ball(ABC):
     def __init__(self, entity):
@@ -201,5 +210,34 @@ class ParticleBall(Ball):
         rect_symbol_text = symbol_text.get_rect(center=(x,y))
         screen.blit(symbol_text, rect_symbol_text)
 
+class PopUp:
+    def __init__(self, fusion, game):
+        self.fusion = fusion
+        self.button = ButtonPopUp(game.screen, "OK", CENTER_X, CENTER_Y-50)
+
+    def __eq__(self, other):
+        if not isinstance(other, PopUp): return False
+        return self.fusion == other.fusion
+    
+    def draw(self, screen):
+        pygame.draw.rect(screen, BLACK, (CENTER_X-200, CENTER_Y-150, 400, 300))
+        pygame.draw.rect(screen, WHITE, (CENTER_X-200, CENTER_Y-150, 400, 300), 5)
+        
+        title_text = FONT_LARGE.render("Novo isótopo descoberto", True, WHITE)
+        rect_title_text = title_text.get_rect(center=(CENTER_X,CENTER_Y-100))
+        screen.blit(title_text, rect_title_text)
+
+        #ainda é preciso definir a posicao de cada card
+        i = -70
+        for each in self.fusion.product:
+            card = Card(each, CENTER_X+i, CENTER_Y)
+            card.draw_card(screen)
+            i += 70
+
+        message_text = FONT_LARGE.render("O deuterio é...", True, WHITE)
+        rect_message_text = message_text.get_rect(center=(CENTER_X,CENTER_Y+100))
+        screen.blit(message_text, rect_message_text)
+
+        self.button.draw(screen, pygame.mouse.get_pos())
 
     

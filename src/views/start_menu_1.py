@@ -1,21 +1,23 @@
 from views import *
 from models.element import *
-from models.draw import ButtonStarting, Ball
-from models.game import Nucleo
+from models.draw import ButtonStarting, Ball, PopUp
+from models.nucleo import Nucleo
 
 def start_menu(game):
     running = True
     nucleo = Nucleo()
     Ball.start_draw()
     found = list(map(Ball.turn_ball, game.isotopes_found + game.particles_found))
-    
+    popup = None
     back_button = ButtonStarting(game.screen, "Back", CENTER_X-100, HEIGHT_MAX-50)
     clean_button = ButtonStarting(game.screen, "Clean", CENTER_X+100, HEIGHT_MAX-50, nucleo.start_nucleo)
-
+    img = pygame.image.load(f"assets/images/nucleo.webp")
+        
     while running:
-        nucleo.angle += 0.01
+        nucleo.angle += 0.03
         game.screen.fill(BLACK)
-        pygame.draw.line(game.screen, WHITE, [CENTER_X, 0], [CENTER_X, HEIGHT_MAX], 5)
+        # pygame.draw.line(game.screen, WHITE, [CENTER_X, 0], [CENTER_X, HEIGHT_MAX], 5)
+        game.screen.blit(img, (3*CENTER_X//2 - img.get_width() // 2, CENTER_Y - img.get_height() // 2))
         
         for ball in found:
             ball.draw_ball(game.screen)
@@ -27,18 +29,27 @@ def start_menu(game):
             if event.type == pygame.MOUSEBUTTONDOWN:
                 running = back_button.check_click(event, running)
                 clean_button.check_click(event)
+                if game.popup:
+                    game = popup.button.check_click(event, game)
                 for ball in found: ball.check_down()
             if event.type == pygame.MOUSEBUTTONUP:
                 for ball in found: nucleo = ball.check_up(nucleo)
             if event.type == pygame.MOUSEMOTION:
                 for ball in found: ball.check_motion(event)
        
-        nucleo, game, xfound = nucleo.controler(game) 
-        if xfound: found += list(map(Ball.turn_ball, xfound))
+        nucleo, game = nucleo.controler(game) 
+        if game.new_found: found += list(map(Ball.turn_ball, game.new_found))   
 
         #Hover effect
         back_button.draw(game.screen, pygame.mouse.get_pos())
         clean_button.draw(game.screen, pygame.mouse.get_pos())
 
+        if game.popup: 
+            ancient = popup
+            popup = PopUp(game.popup[0], game)
+            if ancient != popup: pygame.mixer.Sound("assets/audio/new_element.mp3").play()
+            popup.draw(game.screen)
+         
+        
         pygame.display.flip()
     return game
