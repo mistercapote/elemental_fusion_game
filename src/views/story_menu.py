@@ -2,7 +2,7 @@ import pygame
 import sys
 from views import *
 from constants import *
-from models.draw import ButtonStarting
+from models.draw import BackingButton
 
 def draw_text(screen, text, x, y, size, color):
     font = pygame.font.Font("assets/font/Bungee_Inline/BungeeInline-Regular.ttf", size)
@@ -21,7 +21,7 @@ def story_menu(game):
     ypos = HEIGHT_MAX
 
     running = True
-    back_button = ButtonStarting(game.screen, "Back", 80, 50)
+    back_button = BackingButton(game.screen, "Back", 80, 50)
     
     while running:
         game.screen.blit(imagem, (0, 0))
@@ -42,7 +42,7 @@ def story_menu(game):
                 pygame.mixer.music.stop()
 
         #Hover effect
-        back_button.draw(game.screen, pygame.mouse.get_pos())
+        back_button.draw(game.screen)
         
         pygame.display.flip()
         

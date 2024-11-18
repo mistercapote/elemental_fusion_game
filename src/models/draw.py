@@ -13,8 +13,8 @@ class Button(ABC):
         self.rect = self.rects(screen)
         self.action = action
 
-    def draw(self, screen, mouse=(0,0)):
-        if self.rect.collidepoint(mouse): self.hovered = True
+    def draw(self, screen):
+        if self.rect.collidepoint(pygame.mouse.get_pos()): self.hovered = True
         else: self.hovered = False
         self.rects(screen)
 
@@ -29,7 +29,7 @@ class Button(ABC):
     def check_click(self):
         pass
 
-class ButtonOpening(Button):
+class OpeningButton(Button):
     def check_click(self, event, game, video_clip):
         if self.rect.collidepoint(event.pos):
             if self.action:
@@ -39,19 +39,31 @@ class ButtonOpening(Button):
                 return resultado, video_clip
         return game, video_clip
     
-class ButtonStarting(Button):
+class StartingButton(Button):
     def check_click(self, event, *parameters):
         if self.rect.collidepoint(event.pos):
             if self.action:
                 resultado = self.action(*parameters)
                 return resultado
-            else:
-                return not parameters[0]
         if len(parameters) == 1:
             return parameters[0]
         return parameters
     
-class ButtonPopUp(Button):
+class CleaningButton(Button):
+    def check_click(self, event):
+        if self.rect.collidepoint(event.pos):
+            if self.action:
+                self.action()
+    
+class BackingButton(Button):
+    def check_click(self, event, running):
+        if self.rect.collidepoint(event.pos):
+            pygame.mixer.stop()
+            pygame.mixer.music.stop()
+            return not running
+        return running
+
+class PopUpButton(Button):
     def check_click(self, event, game):
         if self.rect.collidepoint(event.pos):
             game.popup.pop(0)
@@ -62,6 +74,10 @@ class Card:
         self.entity = entity
         self.xpos = x
         self.ypos = y
+
+    def check_click():
+        #Abrir janela com os isotopos
+        pass
 
     def draw_card(self, screen, coef=1):
         coordenates = [(self.xpos+coef,self.ypos+coef), 
@@ -213,7 +229,7 @@ class ParticleBall(Ball):
 class PopUp:
     def __init__(self, fusion, game):
         self.fusion = fusion
-        self.button = ButtonPopUp(game.screen, "OK", CENTER_X, CENTER_Y-50)
+        self.button = PopUpButton(game.screen, "OK", CENTER_X+150, CENTER_Y+120)
 
     def __eq__(self, other):
         if not isinstance(other, PopUp): return False
@@ -223,21 +239,33 @@ class PopUp:
         pygame.draw.rect(screen, BLACK, (CENTER_X-200, CENTER_Y-150, 400, 300))
         pygame.draw.rect(screen, WHITE, (CENTER_X-200, CENTER_Y-150, 400, 300), 5)
         
-        title_text = FONT_LARGE.render("Novo isótopo descoberto", True, WHITE)
+        #Mensagem varia, 
+        title_text = FONT_LARGE.render("Novo isótopo descoberto!", True, WHITE)
         rect_title_text = title_text.get_rect(center=(CENTER_X,CENTER_Y-100))
         screen.blit(title_text, rect_title_text)
 
-        #ainda é preciso definir a posicao de cada card
-        i = -70
-        for each in self.fusion.product:
-            card = Card(each, CENTER_X+i, CENTER_Y)
+        hover_card = None
+        i  = -len(self.fusion.product) * (SQUARE_WIDTH+5) // 2
+        for card in self.fusion.product:
+            card = Card(card, CENTER_X+i, CENTER_Y-60)
+            i += SQUARE_WIDTH+5
+            if not hover_card:
+                xm, ym = pygame.mouse.get_pos()
+                if xm > card.xpos and xm < card.xpos + SQUARE_WIDTH and ym > card.ypos and ym < card.ypos + SQUARE_HEIGHT:
+                    hover_card = card
+                    continue
             card.draw_card(screen)
-            i += 70
+        if hover_card: hover_card.draw_card(screen, -10)
+
+    #Hover elements
+        
+        
+
 
         message_text = FONT_LARGE.render("O deuterio é...", True, WHITE)
-        rect_message_text = message_text.get_rect(center=(CENTER_X,CENTER_Y+100))
+        rect_message_text = message_text.get_rect(center=(CENTER_X,CENTER_Y+75))
         screen.blit(message_text, rect_message_text)
 
-        self.button.draw(screen, pygame.mouse.get_pos())
+        self.button.draw(screen)
 
     
