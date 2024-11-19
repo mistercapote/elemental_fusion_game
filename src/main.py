@@ -1,16 +1,12 @@
 import pygame
 from constants import *
-from models.draw import OpeningButton
+from models.button import OpeningButton
 from models.game import Game
 from views import start_menu_1, start_menu_2, story_menu, table_menu, settings_menu
 
 #Inicialização
-pygame.init()
-pygame.mixer.init() 
 game = Game()
-# game.update_for_level_2()
-pygame.display.set_caption(game.caption)
-video_clip = game.start_media()
+game.update_for_level_2()
 
 #Definindo os botões da tela inicial
 if game.current_phase == 1: start_button = OpeningButton(game.screen, "Start", CENTER_X, CENTER_Y - 70, start_menu_1.start_menu)
@@ -24,20 +20,20 @@ exit_button = OpeningButton(game.screen, "Exit", CENTER_X, CENTER_Y + 210, game.
 running = True
 while running:
     game.screen.fill(BLACK) #Limpar tela
-    game.updateVideoFrame(video_clip) #Atualizar video de fundo
+    game.updateVideoFrame() #Atualizar video de fundo
     game.draw_title() #Escrever titulo
 
     #Para cada evento detectado
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+        if event.type == pygame.QUIT: 
             game.quit()
         if event.type == pygame.MOUSEBUTTONDOWN:
             #Ao clicar em cada botão
-            game, video_clip = start_button.check_click(event, game, video_clip)
-            _, video_clip = story_button.check_click(event, game, video_clip)
-            _, video_clip = table_button.check_click(event, game, video_clip)
-            _, video_clip = settings_button.check_click(event, game, video_clip)
-            exit_button.check_click(event, game, video_clip)
+            start_button.check_click(event, game)
+            story_button.check_click(event, game)
+            table_button.check_click(event, game)
+            settings_button.check_click(event, game)
+            exit_button.check_click(event, game)
 
     #Hover effect
     start_button.draw(game.screen)
@@ -47,7 +43,3 @@ while running:
     exit_button.draw(game.screen)
 
     pygame.display.flip()
-
-
-
-

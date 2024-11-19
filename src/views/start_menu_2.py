@@ -1,53 +1,26 @@
 import pygame
-import sys
 from views import *
 from constants import *
+from models.character import Character
+from models.button import BackingButton
 
 def start_menu(game):
-
-    screen = pygame.display.set_mode((WIDTH_MAX, HEIGHT_MAX))
-
-    #personagem provisório
-    player_color = (0, 128, 255)
-    player_width, player_height = 50, 50
-    player_x = WIDTH_MAX // 2
-    player_y = HEIGHT_MAX // 2
-    player_speed = 5
-
-
+    character = Character()
+    back_button = BackingButton(game.screen, "Back", 18*SQUARE_WIDTH, 11*SQUARE_HEIGHT)
+    
     running = True
     while running:
-        
+        game.screen.fill(BLACK)
+        game.screen.blit(character.scenario, character.scenario_rect.topleft)
+        back_button.draw(game.screen)
+        character.walk()
+        character.draw(game.screen)
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            
-        # Movimento pelos botões do teclado
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT]:  #esquerda
-            player_x -= player_speed
-        if keys[pygame.K_RIGHT]:  #direita
-            player_x += player_speed
-        if keys[pygame.K_UP]:  #cima
-            player_y -= player_speed
-        if keys[pygame.K_DOWN]: #baixo
-            player_y += player_speed
-
-        # impede que o personagem saia da tela
-        if player_x < 0:
-            player_x = 0
-        if player_x > WIDTH_MAX - player_width:
-            player_x = WIDTH_MAX - player_width
-        if player_y < 0:
-            player_y = 0
-        if player_y > HEIGHT_MAX - player_height:
-            player_y = HEIGHT_MAX - player_height
+                game.quit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                running = back_button.check_click(event, running)
 
         
-        screen.fill((0, 0, 0))  # Limpa a tela
-        pygame.draw.rect(screen, player_color, (player_x, player_y, player_width, player_height)) #desenha o personagem
-        pygame.display.flip()  #atualiza a tela
-
-        
-        pygame.time.Clock().tick(30)
+        pygame.display.flip() 
