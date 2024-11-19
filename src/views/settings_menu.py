@@ -1,5 +1,5 @@
 from views import *
-from models.draw import BackingButton
+from models.button import BackingButton
 
 def settings_menu(game):
     back_button = BackingButton(game.screen, "Back", 18*SQUARE_WIDTH, 11*SQUARE_HEIGHT)

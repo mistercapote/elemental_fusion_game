@@ -2,7 +2,7 @@ import pygame
 import sys
 from views import *
 from constants import *
-from models.draw import BackingButton
+from models.button import BackingButton
 
 def draw_text(screen, text, x, y, size, color):
     font = pygame.font.Font("assets/font/Bungee_Inline/BungeeInline-Regular.ttf", size)

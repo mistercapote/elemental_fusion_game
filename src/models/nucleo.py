@@ -6,9 +6,13 @@ class Nucleo:
     def __init__(self): 
         self.canal1 = pygame.mixer.Channel(1)
         self.canal2 = pygame.mixer.Channel(2)
+        self.speed = 0.01
+        self.fusion_speed = -0.1
+        self.not_fusion_speed = 0.07
+        self.explosion_speed = 0.02
+        self.image = pygame.image.load(f"assets/images/nucleo.webp").convert_alpha()
+        self.explosion = [pygame.image.load(f"assets/images/explosion/PNG/Circle_explosion/Circle_explosion{i}.png").convert_alpha() for i in range(1, 11)]
         self.start_nucleo()
-        self.image = pygame.image.load(f"assets/images/nucleo.webp")
-        self.explosion = [pygame.image.load(f"assets/images/explosion/PNG/Circle_explosion/Circle_explosion{i}.png") for i in range(1, 11)]
 
     def start_nucleo(self):
         self.reacting = [] 
@@ -34,12 +38,14 @@ class Nucleo:
         self.pos = [position(self.radius, self.angle),
                   position(self.radius, self.angle+np.pi)
         ]
+
     def not_fusion(self):
-        self.start_nucleo()
-        self.canal2.play(pygame.mixer.Sound("assets/audio/no_fusion.mp3"))
+        if self.reacting:
+            self.start_nucleo()
+            self.canal2.play(pygame.mixer.Sound("assets/audio/no_fusion.mp3"))
     
     def rotation_animation(self, screen):
-        self.angle += 0.03
+        self.angle += self.speed
         self.update_position()
         self.reacting[0].draw(screen, *self.pos[0])
         if len(self.reacting)==2:
@@ -48,21 +54,19 @@ class Nucleo:
                 self.canal1.play(pygame.mixer.Sound("assets/audio/pierre_roud.mp3")) 
             if not self.fusions:
                 self.fusions = [obj for obj in FUSIONS if (obj.element_a == self.reacting[0].entity and obj.element_b == self.reacting[1].entity) or (obj.element_a == self.reacting[1].entity and obj.element_b == self.reacting[0].entity)]
-            if self.fusions: 
-                self.radius -= 0.3 # Velocidade de aproximação
-            else:
-                self.radius += 0.3 # Velocidade de afastamento
+            
+            if self.fusions: self.radius += self.fusion_speed # Velocidade de aproximação
+            else: self.radius += self.not_fusion_speed # Velocidade de afastamento
 
     def explosion_animation(self, screen):
         self.canal1.stop()
         if not self.canal2.get_busy():
             self.canal2.play(pygame.mixer.Sound("assets/audio/fusion.mp3"))
         
-        img = self.explosion[self.frame // 11]
+        img = self.explosion[int(self.frame)]
         screen.blit(img, (3*CENTER_X//2 - img.get_width() // 2, CENTER_Y - img.get_height() // 2))
-        self.frame += 1
-        if self.frame == 110:
-            self.radius = 0
+        self.frame += self.explosion_speed
+        if self.frame >= 10: self.radius = 0
     
     def fusion(self, game):
         self.canal2.stop()
@@ -75,7 +79,7 @@ class Nucleo:
     def controler(self, game):
         game.new_found = []
         if self.reacting:
-            if self.radius > 250: self.not_fusion()   
+            if self.radius > 220: self.not_fusion()   
             elif self.radius > 3: self.rotation_animation(game.screen)
             elif self.radius > 0: self.explosion_animation(game.screen)
             else: game = self.fusion(game)

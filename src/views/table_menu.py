@@ -1,5 +1,6 @@
 from views import *
-from models.draw import Card, BackingButton
+from models.draw import Card, PopIsotopes
+from models.button import BackingButton
 
 def start_table(isotopes_found):
     table = []
@@ -18,11 +19,10 @@ def start_table(isotopes_found):
         table.append(card)
     return table
 
-
 def table_menu(game):
     table = start_table(game.isotopes_found)
     back_button = BackingButton(game.screen, "Back", 2*SQUARE_WIDTH, 11*SQUARE_HEIGHT)
-
+    pops = []
     running = True
     while running:
         xm, ym = pygame.mouse.get_pos()
@@ -40,12 +40,22 @@ def table_menu(game):
         
         #Hover effect
         back_button.draw(game.screen)
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game.quit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
+                if game.popup: 
+                    game = popup.button.check_click(event, game)
+                else:
+                    for card in table: 
+                        if isinstance(card.entity, Element):
+                            if event.pos[0] > card.xpos and event.pos[0] < card.xpos + SQUARE_WIDTH and event.pos[1] > card.ypos and event.pos[1] < card.ypos + SQUARE_HEIGHT:
+                                print("Entrou no if com", card.entity)
+                                game.popup.append(card.entity)
                 running = back_button.check_click(event, running)
-                
+        
+        if game.popup: 
+            popup = PopIsotopes(game.popup[0])
+            popup.draw(game.screen)
+         
         pygame.display.flip()
-

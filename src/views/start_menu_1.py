@@ -1,6 +1,8 @@
 from views import *
 from models.element import *
-from models.draw import BackingButton, CleaningButton, Ball, PopUp
+from models.button import BackingButton, CleaningButton
+from models.ball import Ball
+from models.draw import PopUp
 from models.nucleo import Nucleo
 
 def start_menu(game):
