@@ -65,7 +65,6 @@ class Ball(ABC):
     def position(self):
         pass
 
-
 class ElementBall(Ball):
 
     @staticmethod
@@ -86,15 +85,9 @@ class ElementBall(Ball):
 
     def draw(self, screen, x, y):
         pygame.draw.circle(screen, self.entity.color, (x, y), self.radius)
-        
-        mass_number_text = FONT_SMALL.render(f"{self.entity.mass_number}", True, BLACK)
-        rect_mass_number_text = mass_number_text.get_rect(center=(x-self.radius//2, y-self.radius//3))
-        screen.blit(mass_number_text, rect_mass_number_text)
-        
-        symbol_text = FONT_LARGE.render(self.entity.symbol, True, BLACK)
-        rect_symbol_text = symbol_text.get_rect(center=(x,y))
-        screen.blit(symbol_text, rect_symbol_text)
-
+        write(screen, f"{self.entity.mass_number}", FONT_SMALL, BLACK, (x-self.radius//2, y-self.radius//3))
+        write(screen, self.entity.symbol, FONT_LARGE, BLACK, (x,y))
+    
 class ParticleBall(Ball):
 
     @staticmethod
@@ -115,6 +108,5 @@ class ParticleBall(Ball):
 
     def draw(self, screen, x, y):
         pygame.draw.circle(screen, self.entity.color, (x, y), self.radius)
-        symbol_text = FONT_SMALL.render(self.entity.symbol, True, BLACK)
-        rect_symbol_text = symbol_text.get_rect(center=(x,y))
-        screen.blit(symbol_text, rect_symbol_text)
+        write(screen, self.entity.symbol, FONT_SMALL, BLACK, (x,y))
+
