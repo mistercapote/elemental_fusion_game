@@ -36,17 +36,7 @@ class OpeningButton(Button):
                 self.action(game)
                 game.start_media()
         return
-    
-class StartingButton(Button):
-    def check_click(self, event, *parameters):
-        if self.rect.collidepoint(event.pos):
-            if self.action:
-                resultado = self.action(*parameters)
-                return resultado
-        if len(parameters) == 1:
-            return parameters[0]
-        return parameters
-    
+   
 class CleaningButton(Button):
     def check_click(self, event):
         if self.rect.collidepoint(event.pos):
@@ -62,8 +52,11 @@ class BackingButton(Button):
         return running
 
 class PopUpButton(Button):
-    def check_click(self, event, game):
+    def check_click(self, event, game, label):
         if self.rect.collidepoint(event.pos):
-            game.popup.pop(0)
+            if label == "start":
+                game.start_popup.pop(0)
+            elif label == "table":
+                game.table_popup.pop(0)
         return game
  

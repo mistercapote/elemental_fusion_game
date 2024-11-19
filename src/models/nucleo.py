@@ -97,8 +97,7 @@ class Nucleo:
                     done +=1
                 else:
                     game.fusions_found.append(chosen_fusion)
-                    game.popup.append(chosen_fusion)
-                    print(chosen_fusion.get_energy())
+                    game.start_popup.append(chosen_fusion)
                     for each in chosen_fusion.product:
                         if isinstance(each, Isotope) and each not in game.isotopes_found:
                             game.isotopes_found.append(each)

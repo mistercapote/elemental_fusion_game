@@ -2,7 +2,7 @@ from views import *
 from models.element import *
 from models.button import BackingButton, CleaningButton
 from models.ball import Ball
-from models.draw import PopUp
+from models.popup import PopUp
 from models.nucleo import Nucleo
 
 def start_menu(game):
@@ -35,9 +35,9 @@ def start_menu(game):
         clean_button.draw(game.screen)
 
         #Mostrar popup
-        if game.popup: 
+        if game.start_popup: 
             ancient = popup
-            popup = PopUp(game.popup[0], game)
+            popup = PopUp(game.start_popup[0], game)
             if ancient != popup: pygame.mixer.Sound("assets/audio/new_element.mp3").play()
             popup.draw(game.screen)
         
@@ -48,8 +48,8 @@ def start_menu(game):
             if event.type == pygame.MOUSEBUTTONDOWN:
                 running = back_button.check_click(event, running)
                 clean_button.check_click(event)
-                if game.popup: 
-                    game = popup.button.check_click(event, game)
+                if game.start_popup: 
+                    game = popup.button.check_click(event, game, "start")
                 else:
                     for ball in found: ball.check_down()
             if event.type == pygame.MOUSEBUTTONUP:

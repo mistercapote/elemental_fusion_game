@@ -1,28 +1,10 @@
 from views import *
-from models.draw import Card, PopIsotopes
+from models.card import Card
 from models.button import BackingButton
 
-def start_table(isotopes_found):
-    table = []
-    for element in ELEMENTS:
-        if element.group == None or element.atomic_number == 57 or element.atomic_number == 89:
-            if element.period == 6: left_x = int(element.atomic_number-53) * SQUARE_WIDTH
-            elif element.period == 7: left_x = int(element.atomic_number-85) * SQUARE_WIDTH
-            top_y = int(element.period + 3) * SQUARE_HEIGHT
-        else:
-            left_x = int(element.group) * SQUARE_WIDTH
-            top_y = int(element.period) * SQUARE_HEIGHT
-        if list(filter(lambda x: x.atomic_number == element.atomic_number, isotopes_found)):
-            card = Card(element, left_x, top_y)
-        else:
-            card = Card(None, left_x, top_y)
-        table.append(card)
-    return table
-
 def table_menu(game):
-    table = start_table(game.isotopes_found)
+    table = game.start_table()
     back_button = BackingButton(game.screen, "Back", 2*SQUARE_WIDTH, 11*SQUARE_HEIGHT)
-    pops = []
     running = True
     while running:
         xm, ym = pygame.mouse.get_pos()
@@ -44,18 +26,16 @@ def table_menu(game):
             if event.type == pygame.QUIT:
                 game.quit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                if game.popup: 
-                    game = popup.button.check_click(event, game)
+                if game.table_popup: 
+                    game = game.table_popup[0].button.check_click(event, game, "table")
                 else:
                     for card in table: 
                         if isinstance(card.entity, Element):
                             if event.pos[0] > card.xpos and event.pos[0] < card.xpos + SQUARE_WIDTH and event.pos[1] > card.ypos and event.pos[1] < card.ypos + SQUARE_HEIGHT:
-                                print("Entrou no if com", card.entity)
-                                game.popup.append(card.entity)
+                                game.table_popup.append(card)
                 running = back_button.check_click(event, running)
         
-        if game.popup: 
-            popup = PopIsotopes(game.popup[0])
-            popup.draw(game.screen)
+        if game.table_popup: 
+            game.table_popup[0].draw_popup(game)
          
         pygame.display.flip()

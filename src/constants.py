@@ -4,6 +4,12 @@ from models.fusion import Fusion
 import pygame
 pygame.init()
 
+#Funcoes
+def write(screen, text, font, color, center):
+    render = font.render(text, True, color)
+    rect = render.get_rect(center=center)
+    screen.blit(render, rect)
+
 #Tamanhos
 WIDTH_MAX = 1280
 HEIGHT_MAX = 720
@@ -21,6 +27,7 @@ BLACK = (0, 0, 0)
 FONT_GIGANT = pygame.font.Font("assets/font/Bungee_Inline/BungeeInline-Regular.ttf", 90)
 FONT_BUTTON_HOVER = pygame.font.Font("assets/font/Bungee_Inline/BungeeInline-Regular.ttf", 50)
 FONT_BUTTON = pygame.font.Font("assets/font/Bungee_Inline/BungeeInline-Regular.ttf", 40)
+FONT_STORY = pygame.font.Font("assets/font/Bungee_Inline/BungeeInline-Regular.ttf", 35)
 FONT_LARGE = pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.ttf", 20)
 FONT_SMALL= pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.ttf", 12)
 
