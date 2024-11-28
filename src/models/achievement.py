@@ -1,3 +1,5 @@
+from game import Game
+
 class Achievement:
     def __init__(self):
         self.gasnobre = [2, 10, 18, 36, 54, 86, 118]
