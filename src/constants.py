@@ -1,7 +1,8 @@
 #Constant
-from models.element import Element, Isotope, FundamentalParticle
-from models.fusion import Fusion
+from models.fusion import Fusion, Element, Isotope, FundamentalParticle
 import pygame
+import json
+
 pygame.init()
 
 #Funcoes
@@ -9,6 +10,10 @@ def write(screen, text, font, color, center):
     render = font.render(text, True, color)
     rect = render.get_rect(center=center)
     screen.blit(render, rect)
+
+def from_json(class_, filepath, *args):
+    with open(filepath, "r") as f: dict_data = json.load(f)
+    return [class_.from_dict(data, *args) for data in dict_data]
 
 #Tamanhos
 WIDTH_MAX = 1280
@@ -32,7 +37,7 @@ FONT_LARGE = pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular
 FONT_SMALL= pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.ttf", 12)
 
 #Dados
-PARTICLES = FundamentalParticle.load_elements_from_json("data/json/fundamental_particles.json")
-ELEMENTS = Element.load_elements_from_json("data/json/element.json")
-ISOTOPES = Isotope.load_elements_from_json_2(ELEMENTS, "data/json/isotope.json")
-FUSIONS = Fusion.load_elements_from_json(ISOTOPES, PARTICLES, "data/json/fusion.json")
+PARTICLES = from_json(FundamentalParticle, "data/json/fundamental_particles.json")
+ELEMENTS = from_json(Element, "data/json/element.json")
+ISOTOPES = from_json(Isotope, "data/json/isotope.json", ELEMENTS)
+FUSIONS = from_json(Fusion, "data/json/fusion.json", PARTICLES, ISOTOPES)

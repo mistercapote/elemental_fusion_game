@@ -1,6 +1,7 @@
 import pygame
 from constants import *
 from models.button import PopUpButton
+import math
 
 class Card:
     def __init__(self, entity, x, y):
@@ -34,25 +35,30 @@ class Card:
                 write(screen, f"{self.entity.mass_number}", FONT_SMALL, BLACK, (self.xpos+7*SQUARE_WIDTH//8-coef, self.ypos+SQUARE_HEIGHT//8+coef))
 
     def draw_popup(self, game):
-        i = min(10, len(self.isotopes)) * SQUARE_WIDTH // 2
-        h = len(self.isotopes) * SQUARE_HEIGHT // 20
-        pygame.draw.rect(game.screen, BLACK, (CENTER_X-i-50, CENTER_Y-h-80, 2*i+100, 2*h+160))
-        pygame.draw.rect(game.screen, WHITE, (CENTER_X-i-50, CENTER_Y-h-80, 2*i+100, 2*h+160), 5)
-        write(game.screen, f"Isotopos do {self.isotopes[0].name}", FONT_LARGE, WHITE, (CENTER_X,CENTER_Y-h//2-40))
+        iW = (SQUARE_WIDTH * min(12, len(self.isotopes)+2))
+        iH = (SQUARE_HEIGHT * math.ceil(len(self.isotopes)/10 + 2))
+        pygame.draw.rect(game.screen, BLACK, (CENTER_X-iW//2, CENTER_Y-iH//2, iW, iH))
+        pygame.draw.rect(game.screen, WHITE, (CENTER_X-iW//2, CENTER_Y-iH//2, iW, iH), 5)
+        write(game.screen, f"Isotopos do {self.isotopes[0].name}", FONT_LARGE, WHITE, (CENTER_X,CENTER_Y-(iH-SQUARE_HEIGHT)//2))
         
+        www = CENTER_X-iW//2 + SQUARE_WIDTH
+        hhh = CENTER_Y-iH//2 + SQUARE_HEIGHT
+
         hover_card = None
         contador = 0
         for isotope in self.isotopes:
-            if isotope in game.isotopes_found:
-                card = Card(isotope, CENTER_X-i, CENTER_Y-h)
-            else:
-                card = Card(None, CENTER_X-i, CENTER_Y-h)
-                
-            i -= SQUARE_WIDTH
+            if isotope in game.isotopes_found: 
+                card = Card(isotope, www, hhh)
+            else: 
+                card = Card(None, www, hhh)
+            
             contador +=1
             if contador % 10 == 0: 
-                i = min(10, len(self.isotopes)) * SQUARE_WIDTH // 2
-                h -= SQUARE_HEIGHT
+                www = CENTER_X-iW//2 + SQUARE_WIDTH
+                hhh += SQUARE_HEIGHT
+            else:
+                www += SQUARE_WIDTH
+
             if not hover_card:
                 xm, ym = pygame.mouse.get_pos()
                 if xm > card.xpos and xm < card.xpos + SQUARE_WIDTH and ym > card.ypos and ym < card.ypos + SQUARE_HEIGHT:
@@ -62,7 +68,7 @@ class Card:
         if hover_card: hover_card.draw_card(game.screen, -10)
 
         if not self.button:
-            self.button = PopUpButton(game.screen, "OK", CENTER_X-i, CENTER_Y+h+50)
+            self.button = PopUpButton(game.screen, "OK", CENTER_X+iW//2-40, CENTER_Y+iH//2-30)
         self.button.draw(game.screen)
 
         

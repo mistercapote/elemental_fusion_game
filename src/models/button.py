@@ -35,7 +35,6 @@ class OpeningButton(Button):
                 game.stop_media()
                 self.action(game)
                 game.start_media()
-        return
    
 class CleaningButton(Button):
     def check_click(self, event):
@@ -58,5 +57,3 @@ class PopUpButton(Button):
                 game.start_popup.pop(0)
             elif label == "table":
                 game.table_popup.pop(0)
-        return game
- 

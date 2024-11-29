@@ -9,6 +9,7 @@ def table_menu(game):
     while running:
         xm, ym = pygame.mouse.get_pos()
         game.screen.fill(BLACK)
+        back_button.draw(game.screen)
         
         #Hover elements
         hover_card = None
@@ -20,14 +21,12 @@ def table_menu(game):
             card.draw_card(game.screen)  
         if hover_card: hover_card.draw_card(game.screen, -10)
         
-        #Hover effect
-        back_button.draw(game.screen)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game.quit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if game.table_popup: 
-                    game = game.table_popup[0].button.check_click(event, game, "table")
+                    game.table_popup[0].button.check_click(event, game, "table")
                 else:
                     for card in table: 
                         if isinstance(card.entity, Element):

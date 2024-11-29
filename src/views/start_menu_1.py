@@ -1,5 +1,5 @@
 from views import *
-from models.element import *
+from models.fusion import *
 from models.button import BackingButton, CleaningButton
 from models.ball import Ball
 from models.popup import PopUp
@@ -27,7 +27,7 @@ def start_menu(game):
             if drag_ball.drag_center: drag_ball.draw_drag_ball(game.screen)
         
         #Nucleo
-        nucleo, game = nucleo.controler(game) 
+        nucleo.controler(game) 
         if game.new_found: found += list(map(Ball.turn_ball, game.new_found))   
 
         #Hover effect
@@ -49,13 +49,12 @@ def start_menu(game):
                 running = back_button.check_click(event, running)
                 clean_button.check_click(event)
                 if game.start_popup: 
-                    game = popup.button.check_click(event, game, "start")
+                    popup.button.check_click(event, game, "start")
                 else:
                     for ball in found: ball.check_down()
             if event.type == pygame.MOUSEBUTTONUP:
-                for ball in found: nucleo = ball.check_up(nucleo)
+                for ball in found: ball.check_up(nucleo)
             if event.type == pygame.MOUSEMOTION:
                 for ball in found: ball.check_motion(event)
 
         pygame.display.flip()
-    return game
