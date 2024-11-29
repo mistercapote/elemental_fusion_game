@@ -18,7 +18,7 @@ class Game:
         self.story_image = "assets/images/fundo_story_menu.png"
         self.story_music = "assets/audio/Star Wars - Main Theme.mp3"
         self.clock = pygame.time.Clock()
-        self.isotopes_found = [ISOTOPES[0]]
+        self.isotopes_found = [ISOTOPES[0], ISOTOPES[50], ISOTOPES[100], ISOTOPES[200]]
         self.particles_found = [PARTICLES[0], PARTICLES[2]]
         self.fusions_found = []
         self.new_found = []
@@ -35,6 +35,9 @@ class Game:
 
     def draw_title(self):
         write(self.screen, self.title, FONT_GIGANT, WHITE, (CENTER_X, 2*HEIGHT_MAX//9))
+
+    # def get_screen(self):
+    #     return self.__screen
     
     def start_media(self):
         self.video_clip = mp.VideoFileClip(self.video)

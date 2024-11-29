@@ -74,7 +74,6 @@ class Nucleo:
         b = self.reacting[1].entity
         game = self.recursive_fusion(game, a, b)
         self.start_nucleo()
-        return game
 
     def controler(self, game):
         game.new_found = []
@@ -83,7 +82,6 @@ class Nucleo:
             elif self.radius > 3: self.rotation_animation(game.screen)
             elif self.radius > 0: self.explosion_animation(game.screen)
             else: game = self.fusion(game)
-        return self, game
 
     def recursive_fusion(self, game, a, b):
         if not self.fusions:
@@ -104,7 +102,7 @@ class Nucleo:
                             game.new_found.append(each)
                             if each.is_radioactive:
                                 self.start_nucleo()
-                                game = self.recursive_fusion(game, each, None)
+                                self.recursive_fusion(game, each, None)
                         elif isinstance(each, FundamentalParticle) and each not in game.particles_found:
                             game.particles_found.append(each)
                             game.new_found.append(each)
@@ -114,4 +112,3 @@ class Nucleo:
                 print("Todos os produtos dessa fusao ja foram descobertos")
         else:
             print(f"O elemento {a.name} decai, mas não sei ainda o q vira")
-        return game

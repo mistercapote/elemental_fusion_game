@@ -10,9 +10,9 @@ class Ball(ABC):
         self.xpos, self.ypos = self.position()
 
     def check_down(self): 
-        mouse = pygame.mouse.get_pos()
+        xm, ym = pygame.mouse.get_pos()
         #Confere se a posicao do mouse está sobre a ball
-        distance = ((mouse[0] - self.xpos) ** 2 + (mouse[1] - self.ypos) ** 2) ** 0.5
+        distance = ((xm - self.xpos) ** 2 + (ym - self.ypos) ** 2) ** 0.5
         if distance < self.radius:
             self.dragging = True 
             self.drag_center = [self.xpos, self.ypos]
@@ -25,7 +25,7 @@ class Ball(ABC):
                     nucleo.reacting_append(self)
                 self.drag_center = None
             else:
-                #é desfeito, efeito de encolher
+                #é desfeito
                 self.drag_center = None
                 pass
         return nucleo
@@ -101,7 +101,7 @@ class ParticleBall(Ball):
         if ParticleBall.line_break % 9 == 0:
             ParticleBall.www = WIDTH_MAX//20
             ParticleBall.hhh += HEIGHT_MAX//14
-        else:
+        else: 
             ParticleBall.www += WIDTH_MAX//20
         ParticleBall.line_break +=1
         return ParticleBall.www, ParticleBall.hhh

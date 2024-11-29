@@ -1,6 +1,82 @@
-from models.element import Isotope
-import numpy as np
 import json
+
+class Element:
+    def __init__(self, name, symbol, atomic_number, group, period, atomic_radius, color, description):
+        self.name = name
+        self.symbol = symbol
+        self.atomic_number = atomic_number
+        self.group = group # 1 a 18
+        self.period = period # 1 a 7
+        self.atomic_radius = atomic_radius # em pm
+        self.color = color
+        self.description = description
+
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            name = data["name"],
+            symbol = data["symbol"],
+            atomic_number = data["atomic_number"],
+            group = data["group"], # 1 a 18
+            period = data["period"], # 1 a 7
+            atomic_radius = data["atomic_radius"], # em pm
+            color = data["color"],
+            description = data["description"]
+        )
+
+class Isotope(Element):
+    def __init__(self, name, symbol, atomic_number, group, period, atomic_radius, color, description, mass_number, mass, is_radioactive, abundance, name_isotope):
+        super().__init__(name, symbol, atomic_number, group, period, atomic_radius, color, description)
+        self.mass_number = mass_number
+        self.mass = mass # em U
+        self.is_radioactive = is_radioactive
+        self.abundance = abundance # em %
+        self.name_isotope = name_isotope if name_isotope else f"{symbol}-{mass_number}"
+        self.neutrons = mass_number - atomic_number
+        
+    def __eq__(self, other):
+        if not isinstance(other, Isotope): return False
+        return self.atomic_number == other.atomic_number and self.mass_number == other.mass_number
+    
+    @classmethod
+    def from_dict(cls, data, ELEMENTS):
+        element = list(filter(lambda x: x.atomic_number == data["atomic_number"], ELEMENTS))[0]
+        return cls(
+            name=element.name,
+            symbol=element.symbol,
+            atomic_number=element.atomic_number,
+            group=element.group,
+            period=element.period,
+            atomic_radius=element.atomic_radius,
+            color=element.color,
+            description=element.description,
+            mass_number = data["mass_number"],
+            mass = data["mass"], # em U
+            is_radioactive = data["is_radioactive"],
+            abundance = data["abundance"], # em %
+            name_isotope = data["name_isotope"] if data["name_isotope"] else f"{element.symbol}-{data['mass_number']}"
+        )
+    
+            
+class FundamentalParticle:
+    def __init__(self, name, symbol, mass, charge, spin, color):
+        self.name = name
+        self.symbol = symbol
+        self.mass = mass
+        self.charge = charge
+        self.spin = spin
+        self.color = color
+    
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            name = data["name"],
+            symbol = data["symbol"],
+            mass = data["mass"],
+            charge = data["charge"],
+            spin = data["spin"],
+            color = data["color"],
+        )
 
 class Fusion:
     def __init__(self, process, element_a, element_b, product, description):
@@ -25,7 +101,7 @@ class Fusion:
         return round(energy_mev, 4)
     
     @classmethod
-    def from_dict(cls, ISOTOPES, PARTICLES, data):
+    def from_dict(cls, data, PARTICLES, ISOTOPES):
         """Cria uma instância da classe a partir de um dicionário."""
         def aux(data):
             if data["element_b"] == None:
@@ -52,12 +128,6 @@ class Fusion:
             description = data["description"] # Texto falando um pouco sobre a fusão
         )
 
-    @staticmethod
-    def load_elements_from_json(ISOTOPES, PARTICLES, filepath):
-        """Carrega dados de elementos a partir de um arquivo JSON e cria objetos Element."""
-        with open(filepath, "r") as f:
-            fusion_data = json.load(f)
-        return [Fusion.from_dict(ISOTOPES, PARTICLES, data) for data in fusion_data]
 
 class Decay:
     def alpha_decay():
@@ -96,15 +166,5 @@ class Decay:
     def radioactive_decay():
         """
         O urânio-238 decai em uma série de passos até se tornar chumbo-206.
-        """
-        pass
-    def fast_decay():
-        """
-        beta
-        """
-        pass
-    def slow_decay():
-        """
-        decaimento de isótopos radioativos como o carbono-14
         """
         pass
