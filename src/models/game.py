@@ -84,6 +84,9 @@ class Game:
             table.append(card)
         return table
     
+    def start_achiev():
+        pass
+    
     def killthatstar(self):
         self.update_for_level_2()
 

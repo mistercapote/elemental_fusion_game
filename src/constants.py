@@ -1,5 +1,6 @@
 #Constant
 from models.fusion import Fusion, Element, Isotope, FundamentalParticle
+from models.achievement import Achievement
 import pygame
 import json
 
@@ -22,6 +23,8 @@ CENTER_X = WIDTH_MAX // 2
 CENTER_Y = HEIGHT_MAX // 2
 SQUARE_WIDTH = WIDTH_MAX // 20
 SQUARE_HEIGHT = HEIGHT_MAX // 12
+ACHIE_WIDTH = WIDTH_MAX // 5
+ACHIE_HEIGHT = HEIGHT_MAX // 3.5
 
 #Cores
 WHITE = (255, 255, 255)
@@ -42,3 +45,4 @@ PARTICLES = from_json(FundamentalParticle, "data/json/fundamental_particles.json
 ELEMENTS = from_json(Element, "data/json/element.json")
 ISOTOPES = from_json(Isotope, "data/json/isotope.json", ELEMENTS)
 FUSIONS = from_json(Fusion, "data/json/fusion.json", PARTICLES, ISOTOPES)
+ACHIEVEMENT = from_json(Achievement, "data/json/achievement.json")

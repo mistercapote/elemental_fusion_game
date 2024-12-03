@@ -2,7 +2,7 @@ import pygame
 from constants import *
 from models.button import OpeningButton
 from models.game import Game
-from views import start_menu_1, start_menu_2, story_menu, table_menu, settings_menu
+from views import achiev_menu, start_menu_1, start_menu_2, story_menu, table_menu
 
 #Inicialização
 game = Game()
@@ -12,7 +12,7 @@ game = Game()
 start_button = OpeningButton(game.screen, "Start", CENTER_X, CENTER_Y - 70, start_menu_1.start_menu if game.current_phase == 1 else start_menu_2.start_menu)
 story_button = OpeningButton(game.screen, "Story", CENTER_X, CENTER_Y, story_menu.story_menu)
 table_button = OpeningButton(game.screen, "Periodic Table", CENTER_X, CENTER_Y + 70, table_menu.table_menu)
-settings_button = OpeningButton(game.screen, "Settings", CENTER_X, CENTER_Y + 140, settings_menu.settings_menu)
+settings_button = OpeningButton(game.screen, "Achievement", CENTER_X, CENTER_Y + 140, achiev_menu.achiev_menu)
 exit_button = OpeningButton(game.screen, "Exit", CENTER_X, CENTER_Y + 210, game.quit)
 
 #Loop principal
