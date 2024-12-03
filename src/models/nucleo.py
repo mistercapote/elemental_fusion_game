@@ -10,6 +10,7 @@ class Nucleo:
         self.fusion_speed = -0.1
         self.not_fusion_speed = 0.07
         self.explosion_speed = 0.02
+        self.increase = 0
         self.image = pygame.image.load(f"assets/images/nucleo.webp").convert_alpha()
         self.explosion = [pygame.image.load(f"assets/images/explosion/PNG/Circle_explosion/Circle_explosion{i}.png").convert_alpha() for i in range(1, 11)]
         self.start_nucleo()
@@ -100,6 +101,7 @@ class Nucleo:
                         if isinstance(each, Isotope) and each not in game.isotopes_found:
                             game.isotopes_found.append(each)
                             game.new_found.append(each)
+                            self.inscrease = chosen_fusion.get_energy()
                             if each.is_radioactive:
                                 self.start_nucleo()
                                 self.recursive_fusion(game, each, None)

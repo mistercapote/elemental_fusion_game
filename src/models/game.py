@@ -24,6 +24,7 @@ class Game:
         self.new_found = []
         self.start_popup = []
         self.table_popup = []
+        self.barr = Barr()
         self.start_media()
         
     def update_for_level_2(self):
@@ -87,4 +88,17 @@ class Game:
         return table
 
 
-    
+class Barr:
+    def __init__(self):
+        self.height = 50
+        self.width_max = 200
+        self.width_current = 0
+        self.pos_x = WIDTH_MAX // 4
+        self.pos_y = 20
+
+    def draw(self, screen, increase):
+        if self.width_current + int(increase) < self.width_max:
+            self.width_current += int(increase)
+        pygame.draw.rect(screen, YELLOW, (self.pos_x, self.pos_y + self.width_max - self.width_current, self.height, self.width_current))
+        pygame.draw.rect(screen, WHITE, (self.pos_x, self.pos_y, self.width_current, self.width_max), 2
+    )
