@@ -88,13 +88,13 @@ class Game:
         self.settings_button = OpeningButton(self.screen, "Conquistas", CENTER_X, CENTER_Y + 140, achiev_menu.achiev_menu)
         self.exit_button = OpeningButton(self.screen, "Sair", CENTER_X, CENTER_Y + 210, self.quit)
         self.clock = pygame.time.Clock()
-        self.isotopes_found = [ISOTOPES[0]]
         self.particles_found = [PARTICLES[0], PARTICLES[2]]
+        self.isotopes_found = []
         self.fusions_found = []
         self.new_found = []
         self.start_popup = []
         self.table_popup = []
-        self.barr = Barr()
+        self.bar = Bar()
         self.iron = ISOTOPES[552]
         self.start_media()
         
@@ -201,12 +201,11 @@ class Game:
         return table
     
     def checkend(self):
-        if self.current_phase == 1 and self.barr.width_current >= 200 and self.iron in self.isotopes_found:
+        if self.current_phase == 1 and self.bar.width_current >= 200 and self.iron in self.isotopes_found:
             # animacao de matar entrela
             self.update_for_level_2()
 
-
-class Barr:
+class Bar:
     """
     Classe que representa uma barra de progresso, usada para indicar o avanço em uma determinada fase do jogo.    
     """
@@ -244,7 +243,7 @@ class Barr:
         increase : int
             O valor que será adicionado à largura atual da barra de progresso.
         """
-        increase = 4*increase
+        increase = 2*increase
         if self.width_current + int(increase) >= 0:
             if self.width_current + int(increase) < self.width_max:
                 self.width_current += int(increase)

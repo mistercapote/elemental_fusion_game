@@ -195,6 +195,23 @@ class FundamentalParticle:
         self.charge = charge
         self.spin = spin
         self.color = color
+
+    def __eq__(self, other):
+        """
+        Compara duas partículas fundamentais para verificar se são iguais.
+
+        Parâmetros:
+        -----------
+        other : FundamentalParticle
+            Outra partícula a ser comparada com o partícula atual.
+
+        Retorna:
+        --------
+        bool
+            Retorna True se as partículas forem iguais, caso contrário, False.
+        """
+        if not isinstance(other, FundamentalParticle): return False
+        return self.symbol == other.symbol
     
     @classmethod
     def from_dict(cls, data):
@@ -278,7 +295,7 @@ class Fusion:
         J_TO_MEV =  6.242e12
         C_2 = (2.99792458e8)**2
         m_initial = self.element_a.mass + self.element_b.mass if self.element_b else self.element_a.mass
-        m_final = sum([obj.mass for obj in self.product if isinstance(obj, Isotope)])
+        m_final = sum([obj.mass for obj in self.product if (isinstance(obj, Isotope) or obj.symbol == "n")])
         energy_mev = (m_initial - m_final) * U_TO_KG * C_2 * J_TO_MEV
         return round(energy_mev, 4)
     
@@ -302,7 +319,29 @@ class Fusion:
             Uma nova instância de Fusion.
         """
         """Cria uma instância da classe a partir de um dicionário."""
-        def aux(data):
+        
+        def aux1(data):
+            """
+            Auxilia na determinação do segundo elemento da fusão.
+
+            Parâmetros:
+            ----------
+            data : dict
+                Dicionário contendo os dados do segundo elemento.
+
+            Retorna:
+            --------
+            Isotope ou FundamentalParticle ou None
+                O segundo elemento da fusão, que pode ser um isótopo, uma partícula fundamental, ou None.
+            """
+            if data["element_a"] == None:
+                return None
+            elif "-" in data["element_a"]:
+                return next((obj for obj in ISOTOPES if obj.name_isotope == data["element_a"]), None) 
+            else:
+                return next((obj for obj in PARTICLES if obj.symbol == data["element_a"]), None) 
+        
+        def aux2(data):
             """
             Auxilia na determinação do segundo elemento da fusão.
 
@@ -323,7 +362,7 @@ class Fusion:
             else:
                 return next((obj for obj in PARTICLES if obj.symbol == data["element_b"]), None) 
         
-        def aux2(data):
+        def aux3(data):
             """
             Auxilia na determinação dos produtos da fusão.
 
@@ -347,49 +386,8 @@ class Fusion:
 
         return cls(
             process = data["process"], # Nome do processo quimico que a fusão pertence
-            element_a = next((obj for obj in ISOTOPES if obj.name_isotope == data["element_a"]), None), # Objeto da classe Isotope
-            element_b = aux(data), # Objeto da classe Isotope ou FuntamentalParticle ou None
-            product = aux2(data), # Lista de Objetos das classes Isotope e FuntamentalParticle
+            element_a = aux1(data), # Objeto da classe Isotope
+            element_b = aux2(data), # Objeto da classe Isotope ou FuntamentalParticle ou None
+            product = aux3(data), # Lista de Objetos das classes Isotope e FuntamentalParticle
             description = data["description"] # Texto falando um pouco sobre a fusão
         )
-
-
-class Decay:
-    def alpha_decay():
-        """
-        alpha = nucleo de He-4
-        Ra-226 -> Rn-222 + alpha
-        Transição para núcleo mais leve
-        """
-        pass
-    def beta_decay():
-        """
-        beta = eletron
-        n -> p + e- + v_ (beta menos)
-        p -> n + e+ + v (beta mais)
-        """
-        pass
-    def gamma_decay():
-        """
-        gamma = foton
-        Co-60 -> Co-60 + gama
-        Após decaimento alpha ou beta
-        Nucleo excitado emite foton (raios gama)
-        """
-        pass
-    def pair_production_decay():
-        """
-        gamma = e- + e+
-        um particula cria um par de particulas
-        """
-        pass
-    def heavy_particle_decay():
-        """
-        boson W, Z e H podem decair em varias particulas
-        """
-        pass
-    def radioactive_decay():
-        """
-        O urânio-238 decai em uma série de passos até se tornar chumbo-206.
-        """
-        pass
