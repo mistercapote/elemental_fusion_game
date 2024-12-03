@@ -262,7 +262,7 @@ class Fusion:
             True se as duas fusões envolvem os mesmos elementos, False caso contrário.
         """
         if not isinstance(other, Fusion): return False
-        return self.element_a == other.element_a and self.element_b == other.element_b
+        return self.element_a == other.element_a and self.element_b == other.element_b and self.product == other.product
 
     # Energia gerada pela reação
     def get_energy(self):
@@ -304,18 +304,18 @@ class Fusion:
         """Cria uma instância da classe a partir de um dicionário."""
         def aux(data):
             """
-        Auxilia na determinação do segundo elemento da fusão.
+            Auxilia na determinação do segundo elemento da fusão.
 
-        Parâmetros:
-        ----------
-        data : dict
-            Dicionário contendo os dados do segundo elemento.
+            Parâmetros:
+            ----------
+            data : dict
+                Dicionário contendo os dados do segundo elemento.
 
-        Retorna:
-        --------
-        Isotope ou FundamentalParticle ou None
-            O segundo elemento da fusão, que pode ser um isótopo, uma partícula fundamental, ou None.
-        """
+            Retorna:
+            --------
+            Isotope ou FundamentalParticle ou None
+                O segundo elemento da fusão, que pode ser um isótopo, uma partícula fundamental, ou None.
+            """
             if data["element_b"] == None:
                 return None
             elif "-" in data["element_b"]:
@@ -325,18 +325,18 @@ class Fusion:
         
         def aux2(data):
             """
-        Auxilia na determinação dos produtos da fusão.
+            Auxilia na determinação dos produtos da fusão.
 
-        Parâmetros:
-        ----------
-        data : dict
-            Dicionário contendo os dados dos produtos da fusão.
+            Parâmetros:
+            ----------
+            data : dict
+                Dicionário contendo os dados dos produtos da fusão.
 
-        Retorna:
-        --------
-        list
-            Lista de produtos gerados pela fusão, composta por objetos das classes Isotope ou FundamentalParticle.
-        """
+            Retorna:
+            --------
+            list
+                Lista de produtos gerados pela fusão, composta por objetos das classes Isotope ou FundamentalParticle.
+            """
             resultado = []
             for each in data["product"]:
                 if "-" in each:

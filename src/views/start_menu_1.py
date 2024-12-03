@@ -15,7 +15,7 @@ def start_menu(game : Game):
     clean_button = CleaningButton(game.screen, "Clean", CENTER_X+100, HEIGHT_MAX-50, nucleo.not_fusion)
     popup = None
     drag_ball = None
-       
+
     while running:
         game.screen.fill(BLACK)
         game.screen.blit(nucleo.image, (3*CENTER_X//2 - nucleo.image.get_width() // 2, CENTER_Y - nucleo.image.get_height() // 2))
@@ -27,8 +27,9 @@ def start_menu(game : Game):
         if drag_ball:
             if drag_ball.drag_center: drag_ball.draw_drag_ball(game.screen)
 
+        #Mostrar barra de energia
         game.barr.draw(game.screen, nucleo.increase)
-        nucleo.inscrease = 0
+        nucleo.increase = 0
         
         #Nucleo
         nucleo.controler(game) 
