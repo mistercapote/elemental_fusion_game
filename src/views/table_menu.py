@@ -20,7 +20,7 @@ def table_menu(game):
     Não retorna nenhum valor.
     """
     table = game.start_table()
-    back_button = BackingButton(game.screen, "Back", 2*SQUARE_WIDTH, 11*SQUARE_HEIGHT)
+    back_button = BackingButton(game.screen, "Voltar", 2*SQUARE_WIDTH, 11*SQUARE_HEIGHT)
     running = True
     while running:
         xm, ym = pygame.mouse.get_pos()

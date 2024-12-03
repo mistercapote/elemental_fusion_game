@@ -6,7 +6,7 @@ from models.button import BackingButton
 
 def start_menu(game):
     character = Character()
-    back_button = BackingButton(game.screen, "Back", 18*SQUARE_WIDTH, 11*SQUARE_HEIGHT)
+    back_button = BackingButton(game.screen, "Voltar", 18*SQUARE_WIDTH, 11*SQUARE_HEIGHT)
     
     running = True
     while running:

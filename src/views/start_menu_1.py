@@ -11,8 +11,8 @@ def start_menu(game : Game):
     nucleo = Nucleo()
     Ball.start_draw()
     found = list(map(Ball.turn_ball, game.isotopes_found + game.particles_found))
-    back_button = BackingButton(game.screen, "Back", CENTER_X-100, HEIGHT_MAX-50)
-    clean_button = CleaningButton(game.screen, "Clean", CENTER_X+100, HEIGHT_MAX-50, nucleo.not_fusion)
+    back_button = BackingButton(game.screen, "Voltar", CENTER_X-120, HEIGHT_MAX-50)
+    clean_button = CleaningButton(game.screen, "Limpar", CENTER_X+120, HEIGHT_MAX-50, nucleo.not_fusion)
     popup = None
     drag_ball = None
 
