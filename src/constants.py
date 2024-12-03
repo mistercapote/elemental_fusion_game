@@ -27,6 +27,7 @@ SQUARE_HEIGHT = HEIGHT_MAX // 12
 WHITE = (255, 255, 255)
 GRAY = (200, 200, 200)
 BLACK = (0, 0, 0)
+YELLOW = (255, 0, 0)
 
 #Fontes
 FONT_GIGANT = pygame.font.Font("assets/font/Bungee_Inline/BungeeInline-Regular.ttf", 90)

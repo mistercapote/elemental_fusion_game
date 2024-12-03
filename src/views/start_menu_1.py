@@ -4,8 +4,9 @@ from models.button import BackingButton, CleaningButton
 from models.ball import Ball
 from models.popup import PopUp
 from models.nucleo import Nucleo
+from models.game import Game
 
-def start_menu(game):
+def start_menu(game : Game):
     running = True
     nucleo = Nucleo()
     Ball.start_draw()
@@ -25,6 +26,9 @@ def start_menu(game):
             if ball.drag_center: drag_ball = ball
         if drag_ball:
             if drag_ball.drag_center: drag_ball.draw_drag_ball(game.screen)
+
+        game.barr.draw(game.screen, nucleo.increase)
+        nucleo.inscrease = 0
         
         #Nucleo
         nucleo.controler(game) 
