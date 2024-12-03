@@ -56,37 +56,86 @@ class TestFundamentalParticle(unittest.TestCase):
         }
 
         # Chamar o método from_dict da classe FundamentalParticle
-        resultado = fusion.FundamentalParticle.from_dict(dados)
+        resultado = FundamentalParticle.from_dict(dados)
         
         # Verificar se o retorno é uma instância da classe Element
-        self.assertIsInstance(resultado, fusion.FundamentalParticle)
+        self.assertIsInstance(resultado, FundamentalParticle)
+
 
 class TestGetEnergy(unittest.TestCase):
-    def test_get_energy(self):
-        # Mock dos objetos necessários
-        product1 = Isotope(mass=2.0)
-        product2 = Isotope(mass=1.0)
-
-        # Definir valores de massa
-        element_a.mass = 4.0
-        element_b.mass = 3.0
-
-        # Lista de produtos
+    def test_get_energy_positive(self):
+        # Criando objetos necessários
+        element_a = Isotope(mass=4.0) 
+        element_b = Isotope(mass=3.0) 
+        product1 = Isotope(mass=2.0)  
+        product2 = Isotope(mass=1.5)  
         product = [product1, product2]
 
-        # Criar a instância da classe Reaction
-        reaction = Fusion("", element_a, element_b, product, "")
+        # Instância da classe Fusion
+        fusion = Fusion(
+            process="Fusão de Teste",
+            element_a=element_a,
+            element_b=element_b,
+            product=product,
+            description="Descrição para fusão de teste."
+        )
 
-        # Calcular a energia esperada
-        U_TO_KG = 1.66053906660e-27
-        J_TO_MEV = 6.242e12
-        C_2 = (2.99792458e8)**2
-        m_initial = element_a.mass + element_b.mass
-        m_final = sum([product1.mass, product2.mass])
-        expected_energy = round((m_initial - m_final) * U_TO_KG * C_2 * J_TO_MEV, 4)
+        # Valor esperado
+        expected_energy = 3260.4858
 
-        # Executar a função
-        result = reaction.get_energy()
+        # Obter o resultado da função
+        result = fusion.get_energy()
 
-        # Verificar se o resultado é o esperado
+        # Verificar se o resultado corresponde ao esperado
         self.assertEqual(result, expected_energy)
+
+
+    def test_get_energy_negative(self):
+        # Criando objetos necessários
+        element_a = Isotope(mass=0) 
+        element_b = Isotope(mass=3.0) 
+        product1 = Isotope(mass=2.0)  
+        product2 = Isotope(mass=1.5)  
+        product = [product1, product2]
+
+        # Instância da classe Fusion
+        fusion = Fusion(
+            process="Fusão de Teste",
+            element_a=element_a,
+            element_b=element_b,
+            product=product,
+            description="Descrição para fusão de teste."
+        )
+
+        # Valor esperado
+        expected_energy = -465.7837
+
+        # Obter o resultado da função
+        result = fusion.get_energy()
+
+        # Verificar se o resultado corresponde ao esperado
+        self.assertEqual(result, expected_energy)
+
+
+    def test_get_energy_equal_zero(self):
+        # Criando objetos necessários
+        element_a = Isotope(mass=0.5) 
+        element_b = Isotope(mass=2.5) 
+        product1 = Isotope(mass=2.0)  
+        product2 = Isotope(mass=1.0)  
+        product = [product1, product2]
+
+        # Instância da classe Fusion
+        fusion = Fusion(
+            process="Fusão de Teste",
+            element_a=element_a,
+            element_b=element_b,
+            product=product,
+            description="Descrição para fusão de teste."
+        )
+
+        # Obter o resultado da função
+        result = fusion.get_energy()
+
+        # Verificar se o resultado corresponde ao esperado
+        self.assertEqual(result, 0)
