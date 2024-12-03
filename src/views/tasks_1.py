@@ -24,8 +24,19 @@ FONT = pygame.font.Font(None, 36)
 energy_levels = {1: 2, 2: 8, 3: 18}
 ATOMIC_NUMBER_LIMIT = 10
 
-# Função para escolher um elemento aleatório
 def choose_element():
+    """
+    Função para escolher um elemento aleatório com base nos isótopos disponíveis, 
+    limitando os elementos ao número atômico especificado por `ATOMIC_NUMBER_LIMIT`.
+    
+    Retorna:
+    --------
+    element : dict
+        O elemento correspondente ao isótopo escolhido.
+    
+    isotope : dict
+        O isótopo escolhido aleatoriamente.
+    """
     eligible_isotopes = [iso for iso in isotopes_data if int(iso['atomic_number']) <= ATOMIC_NUMBER_LIMIT]
     isotope = random.choice(eligible_isotopes)
     element = next((elem for elem in elements_data if int(elem['atomic_number']) == isotope['atomic_number']), None)
@@ -33,7 +44,25 @@ def choose_element():
 
 
 class Particle(pygame.sprite.Sprite):
+    """
+    Representa uma partícula no jogo. A partícula é representada como um círculo colorido,
+    e pode ser movida e arrastada pela tela.
+    """
     def __init__(self, color, pos, particle_type):
+        """
+        Inicializa uma nova instância de partícula com um determinado tipo, cor e posição inicial.
+        
+        Parâmetros:
+        -----------
+        color : tuple
+            A cor da partícula.
+        
+        pos : tuple
+            A posição inicial da partícula.
+        
+        particle_type : str
+            O tipo da partícula.
+        """
         super().__init__()
         self.image = pygame.Surface((20, 20), pygame.SRCALPHA)
         pygame.draw.circle(self.image, color, (10, 10), 10)
@@ -43,15 +72,42 @@ class Particle(pygame.sprite.Sprite):
         self.dragging = False
 
     def reset_position(self):
+        """
+        Reseta a posição da partícula para a sua posição inicial, permitindo que ela volte à sua posição de origem após ser arrastada.
+        """
         self.rect.center = self.initial_pos
 
     def update(self, pos):
+        """
+        Atualiza a posição da partícula para a nova posição, caso esteja sendo arrastada.
+    
+        Parâmetros:
+        -----------
+        pos : tuple
+            A nova posição para a partícula.
+        """
         if self.dragging:
             self.rect.center = pos
 
 
 def place_particle(particle, nucleus_particles, electrons):
-    """Posiciona a partícula no núcleo ou nos níveis de energia."""
+    """
+    Posiciona a partícula no núcleo ou nos níveis de energia, dependendo de seu tipo.
+
+    A partícula pode ser um próton, nêutron ou elétron. Prótons e nêutrons são posicionados no núcleo,
+    enquanto elétrons são posicionados nos níveis de energia. A função leva em consideração a capacidade
+    dos níveis de energia e posiciona as partículas adequadamente.
+
+    Parâmetros:
+    -----------
+    particle : Particle
+        A partícula a ser posicionada.
+    nucleus_particles : pygame.sprite.Group
+        O grupo de partículas no núcleo.
+    electrons : dict
+        Um dicionário que contém os elétrons posicionados nos níveis de energia. A chave é o nível de energia,
+        e o valor é um conjunto de partículas (elétrons) nesse nível.
+    """
     if particle.particle_type in ['proton', 'neutron']:
         # Posiciona prótons e nêutrons no núcleo
         if nucleus_rect.collidepoint(particle.rect.center):
@@ -86,13 +142,23 @@ def place_particle(particle, nucleus_particles, electrons):
 
 def draw_element_card(screen, element, xpos, ypos, width=250, height=300):
     """
-    Desenha um cartão no estilo da tabela periódica com informações do elemento.
-    
+    Este cartão exibe o número atômico, símbolo, nome e massa atômica do elemento. O layout segue
+    o formato de uma célula da tabela periódica. O cartão é desenhado em uma área específica da tela.
+
     Parâmetros:
-    - screen: superfície onde o cartão será desenhado.
-    - element: dicionário contendo informações do elemento (nome, símbolo, número atômico, massa).
-    - xpos, ypos: posição do canto superior esquerdo do cartão.
-    - width, height: dimensões do cartão.
+    -----------
+    screen : pygame.Surface
+        A superfície onde o cartão será desenhado.
+    element : dict
+        Dicionário contendo informações do elemento, como nome, símbolo, número atômico e massa.
+    xpos : int
+        Posição X do canto superior esquerdo do cartão.
+    ypos : int
+        Posição Y do canto superior esquerdo do cartão.
+    width : int, opcional
+        A largura do cartão. O valor padrão é 250.
+    height : int, opcional
+        A altura do cartão. O valor padrão é 300.
     """
     num_font = pygame.font.Font(None, 45)
 
@@ -122,14 +188,44 @@ def draw_element_card(screen, element, xpos, ypos, width=250, height=300):
 
 
 def draw_button(screen, rect, text, color, text_color):
+    """
+    A função desenha um botão retangular com uma cor de fundo e um texto centralizado. O botão é desenhado
+    na posição especificada pelo retângulo (rect), e o texto é renderizado com a cor fornecida.
+
+    Parâmetros:
+    -----------
+    screen : pygame.Surface
+        A superfície onde o botão será desenhado.
+    rect : pygame.Rect
+        O retângulo que define a posição e o tamanho do botão.
+    text : str
+        O texto a ser exibido no botão.
+    color : tuple
+        A cor de fundo do botão, no formato RGB (ex: (255, 0, 0) para vermelho).
+    text_color : tuple
+        A cor do texto, no formato RGB (ex: (255, 255, 255) para branco).
+    """
     pygame.draw.rect(screen, color, rect)
     text_surface = FONT.render(text, True, text_color)
     text_rect = text_surface.get_rect(center=rect.center)
     screen.blit(text_surface, text_rect)
 
 
-# Retorna todas as particulas à posição inicial
 def reset_atom(all_particles, nucleus_particles, electrons):
+    """
+    Esta função limpa as partículas do núcleo e dos níveis de energia, e então as reposiciona em seus
+    locais iniciais.
+
+    Parâmetros:
+    -----------
+    all_particles : pygame.sprite.Group
+        O grupo de todas as partículas do jogo.
+    nucleus_particles : pygame.sprite.Group
+        O grupo de partículas que estão posicionadas no núcleo.
+    electrons : dict
+        Dicionário que contém os elétrons posicionados nos níveis de energia, com os níveis de energia como
+        chaves e os conjuntos de partículas (elétrons) como valores.
+    """
     nucleus_particles.empty()
     for level in electrons:
         electrons[level].empty()
@@ -138,9 +234,30 @@ def reset_atom(all_particles, nucleus_particles, electrons):
         particle.reset_position()
 
 
-# Valida se o átomo foi montado corretamente.
 def validate_atom(nucleus_particles, electrons, proton_count, neutron_count, electron_count):
+    """
+    A função valida a construção do átomo, verificando se o número de prótons e nêutrons no núcleo está
+    correto, e se a quantidade de elétrons nos níveis de energia está de acordo com as especificações do átomo.
 
+    Parâmetros:
+    -----------
+    nucleus_particles : pygame.sprite.Group
+        O grupo de partículas no núcleo do átomo.
+    electrons : dict
+        Dicionário que contém os elétrons nos níveis de energia, com os níveis como chaves e as partículas como valores.
+    proton_count : int
+        O número esperado de prótons no núcleo.
+    neutron_count : int
+        O número esperado de nêutrons no núcleo.
+    electron_count : int
+        O número esperado de elétrons no átomo.
+
+    Retorna:
+    --------
+    bool
+        Retorna True se o átomo for válido (número correto de prótons, nêutrons e elétrons), 
+        caso contrário, retorna False.
+    """
     # Contar prótons e nêutrons no núcleo
     nucleus_protons = sum(1 for particle in nucleus_particles if particle.particle_type == 'proton')
     nucleus_neutrons = sum(1 for particle in nucleus_particles if particle.particle_type == 'neutron')
@@ -159,8 +276,18 @@ def validate_atom(nucleus_particles, electrons, proton_count, neutron_count, ele
     return nucleus_valid and electrons_valid
 
 
-#Exibe o resultado da validação na tela.
 def display_validation_result(screen, is_valid):
+    """
+    A função exibe uma mensagem na tela indicando se o átomo foi montado corretamente ou não. 
+    A cor do texto é verde se o átomo for válido e vermelha se for inválido.
+
+    Parâmetros:
+    -----------
+    screen : pygame.Surface
+        A superfície onde o resultado da validação será exibido.
+    is_valid : bool
+        Indicador de validade do átomo. True se o átomo for válido, False caso contrário.
+    """
     text = "Átomo Completo!" if is_valid else "Átomo Incompleto ou Inválido!"
     color = (0, 255, 0) if is_valid else (255, 0, 0)  # Verde para correto, vermelho para errado
     result_surface = FONT.render(text, True, color)
@@ -169,6 +296,36 @@ def display_validation_result(screen, is_valid):
 
 
 def run_atom_builder():
+    """
+    A função inicia a criação de um átomo com base em um elemento e isótopo aleatórios. Ela cria as partículas 
+    necessárias (prótons, nêutrons e elétrons) e organiza suas posições na tela, com a definição de retângulos 
+    para o núcleo e os níveis de energia. Também cria os botões de reiniciar e verificar.
+
+    Retorna:
+    --------
+    tuple
+        Retorna uma tupla contendo as seguintes variáveis:
+        - element : dict
+            O elemento selecionado aleatoriamente.
+        - isotope : dict
+            O isótopo selecionado aleatoriamente.
+        - proton_count : int
+            O número de prótons do elemento.
+        - neutron_count : int
+            O número de nêutrons do isótopo.
+        - electron_count : int
+            O número de elétrons do átomo.
+        - all_particles : pygame.sprite.Group
+            Grupo contendo todas as partículas criadas (prótons, nêutrons e elétrons).
+        - nucleus_particles : pygame.sprite.Group
+            Grupo contendo as partículas que estarão no núcleo (prótons e nêutrons).
+        - electrons : dict
+            Dicionário com grupos de partículas elétrons para cada nível de energia.
+        - reset_button_rect : pygame.Rect
+            Retângulo que define a área do botão de reset.
+        - verify_button_rect : pygame.Rect
+            Retângulo que define a área do botão de verificação.
+    """
     element, isotope = choose_element()
     proton_count = int(element['atomic_number'])
     neutron_count = int(isotope['mass_number']) - proton_count
