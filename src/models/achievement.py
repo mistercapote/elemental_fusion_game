@@ -3,6 +3,17 @@ from models.fusion import Element
 
 pygame.init()
 def write(screen, text, font, color, center):
+    """
+    Desenha o texto na tela.
+
+    Parâmetros:
+    -----------
+    screen: Superfície onde o texto será desenhado.
+    text: O texto a ser desenhado.
+    font: A fonte usada para desenhar o texto.
+    color: A cor do texto.
+    center: O centro da posição onde o texto será desenhado.
+    """
     render = font.render(text, True, color)
     rect = render.get_rect(center=center)
     screen.blit(render, rect)
@@ -16,7 +27,22 @@ BLACK = (0, 0, 0)
 FONT_LARGE = pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.ttf", 20)
 
 class Achievement:
+    """
+    Representa uma conquista do jogo, com nome, descrição e os elementos desbloqueados.
+    """
     def __init__(self, name, numbers, description, xpos, ypos, color):
+        """
+        Inicializa uma conquista.
+
+        Parâmetros:
+        -----------
+        - name: Nome da conquista.
+        - numbers: Conjunto de números atômicos dos elementos relacionados à conquista.
+        - description: Descrição da conquista.
+        - xpos: Posição horizontal da conquista na tela.
+        - ypos: Posição vertical da conquista na tela.
+        - color: Cor da conquista.
+        """
         self.name = name
         self.numbers = set(numbers)
         self.unlocked_elements = set()
@@ -27,15 +53,33 @@ class Achievement:
         self.color = color
     
     def unlocked(self):
+        """
+        Verifica se a conquista foi desbloqueada.
+        """
         if self.numbers == self.unlocked_elements:
             self.done = True
 
     def add_element(self, element : Element):
+        """
+        Adiciona um elemento à lista de elementos desbloqueados.
+
+        Parâmetros:
+        -----------
+        - element: O elemento que foi desbloqueado.
+        """
         if element.atomic_number in self.numbers:
             self.unlocked_elements.add(element.atomic_number)
             self.unlocked()
     
     def draw(self, screen, coef=-1):
+        """
+        Desenha a conquista na tela.
+
+        Parâmetros:
+        -----------
+        - screen: Superfície onde a conquista será desenhada.
+        - coef: Coeficiente para ajustar a margem da conquista, padrão é -1.
+        """
         if not self.done:
             name_text = f"{len(self.unlocked_elements)}/{len(self.numbers)}"
             pygame.draw.rect(screen, GRAY, (self.xpos - coef, self.ypos - coef, ACHIE_WIDTH + 2*coef, ACHIE_HEIGHT + 2*coef))
@@ -47,6 +91,17 @@ class Achievement:
         
     @classmethod
     def from_dict(cls, data):
+        """
+        Cria uma conquista a partir de um dicionário.
+
+        Parâmetros:
+        -----------
+        - data: Dicionário contendo os dados da conquista.
+
+        Retorna:
+        --------
+        - Um objeto Achievement.
+        """
         return cls(
             name = data["name"],
             numbers = data["numbers"],
