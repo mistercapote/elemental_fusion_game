@@ -18,13 +18,14 @@ class Game:
         self.story_image = "assets/images/fundo_story_menu.png"
         self.story_music = "assets/audio/Star Wars - Main Theme.mp3"
         self.clock = pygame.time.Clock()
-        self.isotopes_found = [ISOTOPES[0], ISOTOPES[8], ISOTOPES[50], ISOTOPES[100], ISOTOPES[200]]
+        self.isotopes_found = [ISOTOPES[0]]
         self.particles_found = [PARTICLES[0], PARTICLES[2]]
         self.fusions_found = []
         self.new_found = []
         self.start_popup = []
         self.table_popup = []
         self.barr = Barr()
+        self.iron = ISOTOPES[552]
         self.start_media()
         
     def update_for_level_2(self):
@@ -84,11 +85,10 @@ class Game:
             table.append(card)
         return table
     
-    def start_achiev():
-        pass
-    
-    def killthatstar(self):
-        self.update_for_level_2()
+    def checkend(self):
+        if self.barr.width_current >= 200 and self.iron in self.isotopes_found:
+            pass # animacao de matar entrela
+
 
 class Barr:
     def __init__(self):
@@ -102,9 +102,8 @@ class Barr:
         increase = 2*increase
         if self.width_current + int(increase) < self.width_max and self.width_current + int(increase) >= 0:
             self.width_current += int(increase)
-            pygame.draw.rect(screen, YELLOW, (self.pos_x, self.pos_y, self.width_current, self.height), 0, -1, 10, 10, 10, 10)
+            if self.width_current > 5:
+                pygame.draw.rect(screen, YELLOW, (self.pos_x, self.pos_y, self.width_current, self.height), 0, -1, 10, 10, 10, 10)
             pygame.draw.rect(screen, WHITE, (self.pos_x, self.pos_y, self.width_max, self.height), 3, -1, 10, 10, 10, 10)
-        else:
-            pass #passar de nivel
 
         

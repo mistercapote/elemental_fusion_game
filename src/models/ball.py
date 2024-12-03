@@ -265,7 +265,7 @@ class ParticleBall(Ball):
         ao desenhar múltiplas partículas na tela.
         """
         ParticleBall.www = WIDTH_MAX//20
-        ParticleBall.hhh = HEIGHT_MAX//7
+        ParticleBall.hhh = HEIGHT_MAX//6
         ParticleBall.line_break = 0
         ParticleBall.radius = 15
 
@@ -280,7 +280,7 @@ class ParticleBall(Ball):
         """
         if ParticleBall.line_break % 9 == 0:
             ParticleBall.www = WIDTH_MAX//20
-            ParticleBall.hhh += HEIGHT_MAX//14
+            ParticleBall.hhh += HEIGHT_MAX//12
         else: 
             ParticleBall.www += WIDTH_MAX//20
         ParticleBall.line_break +=1
