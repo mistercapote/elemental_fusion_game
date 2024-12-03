@@ -1,7 +1,6 @@
 import pygame
 from constants import *
 import numpy as np
-from models.game import Game
 
 class Nucleo:
     """
@@ -127,7 +126,7 @@ class Nucleo:
         self.frame += self.explosion_speed
         if self.frame >= 10: self.radius = 0
     
-    def fusion(self, game : Game):
+    def fusion(self, game ):
         """
         Realiza a fusão dos dois elementos reagindo e chama o processo recursivo de fusão.
 
