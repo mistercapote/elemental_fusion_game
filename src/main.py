@@ -15,7 +15,7 @@ table_button = OpeningButton(game.screen, "Periodic Table", CENTER_X, CENTER_Y +
 settings_button = OpeningButton(game.screen, "Settings", CENTER_X, CENTER_Y + 140, settings_menu.settings_menu)
 exit_button = OpeningButton(game.screen, "Exit", CENTER_X, CENTER_Y + 210, game.quit)
 
-#Loop princial
+#Loop principal
 running = True
 while running:
     game.screen.fill(BLACK) #Limpar tela
