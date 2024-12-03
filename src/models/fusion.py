@@ -1,7 +1,36 @@
 import json
 
 class Element:
+    """
+    Representa um elemento químico.
+
+    A classe armazena informações sobre um elemento, como seu nome, símbolo, número atômico, 
+    grupo, período, raio atômico, cor e descrição. Também possui um método de classe para 
+    criar uma instância de um elemento a partir de um dicionário de dados.
+    """
     def __init__(self, name, symbol, atomic_number, group, period, atomic_radius, color, description):
+        """
+        Constrói um objeto Element.
+
+        Parâmetros:
+        -----------
+        name : str
+            Nome do elemento.
+        symbol : str
+            Símbolo do elemento.
+        atomic_number : int
+            Número atômico do elemento.
+        group : int
+            Grupo do elemento (1 a 18).
+        period : int
+            Período do elemento (1 a 7).
+        atomic_radius : float
+            Raio atômico do elemento (em picômetros).
+        color : tuple
+            Cor associada ao elemento.
+        description : str
+            Descrição do elemento.
+        """
         self.name = name
         self.symbol = symbol
         self.atomic_number = atomic_number
@@ -13,6 +42,19 @@ class Element:
 
     @classmethod
     def from_dict(cls, data):
+        """
+        Cria um objeto Element a partir de um dicionário de dados.
+
+        Parâmetros:
+        -----------
+        data : dict
+            Dicionário contendo as informações do elemento.
+
+        Retorna:
+        --------
+        Element
+            Instância de Element.
+        """
         return cls(
             name = data["name"],
             symbol = data["symbol"],
@@ -25,7 +67,45 @@ class Element:
         )
 
 class Isotope(Element):
+    """
+    Representa um isótopo de um elemento químico.
+
+    Herda da classe Element e adiciona informações sobre o número de massa, 
+    massa, radioatividade, abundância e nome do isótopo.
+    """
     def __init__(self, name, symbol, atomic_number, group, period, atomic_radius, color, description, mass_number, mass, is_radioactive, abundance, name_isotope):
+        """
+        Construtor da classe Isotope.
+
+        Parâmetros:
+        -----------
+        name : str
+            Nome do isótopo.
+        symbol : str
+            Símbolo do isótopo.
+        atomic_number : int
+            Número atômico do isótopo.
+        group : int
+            Grupo do elemento na tabela periódica (1 a 18).
+        period : int
+            Período do elemento na tabela periódica (1 a 7).
+        atomic_radius : float
+            Raio atômico do elemento em picômetros (pm).
+        color : tuple
+            Cor associada ao isótopo.
+        description : str
+            Descrição do isótopo.
+        mass_number : int
+            Número de massa do isótopo.
+        mass : float
+            Massa do isótopo em unidades de massa atômica (U).
+        is_radioactive : bool
+            Indica se o isótopo é radioativo.
+        abundance : float
+            Abundância do isótopo em porcentagem (%).
+        name_isotope : str
+            Nome do isótopo. Se não fornecido, é gerado a partir do símbolo e número de massa.
+        """
         super().__init__(name, symbol, atomic_number, group, period, atomic_radius, color, description)
         self.mass_number = mass_number
         self.mass = mass # em U
@@ -35,11 +115,39 @@ class Isotope(Element):
         self.neutrons = mass_number - atomic_number
         
     def __eq__(self, other):
+        """
+        Compara dois isótopos para verificar se são iguais.
+
+        Parâmetros:
+        -----------
+        other : Isotope
+            Outro isótopo a ser comparado com o isótopo atual.
+
+        Retorna:
+        --------
+        bool
+            Retorna True se os isótopos forem iguais (mesmo número atômico e número de massa), caso contrário, False.
+        """
         if not isinstance(other, Isotope): return False
         return self.atomic_number == other.atomic_number and self.mass_number == other.mass_number
     
     @classmethod
     def from_dict(cls, data, ELEMENTS):
+        """
+        Cria um objeto Isotope a partir de um dicionário de dados.
+
+        Parâmetros:
+        -----------
+        data : dict
+            Dicionário contendo as informações do isótopo.
+        ELEMENTS : list
+            Lista de elementos que são utilizados para recuperar informações adicionais do elemento base.
+
+        Retorna:
+        --------
+        Isotope
+            Retorna um objeto da classe Isotope.
+        """
         element = list(filter(lambda x: x.atomic_number == data["atomic_number"], ELEMENTS))[0]
         return cls(
             name=element.name,
@@ -59,7 +167,11 @@ class Isotope(Element):
     
             
 class FundamentalParticle:
+    """
+    Classe para representar uma partícula fundamental.
+    """
     def __init__(self, name, symbol, mass, charge, spin, color):
+        #####################################################################################parei aqui###################################
         self.name = name
         self.symbol = symbol
         self.mass = mass

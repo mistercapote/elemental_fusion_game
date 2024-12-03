@@ -4,7 +4,31 @@ from models.button import PopUpButton
 import math
 
 class Card:
+    """
+    Classe que representa um cartão no jogo, que pode conter informações sobre um elemento ou isótopo. 
+    A classe gerencia a exibição de informações sobre elementos químicos e seus isótopos em uma interface gráfica.
+
+    Atributos:
+        entity: O objeto que representa o elemento ou isótopo associado ao cartão.
+        xpos: A posição horizontal do cartão na tela.
+        ypos: A posição vertical do cartão na tela.
+        button: Botão associado ao cartão para ações (como fechar pop-ups).
+        isotopes: Lista de isótopos associados ao elemento, se o cartão for de um elemento.
+    """
     def __init__(self, entity, x, y):
+        """
+        Inicializa o cartão com a entidade (elemento ou isótopo), 
+        suas coordenadas e a configuração do botão e isótopos, se aplicável.
+
+        Parâmetros:
+        ---------
+        entity : Element | None
+            A entidade associada ao cartão (um elemento ou isótopo).
+        x : int
+            A posição horizontal do cartão na tela.
+        y : int
+            A posição vertical do cartão na tela.
+        """
         self.entity = entity
         self.xpos = x
         self.ypos = y
@@ -14,6 +38,20 @@ class Card:
         else: self.isotopes = None
 
     def draw_card(self, screen, coef=1):
+        """
+        Desenha o cartão na tela, exibindo as informações do elemento ou isótopo associado.
+
+        Parâmetros:
+        ---------
+        screen : pygame.Surface
+            A superfície onde o cartão será desenhado.
+        coef : int, opcional
+            Um fator de ajuste para o desenho, por padrão é 1.
+        
+        Retorna:
+        --------
+        None
+        """
         coordenates = [(self.xpos+coef,self.ypos+coef), 
                        (self.xpos+SQUARE_WIDTH-coef, self.ypos+coef), 
                        (self.xpos+SQUARE_WIDTH-coef, self.ypos+SQUARE_HEIGHT-coef), 
@@ -35,6 +73,18 @@ class Card:
                 write(screen, f"{self.entity.mass_number}", FONT_SMALL, BLACK, (self.xpos+7*SQUARE_WIDTH//8-coef, self.ypos+SQUARE_HEIGHT//8+coef))
 
     def draw_popup(self, game):
+        """
+        Exibe um pop-up com os isótopos de um elemento, mostrando os cartões dos isótopos descobertos.
+
+        Parâmetros:
+        ---------
+        game : Game
+            O objeto do jogo onde o pop-up será desenhado.
+
+        Retorna:
+        --------
+        None
+        """
         iW = (SQUARE_WIDTH * min(12, len(self.isotopes)+2))
         iH = (SQUARE_HEIGHT * math.ceil(len(self.isotopes)/10 + 2))
         pygame.draw.rect(game.screen, BLACK, (CENTER_X-iW//2, CENTER_Y-iH//2, iW, iH))
@@ -71,7 +121,3 @@ class Card:
             self.button = PopUpButton(game.screen, "OK", CENTER_X+iW//2-40, CENTER_Y+iH//2-30)
         self.button.draw(game.screen)
 
-        
-        
-
-    
