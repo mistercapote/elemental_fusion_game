@@ -3,9 +3,10 @@ import moviepy.editor as mp
 import sys
 from constants import *
 from models.card import Card
+from views import achiev_menu, start_menu_1, start_menu_2, story_menu, table_menu
+from models.button import OpeningButton
 
 class Game:
-
     def __init__(self):
         """
         Inicializa a instância do jogo, configurando os recursos necessários e a interface gráfica.
@@ -65,7 +66,7 @@ class Game:
             Lista de pop-ups da tabela.
 
         barr : Barr
-            Instância da classe Barr que gerencia o estado do jogo.
+            Instância da classe Barr que gerencia a energia do jogo.
 
         start_media() : None
             Método chamado para iniciar o vídeo e música de introdução do jogo.
@@ -81,6 +82,11 @@ class Game:
         self.story_text = "assets/texts/story_level_1.txt"
         self.story_image = "assets/images/fundo_story_menu.png"
         self.story_music = "assets/audio/simple-relaxing-guitar-loop-60828_lofi.mp3"
+        self.start_button = OpeningButton(self.screen, "Jogar", CENTER_X, CENTER_Y - 70, start_menu_1.start_menu)
+        self.story_button = OpeningButton(self.screen, "História", CENTER_X, CENTER_Y, story_menu.story_menu)
+        self.table_button = OpeningButton(self.screen, "Tabela Periódica", CENTER_X, CENTER_Y + 70, table_menu.table_menu)
+        self.settings_button = OpeningButton(self.screen, "Conquistas", CENTER_X, CENTER_Y + 140, achiev_menu.achiev_menu)
+        self.exit_button = OpeningButton(self.screen, "Sair", CENTER_X, CENTER_Y + 210, self.quit)
         self.clock = pygame.time.Clock()
         self.isotopes_found = [ISOTOPES[0]]
         self.particles_found = [PARTICLES[0], PARTICLES[2]]
@@ -92,6 +98,7 @@ class Game:
         self.iron = ISOTOPES[552]
         self.start_media()
         
+        
     def update_for_level_2(self):
         """
         Atualiza o jogo para o nível 2, alterando o título, a fase atual, 
@@ -101,8 +108,22 @@ class Game:
         self.current_phase = 2
         self.video = "assets/videos/video_opening_2.mp4"
         self.music = "assets/audio/audio_opening.mp3"
+        self.start_button = OpeningButton(self.screen, "Jogar", CENTER_X, CENTER_Y - 70, start_menu_2.start_menu)
         self.start_media()
 
+    def draw_button(self):
+        self.start_button.draw(self.screen)
+        self.story_button.draw(self.screen)
+        self.table_button.draw(self.screen)
+        self.settings_button.draw(self.screen)
+        self.exit_button.draw(self.screen)
+
+    def check_button(self, event):
+        self.start_button.check_click(event, self)
+        self.story_button.check_click(event, self)
+        self.table_button.check_click(event, self)
+        self.settings_button.check_click(event, self)
+        self.exit_button.check_click(event, self)
     def draw_title(self):
         """
         Desenha o título do jogo na tela.
@@ -178,9 +199,11 @@ class Game:
                 card = Card(None, left_x, top_y)
             table.append(card)
         return table
+    
     def checkend(self):
-        if self.barr.width_current >= 200 and self.iron in self.isotopes_found:
-            pass # animacao de matar entrela
+        if self.current_phase == 1 and self.barr.width_current >= 200 and self.iron in self.isotopes_found:
+            # animacao de matar entrela
+            self.update_for_level_2()
 
 
 class Barr:
@@ -221,11 +244,15 @@ class Barr:
         increase : int
             O valor que será adicionado à largura atual da barra de progresso.
         """
-        increase = 2*increase
-        if self.width_current + int(increase) < self.width_max and self.width_current + int(increase) >= 0:
-            self.width_current += int(increase)
-            if self.width_current > 5:
-                pygame.draw.rect(screen, YELLOW, (self.pos_x, self.pos_y, self.width_current, self.height), 0, -1, 10, 10, 10, 10)
-            pygame.draw.rect(screen, WHITE, (self.pos_x, self.pos_y, self.width_max, self.height), 3, -1, 10, 10, 10, 10)
+        increase = 4*increase
+        if self.width_current + int(increase) >= 0:
+            if self.width_current + int(increase) < self.width_max:
+                self.width_current += int(increase)
+            else:
+                self.width_current = 200
+
+        if self.width_current > 5:
+            pygame.draw.rect(screen, YELLOW, (self.pos_x, self.pos_y, self.width_current, self.height), 0, -1, 10, 10, 10, 10)
+        pygame.draw.rect(screen, WHITE, (self.pos_x, self.pos_y, self.width_max, self.height), 3, -1, 10, 10, 10, 10)
 
         

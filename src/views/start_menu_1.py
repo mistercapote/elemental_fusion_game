@@ -4,9 +4,8 @@ from models.button import BackingButton, CleaningButton
 from models.ball import Ball
 from models.popup import PopUp
 from models.nucleo import Nucleo
-from models.game import Game
 
-def start_menu(game : Game):
+def start_menu(game):
     running = True
     nucleo = Nucleo()
     Ball.start_draw()
@@ -31,7 +30,7 @@ def start_menu(game : Game):
         #Mostrar barra de energia
         game.barr.draw(game.screen, nucleo.increase)
         nucleo.increase = 0
-        
+        game.checkend()
         #Nucleo
         nucleo.controler(game) 
         if game.new_found: found += list(map(Ball.turn_ball, game.new_found))   

@@ -13,7 +13,7 @@ def write(screen, text, font, color, center):
     screen.blit(render, rect)
 
 def from_json(class_, filepath, *args):
-    with open(filepath, "r") as f: dict_data = json.load(f)
+    with open(filepath, "r", encoding="utf-8") as f: dict_data = json.load(f)
     return [class_.from_dict(data, *args) for data in dict_data]
 
 #Tamanhos
