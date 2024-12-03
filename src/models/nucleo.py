@@ -105,7 +105,6 @@ class Nucleo:
                 self.canal1.play(pygame.mixer.Sound("assets/audio/pierre_roud.mp3")) 
             if not self.fusions:
                 self.fusions = [obj for obj in FUSIONS if (obj.element_a == self.reacting[0].entity and obj.element_b == self.reacting[1].entity) or (obj.element_a == self.reacting[1].entity and obj.element_b == self.reacting[0].entity)]
-            
             if self.fusions: self.radius += self.fusion_speed # Velocidade de aproximação
             else: self.radius += self.not_fusion_speed # Velocidade de afastamento
 

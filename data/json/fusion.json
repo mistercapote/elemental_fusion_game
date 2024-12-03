@@ -1,5 +1,14 @@
 [
     {
+    "element_a":"p",
+    "element_b":"e",
+    "product":[
+        "H-1"
+    ],
+    "process":null,
+    "description":null
+    },
+    {
         "element_a":"H-1",
         "element_b":"H-1",
         "product":[
@@ -8,7 +17,7 @@
             "ve"
         ],
         "process":"Cadeia PP I",
-        "description":null
+        "description":"A formação do deutério corresponde à primeira etapa da Cadeia Proton-Proton"
     },
     {
         "element_a":"H-2",
@@ -30,14 +39,14 @@
             "H-1"
         ],
         "process":"Cadeia PP I",
-        "description":null
+        "description":"A formação do Hélio-4 marca o fim da Cadeia Proton-Proton"
     },
     {
         "element_a":"He-3",
         "element_b":"He-4",
         "product":[
             "Be-7",
-            "foton"
+            "y"
         ],
         "process":"Cadeia PP II",
         "description":null
@@ -67,7 +76,7 @@
         "element_b":"H-1",
         "product":[
             "B-8",
-            "foton"
+            "y"
         ],
         "process":"Cadeia PP III",
         "description":null
@@ -79,16 +88,6 @@
             "Be-8",
             "e+",
             "ve"
-        ],
-        "process":"Cadeia PP III",
-        "description":null
-    },
-    {
-        "element_a":"Be-8",
-        "element_b":null,
-        "product":[
-            "He-4",
-            "He-4"
         ],
         "process":"Cadeia PP III",
         "description":null
@@ -107,7 +106,7 @@
         "element_b":"He-4",
         "product":[
             "C-12",
-            "foton"
+            "y"
         ],
         "process":"Triplo Alpha",
         "description":null
@@ -117,7 +116,7 @@
         "element_b":"H-1",
         "product":[
             "N-13",
-            "foton"
+            "y"
         ],
         "process":"Ciclo CNO-I",
         "description":null
@@ -138,7 +137,7 @@
         "element_b":"H-1",
         "product":[
             "N-14",
-            "foton"
+            "y"
         ],
         "process":"Ciclo CNO-I",
         "description":null
@@ -148,7 +147,7 @@
         "element_b":"H-1",
         "product":[
             "O-15",
-            "foton"
+            "y"
         ],
         "process":"Ciclo CNO-I",
         "description":null
@@ -179,7 +178,7 @@
         "element_b":"H-1",
         "product":[
             "O-16",
-            "foton"
+            "y"
         ],
         "process":"Ciclo CNO-II",
         "description":null
@@ -189,7 +188,7 @@
         "element_b":"H-1",
         "product":[
             "F-17",
-            "foton"
+            "y"
         ],
         "process":"Ciclo CNO-II",
         "description":null
@@ -220,7 +219,7 @@
         "element_b":"C-12",
         "product":[
             "Mg-24",
-            "foton"
+            "y"
         ],
         "process":"Fusão do Carbono",
         "description":null
@@ -271,7 +270,7 @@
         "element_b":"foton",
         "product":[
             "O-16",
-            "He-4]"
+            "He-4"
         ],
         "process":"Fusão do Neônio",
         "description":null
@@ -281,7 +280,7 @@
         "element_b":"He-4",
         "product":[
             "Mg-24",
-            "foton"
+            "y"
         ],
         "process":"Fusão do Neônio",
         "description":null
@@ -290,8 +289,8 @@
         "element_a":"Ne-20",
         "element_b":"n",
         "product":[
-            "[Ne-21",
-            "foton"
+            "Ne-21",
+            "y"
         ],
         "process":"Fusão do Neônio",
         "description":null
@@ -362,7 +361,7 @@
         "element_b":"O-16",
         "product":[
             "S-32",
-            "foton"
+            "y"
         ],
         "process":"Fusão do Oxigênio",
         "description":null
@@ -383,7 +382,7 @@
         "element_b":"Si-28",
         "product":[
             "Ni-56",
-            "foton"
+            "y"
         ],
         "process":"Queima do Silício",
         "description":null
@@ -393,7 +392,7 @@
         "element_b":"He-4",
         "product":[
             "S-32",
-            "foton"
+            "y"
         ],
         "process":"Queima do Silício",
         "description":null
@@ -403,7 +402,7 @@
         "element_b":"He-4",
         "product":[
             "Ar-36",
-            "foton"
+            "y"
         ],
         "process":"Queima do Silício",
         "description":null
@@ -413,7 +412,7 @@
         "element_b":"He-4",
         "product":[
             "Ca-40",
-            "foton"
+            "y"
         ],
         "process":"Queima do Silício",
         "description":null
@@ -423,7 +422,7 @@
         "element_b":"He-4",
         "product":[
             "Ti-44",
-            "foton"
+            "y"
         ],
         "process":"Queima do Silício",
         "description":null
@@ -433,7 +432,7 @@
         "element_b":"He-4",
         "product":[
             "Cr-48",
-            "foton"
+            "y"
         ],
         "process":"Queima do Silício",
         "description":null
@@ -443,7 +442,7 @@
         "element_b":"He-4",
         "product":[
             "Fe-52",
-            "foton"
+            "y"
         ],
         "process":"Queima do Silício",
         "description":null
@@ -453,7 +452,7 @@
         "element_b":"He-4",
         "product":[
             "Ni-56",
-            "foton"
+            "y"
         ],
         "process":"Queima do Silício",
         "description":null
@@ -505,7 +504,7 @@
         "element_b":"He-4",
         "product":[
             "O-16",
-            "foton"
+            "y"
         ],
         "process":null,
         "description":null
@@ -515,7 +514,7 @@
         "element_b":"N-14",
         "product":[
             "Mg-25",
-            "foton"
+            "y"
         ],
         "process":null,
         "description":null
@@ -525,7 +524,7 @@
         "element_b":"O-16",
         "product":[
             "Si-28",
-            "foton"
+            "y"
         ],
         "process":null,
         "description":null
@@ -535,7 +534,7 @@
         "element_b":"He-4",
         "product":[
             "Cl-35",
-            "foton"
+            "y"
         ],
         "process":null,
         "description":null
@@ -545,7 +544,7 @@
         "element_b":"He-4",
         "product":[
             "Si-28",
-            "foton"
+            "y"
         ],
         "process":null,
         "description":null
@@ -555,7 +554,7 @@
         "element_b":"He-4",
         "product":[
             "Si-29",
-            "foton"
+            "y"
         ],
         "process":null,
         "description":null
@@ -565,7 +564,7 @@
         "element_b":"H-1",
         "product":[
             "Al-26",
-            "foton"
+            "y"
         ],
         "process":null,
         "description":null
@@ -597,7 +596,7 @@
         "product":[
             "Ne-22",
             "e-",
-            "ve]"
+            "ve"
         ],
         "process":null,
         "description":null
@@ -617,9 +616,10 @@
         "element_b":"He-4",
         "product":[
             "O-18",
-            "foton"
+            "y"
         ],
         "process":null,
         "description":null
     }
+    
 ]
