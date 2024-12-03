@@ -45,4 +45,4 @@ PARTICLES = from_json(FundamentalParticle, "data/json/fundamental_particles.json
 ELEMENTS = from_json(Element, "data/json/element.json")
 ISOTOPES = from_json(Isotope, "data/json/isotope.json", ELEMENTS)
 FUSIONS = from_json(Fusion, "data/json/fusion.json", PARTICLES, ISOTOPES)
-ACHIEVEMENT = from_json(Achievement, "data/json/achievement.json")
+ACHIEVEMENTS = from_json(Achievement, "data/json/achievement.json")

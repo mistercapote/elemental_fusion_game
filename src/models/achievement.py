@@ -1,5 +1,7 @@
 import pygame
 from constants import *
+from models.fusion import Element
+
 pygame.init()
 def write(screen, text, font, color, center):
     render = font.render(text, True, color)
@@ -32,71 +34,33 @@ FONT_SMALL= pygame.font.Font("assets/font/Roboto_Slab/static/RobotoSlab-Regular.
 class Achievement:
     def __init__(self, name, numbers, description, xpos, ypos, color):
         self.name = name
-        self.numbers = numbers
-        self.done = True
+        self.numbers = set(numbers)
+        self.unlocked_elements = set()
+        self.done = False
         self.description = description
         self.xpos = (xpos - 0.5) * ACHIE_WIDTH
         self.ypos = (ypos - 0.5)  * ACHIE_HEIGHT
         self.color = color
     
-    def family_list(self, game):
-        conquista_atual = None
+    def unlocked(self):
+        if self.numbers == self.unlocked_elements:
+            self.done = True
 
-        for each in game.isotopes_found:
-            if each.atomic_number in self.gasnobre:
-                self.gasnobre.remove(each.atomic_number)
-                if not self.gasnobre:
-                    conquista_atual = "Gases nobres"
-                    self.conquistas.append("Gases nobres")
-            elif each.atomic_number in self.metalalcalino:
-                self.metalalcalino.remove(each.atomic_number)
-                if not self.metalalcalino:
-                    conquista_atual = "Metais alcalinos"
-                    self.conquistas.append("Metais alcalinos")
-            elif each.atomic_number in self.metalalcalinoterroso:
-                self.metalalcalinoterroso.remove(each.atomic_number)
-                if not self.metalalcalinoterroso:
-                    conquista_atual = "Metais alcalino terrosos"
-                    self.conquistas.append("Metais alcalino terrosos")
-            elif each.atomic_number in self.metaltransicaoexterna:
-                self.metaltransicaoexterna.remove(each.atomic_number)
-                if not self.metaltransicaoexterna:
-                    conquista_atual = "Metais de transição externa"
-                    self.conquistas.append("Metais de transição externa")
-            elif each.atomic_number in self.metalpostransicao:
-                self.metalpostransicao.remove(each.atomic_number)
-                if not self.metalpostransicao:
-                    conquista_atual = "Metais pós-transição"
-                    self.conquistas.append("Metais pós-transição")
-            elif each.atomic_number in self.metaltransicaointerna:
-                self.metaltransicaointerna.remove(each.atomic_number)
-                if not self.metaltransicaointerna:
-                    conquista_atual = "Metais de transição interna"
-                    self.conquistas.append("Metais de transição interna")
-            elif each.atomic_number in self.semimetal:
-                self.semimetal.remove(each.atomic_number)
-                if not self.semimetal:
-                    conquista_atual = "Semimetais"
-                    self.conquistas.append("Semimetais")
-            elif each.atomic_number in self.ametal:
-                self.ametal.remove(each.atomic_number)
-                if not self.ametal:
-                    conquista_atual = "Ametais"
-                    self.conquistas.append("Ametais")
-
-        return conquista_atual, self.conquistas
+    def add_element(self, element : Element):
+        if element.atomic_number in self.numbers:
+            self.unlocked_elements.add(element.atomic_number)
+            self.unlocked()
     
-    def recently_achievement(self):
-         conquista_atual, _ = self.family_list()
-
-         return f"Parabens! Você desbloqueou todos os {conquista_atual}"
-    
-    def draw(self):
-        _, self.conquistas = self.family_list()
-        historico = []
-
-        return historico
-    
+    def draw(self, screen, coef=-1):
+        if not self.done:
+            name_text = f"{len(self.unlocked_elements)}/{len(self.numbers)}"
+            pygame.draw.rect(screen, GRAY, (self.xpos - coef, self.ypos - coef, ACHIE_WIDTH + 2*coef, ACHIE_HEIGHT + 2*coef))
+        else:
+            name_text = self.name
+            pygame.draw.rect(screen, self.color, (self.xpos - coef, self.ypos - coef, ACHIE_WIDTH + 2*coef, ACHIE_HEIGHT + 2*coef)) 
+        
+        write(screen, name_text, FONT_LARGE, BLACK, (self.xpos+ACHIE_WIDTH//2, self.ypos+ACHIE_HEIGHT//2))
+        
     @classmethod
     def from_dict(cls, data):
         return cls(
@@ -107,15 +71,4 @@ class Achievement:
             ypos = data["ypos"],
             color = data["color"]
         )
-    
-    def draw(self, screen, coef=-1):
-        if not self.done:
-            name_text = ""
-            pygame.draw.rect(screen, GRAY, (self.xpos - coef, self.ypos - coef, ACHIE_WIDTH + 2*coef, ACHIE_HEIGHT + 2*coef))
-        else:
-            name_text = self.name
-            pygame.draw.rect(screen, self.color, (self.xpos - coef, self.ypos - coef, ACHIE_WIDTH + 2*coef, ACHIE_HEIGHT + 2*coef)) 
-        
-        write(screen, name_text, FONT_LARGE, BLACK, (self.xpos+ACHIE_WIDTH//2, self.ypos+ACHIE_HEIGHT//2))
-        
     
