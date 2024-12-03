@@ -2,8 +2,11 @@ from views import *
 from models.button import BackingButton
 
 def achiev_menu(game):
-    back_button = BackingButton(game.screen, "Back", 18*SQUARE_WIDTH, 11*SQUARE_HEIGHT)
-        
+    back_button = BackingButton(game.screen, "Voltar", 18*SQUARE_WIDTH, 11*SQUARE_HEIGHT)
+    for each in game.isotopes_found:
+        for achiev in ACHIEVEMENTS: 
+            achiev.add_element(each) 
+                            
     running = True
     while running:
         game.screen.fill(BLACK)

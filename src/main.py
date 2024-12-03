@@ -10,11 +10,11 @@ def main():
     # game.update_for_level_2()
 
     #Definindo os botões da tela inicial
-    start_button = OpeningButton(game.screen, "Start", CENTER_X, CENTER_Y - 70, start_menu_1.start_menu if game.current_phase == 1 else start_menu_2.start_menu)
-    story_button = OpeningButton(game.screen, "Story", CENTER_X, CENTER_Y, story_menu.story_menu)
-    table_button = OpeningButton(game.screen, "Periodic Table", CENTER_X, CENTER_Y + 70, table_menu.table_menu)
-    settings_button = OpeningButton(game.screen, "Achievement", CENTER_X, CENTER_Y + 140, achiev_menu.achiev_menu)
-    exit_button = OpeningButton(game.screen, "Exit", CENTER_X, CENTER_Y + 210, game.quit)
+    start_button = OpeningButton(game.screen, "Jogar", CENTER_X, CENTER_Y - 70, start_menu_1.start_menu if game.current_phase == 1 else start_menu_2.start_menu)
+    story_button = OpeningButton(game.screen, "História", CENTER_X, CENTER_Y, story_menu.story_menu)
+    table_button = OpeningButton(game.screen, "Tabela Periódica", CENTER_X, CENTER_Y + 70, table_menu.table_menu)
+    settings_button = OpeningButton(game.screen, "Conquistas", CENTER_X, CENTER_Y + 140, achiev_menu.achiev_menu)
+    exit_button = OpeningButton(game.screen, "Sair", CENTER_X, CENTER_Y + 210, game.quit)
 
     #Loop principal
     running = True
