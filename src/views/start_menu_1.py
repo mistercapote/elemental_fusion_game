@@ -19,7 +19,8 @@ def start_menu(game):
         game.screen.fill(BLACK)
         game.screen.blit(nucleo.image, (3*CENTER_X//2 - nucleo.image.get_width() // 2, CENTER_Y - nucleo.image.get_height() // 2))
         write(game.screen, "Partículas", FONT_BUTTON, WHITE, (WIDTH_MAX//8, 2*HEIGHT_MAX//12))
-        write(game.screen, "Isótopos", FONT_BUTTON, WHITE, (WIDTH_MAX//9.5, 4*HEIGHT_MAX//12))
+        if game.isotopes_found:
+            write(game.screen, "Isótopos", FONT_BUTTON, WHITE, (WIDTH_MAX//9.5, 4*HEIGHT_MAX//12))
         #Mostrar balls
         for ball in found: 
             ball.draw_ball(game.screen)
@@ -28,7 +29,7 @@ def start_menu(game):
             if drag_ball.drag_center: drag_ball.draw_drag_ball(game.screen)
 
         #Mostrar barra de energia
-        game.barr.draw(game.screen, nucleo.increase)
+        game.bar.draw(game.screen, nucleo.increase)
         nucleo.increase = 0
         game.checkend()
         #Nucleo
