@@ -4,10 +4,8 @@ from models.button import OpeningButton
 from models.game import Game
 from views import achiev_menu, start_menu_1, start_menu_2, story_menu, table_menu
 
-def main():
-    #Inicialização
-    game = Game()
-    # game.update_for_level_2()
+def main(game):
+    game.update_for_level_2()
 
     #Definindo os botões da tela inicial
     start_button = OpeningButton(game.screen, "Jogar", CENTER_X, CENTER_Y - 70, start_menu_1.start_menu if game.current_phase == 1 else start_menu_2.start_menu)
@@ -44,6 +42,7 @@ def main():
 
         pygame.display.flip()
 
-
 if __name__ == "__main__":
-    main()
+    #Inicialização
+    game = Game()
+    main(game)

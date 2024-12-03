@@ -19,7 +19,7 @@ def story_menu(game):
     O botão "Back" permite ao usuário sair do menu e retornar à tela anterior. Ao clicar no botão ou ao terminar a animação de texto, o menu é fechado e o jogo volta ao estado anterior.
     """
     lines, image = game.start_story()
-    back_button = BackingButton(game.screen, "Voltar", 80, 50)
+    back_button = BackingButton(game.screen, "Voltar", 130, 50)
     ypos = HEIGHT_MAX
     size = 35
     speed = 0.15
