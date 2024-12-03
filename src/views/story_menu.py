@@ -22,7 +22,7 @@ def story_menu(game):
     back_button = BackingButton(game.screen, "Back", 80, 50)
     ypos = HEIGHT_MAX
     size = 35
-    speed = 0.08
+    speed = 0.15
 
     running = True
     while running:
