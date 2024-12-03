@@ -2,6 +2,7 @@ import pygame
 import numpy as np
 from constants import *
 
+
 class Character:
     """
     Representa o personagem que se move dentro do cenário do jogo.
@@ -122,4 +123,61 @@ class Character:
         Desenha um retângulo representando o personagem na tela, na posição atual.
         """
         pygame.draw.rect(screen, self.color, (self.xpos, self.ypos, self.width, self.height))
-        
+
+
+class DoorButton:
+    """
+    Representa um botão transparente no cenário, que aparece na colisão do personagem.
+    """
+    def __init__(self, x, y, width, height, number, action=None):
+        self.rect = pygame.Rect(x, y, width, height)  # Área do botão
+        self.color = (0, 255, 0)  # Cor visível na colisão (verde claro)
+        self.number = number  # Número da porta
+        self.visible = False  # O botão começa invisível
+        self.action = action  # Função associada ao botão
+        self.font = pygame.font.Font(None, 36)  # Fonte para desenhar o número da porta
+
+    def check_collision(self, player_rect):
+        """
+        Verifica colisão com o personagem e torna o botão visível se houver colisão.
+        """
+        if self.rect.colliderect(player_rect):  # Verifica colisão
+            self.visible = True
+        else:
+            self.visible = False
+
+    def draw(self, screen):
+        """
+        Desenha o botão na tela se estiver visível.
+        """
+        if self.visible:
+            pygame.draw.rect(screen, self.color, self.rect)
+            pygame.draw.rect(screen, (0, 0, 0), self.rect, 2)
+            
+            # Desenhar o número da porta no centro do botão
+            number_text = self.font.render(str(self.number), True, (0, 0, 0))
+            number_rect = number_text.get_rect(center=self.rect.center)
+            screen.blit(number_text, number_rect)
+
+    def click(self):
+        if self.action:
+            self.action()
+
+
+
+def open_door_1():
+    print("Porta 1 aberta!")
+
+def open_door_2():
+    print("Porta 2 aberta!")
+
+def open_door_3():
+    print("Porta 3 aberta!")
+
+
+# Criar botões para cada porta
+doors = [
+    DoorButton(790, 95, 50, 50, number=1, action= open_door_1),
+    DoorButton(900, 140, 50, 50, number=2, action= open_door_2),
+    DoorButton(987, 210, 50, 50, number=3, action=open_door_3),
+]
