@@ -182,6 +182,8 @@ class Nucleo:
                     game.start_popup.append(chosen_fusion)
                     for each in chosen_fusion.product:
                         if isinstance(each, Isotope) and each not in game.isotopes_found:
+                            for achiev in ACHIEVEMENTS: 
+                                achiev.add_element(each) 
                             game.isotopes_found.append(each)
                             game.new_found.append(each)
                             self.increase = chosen_fusion.get_energy()

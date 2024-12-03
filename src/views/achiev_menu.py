@@ -13,7 +13,7 @@ def achiev_menu(game):
         
         #Hover elements
         hover_achiev = None
-        for achiev in ACHIEVEMENT:
+        for achiev in ACHIEVEMENTS:
             if not hover_achiev:
                 if xm > achiev.xpos and xm < achiev.xpos + ACHIE_WIDTH and ym > achiev.ypos and ym < achiev.ypos + ACHIE_HEIGHT:
                     hover_achiev = achiev
@@ -28,7 +28,7 @@ def achiev_menu(game):
                 if game.table_popup: 
                     game.table_popup[0].button.check_click(event, game, "achiev")
                 else:
-                    for achiev in ACHIEVEMENT: 
+                    for achiev in ACHIEVEMENTS: 
                         if achiev.done == True:
                             if event.pos[0] > achiev.xpos and event.pos[0] < achiev.xpos + SQUARE_WIDTH and event.pos[1] > achiev.ypos and event.pos[1] < achiev.ypos + SQUARE_HEIGHT:
                                 game.table_popup.append(achiev)
