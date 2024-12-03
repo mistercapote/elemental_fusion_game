@@ -171,7 +171,24 @@ class FundamentalParticle:
     Classe para representar uma partícula fundamental.
     """
     def __init__(self, name, symbol, mass, charge, spin, color):
-        #####################################################################################parei aqui###################################
+        """
+        Inicializa uma partícula fundamental com os seguintes atributos:
+        
+        Parâmetros:
+        ----------
+        name : str
+            O nome da partícula fundamental.
+        symbol : str
+            O símbolo da partícula fundamental.
+        mass : float
+            A massa da partícula em unidades adequadas.
+        charge : float
+            A carga elétrica da partícula.
+        spin : float
+            O spin da partícula.
+        color : str
+            A cor associada à partícula.
+        """
         self.name = name
         self.symbol = symbol
         self.mass = mass
@@ -181,6 +198,19 @@ class FundamentalParticle:
     
     @classmethod
     def from_dict(cls, data):
+        """
+        Cria uma instância de FundamentalParticle a partir de um dicionário.
+
+        Parâmetros:
+        ----------
+        data : dict
+            Dicionário contendo os dados da partícula.
+
+        Retorna:
+        --------
+        FundamentalParticle
+            Uma nova instância de FundamentalParticle com os atributos fornecidos.
+        """
         return cls(
             name = data["name"],
             symbol = data["symbol"],
@@ -191,7 +221,26 @@ class FundamentalParticle:
         )
 
 class Fusion:
+    """
+    Classe que representa uma fusão entre dois elementos ou partículas.
+    """
     def __init__(self, process, element_a, element_b, product, description):
+        """
+        Inicializa uma fusão com os seguintes atributos:
+
+        Parâmetros:
+        ----------
+        process : str
+            Nome do processo químico ao qual a fusão pertence.
+        element_a : Isotope
+            Primeiro elemento participante da fusão (objeto da classe Isotope).
+        element_b : Isotope, FundamentalParticle ou None
+            Segundo elemento ou partícula da fusão (objeto das classes Isotope, FundamentalParticle ou None).
+        product : list
+            Lista de produtos gerados pela fusão (objetos das classes Isotope ou FundamentalParticle).
+        description : str
+            Descrição do processo de fusão.
+        """
         self.process = process # Nome do processo quimico que a fusão pertence
         self.element_a = element_a # Objeto da classe Isotope
         self.element_b = element_b # Objeto da classe Isotope ou FuntamentalParticle ou None
@@ -199,11 +248,32 @@ class Fusion:
         self.description = description # Texto falando um pouco sobre a fusão
 
     def __eq__(self, other):
+        """
+        Verifica se duas instâncias de fusão são iguais.
+
+        Parâmetros:
+        ----------
+        other : Fusion
+            Outra instância da classe Fusion a ser comparada.
+
+        Retorna:
+        --------
+        bool
+            True se as duas fusões envolvem os mesmos elementos, False caso contrário.
+        """
         if not isinstance(other, Fusion): return False
         return self.element_a == other.element_a and self.element_b == other.element_b
 
     # Energia gerada pela reação
     def get_energy(self):
+        """
+        Calcula a energia gerada pela fusão.
+
+        Retorna:
+        --------
+        float
+            Energia gerada pela fusão em megaelectronvolts (MeV).
+        """
         U_TO_KG = 1.66053906660e-27
         J_TO_MEV =  6.242e12
         C_2 = (2.99792458e8)**2
@@ -214,8 +284,38 @@ class Fusion:
     
     @classmethod
     def from_dict(cls, data, PARTICLES, ISOTOPES):
+        """
+        Cria uma instância da classe Fusion a partir de um dicionário.
+
+        Parâmetros:
+        ----------
+        data : dict
+            Dicionário contendo os dados para a fusão.
+        PARTICLES : list
+            Lista de objetos da classe FundamentalParticle.
+        ISOTOPES : list
+            Lista de objetos da classe Isotope.
+
+        Retorna:
+        --------
+        Fusion
+            Uma nova instância de Fusion.
+        """
         """Cria uma instância da classe a partir de um dicionário."""
         def aux(data):
+            """
+        Auxilia na determinação do segundo elemento da fusão.
+
+        Parâmetros:
+        ----------
+        data : dict
+            Dicionário contendo os dados do segundo elemento.
+
+        Retorna:
+        --------
+        Isotope ou FundamentalParticle ou None
+            O segundo elemento da fusão, que pode ser um isótopo, uma partícula fundamental, ou None.
+        """
             if data["element_b"] == None:
                 return None
             elif "-" in data["element_b"]:
@@ -224,6 +324,19 @@ class Fusion:
                 return next((obj for obj in PARTICLES if obj.symbol == data["element_b"]), None) 
         
         def aux2(data):
+            """
+        Auxilia na determinação dos produtos da fusão.
+
+        Parâmetros:
+        ----------
+        data : dict
+            Dicionário contendo os dados dos produtos da fusão.
+
+        Retorna:
+        --------
+        list
+            Lista de produtos gerados pela fusão, composta por objetos das classes Isotope ou FundamentalParticle.
+        """
             resultado = []
             for each in data["product"]:
                 if "-" in each:
