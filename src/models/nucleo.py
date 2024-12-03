@@ -1,6 +1,7 @@
 import pygame
 from constants import *
 import numpy as np
+from models.game import Game
 
 class Nucleo:
     """
@@ -54,13 +55,13 @@ class Nucleo:
         -----------
         ball: Ball - O elemento que será adicionado à lista de reações.
         """
-        return self.reacting.append(ball)
+        self.reacting.append(ball)
 
     def update_position(self):
         """
         Atualiza a posição dos elementos em reação com base no ângulo e raio.
         """
-        def position(radius, angle):
+        def position(radius : float , angle : float):
             """
             Calcula a posição com base no raio e ângulo.
 
@@ -88,7 +89,7 @@ class Nucleo:
             self.start_nucleo()
             self.canal2.play(pygame.mixer.Sound("assets/audio/no_fusion.mp3"))
     
-    def rotation_animation(self, screen):
+    def rotation_animation(self, screen : pygame.Surface):
         """
         Executa a animação de rotação dos elementos em reação.
 
@@ -109,7 +110,7 @@ class Nucleo:
             if self.fusions: self.radius += self.fusion_speed # Velocidade de aproximação
             else: self.radius += self.not_fusion_speed # Velocidade de afastamento
 
-    def explosion_animation(self, screen):
+    def explosion_animation(self, screen : pygame.Surface):
         """
         Executa a animação de explosão quando a fusão é bem-sucedida.
 
@@ -126,7 +127,7 @@ class Nucleo:
         self.frame += self.explosion_speed
         if self.frame >= 10: self.radius = 0
     
-    def fusion(self, game):
+    def fusion(self, game : Game):
         """
         Realiza a fusão dos dois elementos reagindo e chama o processo recursivo de fusão.
 
@@ -176,16 +177,14 @@ class Nucleo:
             done = 0
             for chosen_fusion in self.fusions:
                 #corrigir a fusao com multiplos produtos
-                if chosen_fusion in game.fusions_found:
-                    done +=1
-                else:
+                if chosen_fusion not in game.fusions_found:
                     game.fusions_found.append(chosen_fusion)
                     game.start_popup.append(chosen_fusion)
                     for each in chosen_fusion.product:
                         if isinstance(each, Isotope) and each not in game.isotopes_found:
                             game.isotopes_found.append(each)
                             game.new_found.append(each)
-                            self.inscrease = chosen_fusion.get_energy()
+                            self.increase = chosen_fusion.get_energy()
                             if each.is_radioactive:
                                 self.start_nucleo()
                                 self.recursive_fusion(game, each, None)

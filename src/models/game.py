@@ -18,7 +18,7 @@ class Game:
         self.story_image = "assets/images/fundo_story_menu.png"
         self.story_music = "assets/audio/Star Wars - Main Theme.mp3"
         self.clock = pygame.time.Clock()
-        self.isotopes_found = [ISOTOPES[0], ISOTOPES[50], ISOTOPES[100], ISOTOPES[200]]
+        self.isotopes_found = [ISOTOPES[0], ISOTOPES[8], ISOTOPES[50], ISOTOPES[100], ISOTOPES[200]]
         self.particles_found = [PARTICLES[0], PARTICLES[2]]
         self.fusions_found = []
         self.new_found = []
@@ -36,9 +36,6 @@ class Game:
 
     def draw_title(self):
         write(self.screen, self.title, FONT_GIGANT, WHITE, (CENTER_X, 2*HEIGHT_MAX//9))
-
-    # def get_screen(self):
-    #     return self.__screen
     
     def start_media(self):
         self.video_clip = mp.VideoFileClip(self.video)
@@ -86,19 +83,25 @@ class Game:
                 card = Card(None, left_x, top_y)
             table.append(card)
         return table
-
+    
+    def killthatstar(self):
+        self.update_for_level_2()
 
 class Barr:
     def __init__(self):
         self.height = 50
         self.width_max = 200
         self.width_current = 0
-        self.pos_x = WIDTH_MAX // 4
-        self.pos_y = 20
+        self.pos_x = CENTER_X // 2 - 100
+        self.pos_y = CENTER_Y // 9 - 25
 
-    def draw(self, screen, increase):
-        if self.width_current + int(increase) < self.width_max:
+    def draw(self, screen, increase : int):
+        increase = 2*increase
+        if self.width_current + int(increase) < self.width_max and self.width_current + int(increase) >= 0:
             self.width_current += int(increase)
-        pygame.draw.rect(screen, YELLOW, (self.pos_x, self.pos_y + self.width_max - self.width_current, self.height, self.width_current))
-        pygame.draw.rect(screen, WHITE, (self.pos_x, self.pos_y, self.width_current, self.width_max), 2
-    )
+            pygame.draw.rect(screen, YELLOW, (self.pos_x, self.pos_y, self.width_current, self.height), 0, -1, 10, 10, 10, 10)
+            pygame.draw.rect(screen, WHITE, (self.pos_x, self.pos_y, self.width_max, self.height), 3, -1, 10, 10, 10, 10)
+        else:
+            pass #passar de nivel
+
+        
