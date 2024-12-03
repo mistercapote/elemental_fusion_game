@@ -3,6 +3,22 @@ from models.card import Card
 from models.button import BackingButton
 
 def table_menu(game):
+    """
+    Função responsável pela exibição do menu da tabela periódica no jogo.
+
+    Esta função desenha a tabela periódica, permitindo ao jogador interagir com os elementos da tabela.
+    O jogador pode clicar nos elementos da tabela para visualizar suas informações e acessar mais detalhes.
+    A função também exibe um botão de "voltar" para retornar ao menu anterior.
+
+    Parâmetros:
+    -----------
+    game : Game
+        O objeto do jogo, contendo todas as informações e estados necessários para renderizar o menu e interagir com o jogador.
+        
+    Retorna:
+    --------
+    Não retorna nenhum valor.
+    """
     table = game.start_table()
     back_button = BackingButton(game.screen, "Back", 2*SQUARE_WIDTH, 11*SQUARE_HEIGHT)
     running = True
