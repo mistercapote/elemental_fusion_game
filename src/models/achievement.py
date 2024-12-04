@@ -2,7 +2,7 @@ import pygame
 from models.fusion import Element
 
 pygame.init()
-def write(screen, text, font, color, center):
+def write(screen : pygame.Surface, text : str, font : pygame.font.Font, color : tuple[int, int, int], center : tuple[int, int]) -> None:
     """
     Desenha o texto na tela.
 
@@ -30,7 +30,7 @@ class Achievement:
     """
     Representa uma conquista do jogo, com nome, descrição e os elementos desbloqueados.
     """
-    def __init__(self, name, numbers, description, xpos, ypos, color):
+    def __init__(self, name: str, numbers: list, description: str, xpos: int, ypos: int, color: tuple[int, int, int]) -> None:
         """
         Inicializa uma conquista.
 
@@ -59,7 +59,7 @@ class Achievement:
         if self.numbers == self.unlocked_elements:
             self.done = True
 
-    def add_element(self, element : Element):
+    def add_element(self, element : Element) -> None:
         """
         Adiciona um elemento à lista de elementos desbloqueados.
 
@@ -71,7 +71,7 @@ class Achievement:
             self.unlocked_elements.add(element.atomic_number)
             self.unlocked()
     
-    def draw(self, screen, coef=-1):
+    def draw(self, screen: pygame.Surface, coef=-1):
         """
         Desenha a conquista na tela.
 
@@ -90,7 +90,7 @@ class Achievement:
         write(screen, name_text, FONT_LARGE, BLACK, (self.xpos+ACHIE_WIDTH//2, self.ypos+ACHIE_HEIGHT//2))
         
     @classmethod
-    def from_dict(cls, data):
+    def from_dict(cls, data: dict):
         """
         Cria uma conquista a partir de um dicionário.
 
