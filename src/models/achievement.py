@@ -36,12 +36,12 @@ class Achievement:
 
         Parâmetros:
         -----------
-        - name: Nome da conquista.
-        - numbers: Conjunto de números atômicos dos elementos relacionados à conquista.
-        - description: Descrição da conquista.
-        - xpos: Posição horizontal da conquista na tela.
-        - ypos: Posição vertical da conquista na tela.
-        - color: Cor da conquista.
+        name: Nome da conquista.
+        numbers: Conjunto de números atômicos dos elementos relacionados à conquista.
+        description: Descrição da conquista.
+        xpos: Posição horizontal da conquista na tela.
+        ypos: Posição vertical da conquista na tela.
+        color: Cor da conquista.
         """
         self.name = name
         self.numbers = set(numbers)
@@ -65,7 +65,7 @@ class Achievement:
 
         Parâmetros:
         -----------
-        - element: O elemento que foi desbloqueado.
+        element: O elemento que foi desbloqueado.
         """
         if element.atomic_number in self.numbers:
             self.unlocked_elements.add(element.atomic_number)
@@ -77,8 +77,8 @@ class Achievement:
 
         Parâmetros:
         -----------
-        - screen: Superfície onde a conquista será desenhada.
-        - coef: Coeficiente para ajustar a margem da conquista, padrão é -1.
+        screen: Superfície onde a conquista será desenhada.
+        coef: Coeficiente para ajustar a margem da conquista, padrão é -1.
         """
         if not self.done:
             name_text = f"{len(self.unlocked_elements)}/{len(self.numbers)}"
@@ -96,11 +96,11 @@ class Achievement:
 
         Parâmetros:
         -----------
-        - data: Dicionário contendo os dados da conquista.
+        data: Dicionário contendo os dados da conquista.
 
         Retorna:
         --------
-        - Um objeto Achievement.
+        Um objeto Achievement.
         """
         return cls(
             name = data["name"],
