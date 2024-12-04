@@ -4,7 +4,7 @@ import sys
 from constants import *
 from models.card import Card
 from views import achiev_menu, start_menu_1, start_menu_2, story_menu, table_menu
-from models.button import OpeningButton
+from models.button import OpeningButton, BackingButton
 
 class Game:
     def __init__(self):
@@ -98,7 +98,14 @@ class Game:
         self.iron = ISOTOPES[552]
         self.start_media()
         
-        
+    def update_partial(self):
+        """
+        Atualiza o as mídias para uma tela parcial.
+        """
+        self.video = "assets/videos/supernova.mp4"
+        self.music = "assets/audio/supernova.mp3"
+        self.start_media()
+
     def update_for_level_2(self):
         """
         Atualiza o jogo para o nível 2, alterando o título, a fase atual, 
@@ -124,6 +131,7 @@ class Game:
         self.table_button.check_click(event, self)
         self.settings_button.check_click(event, self)
         self.exit_button.check_click(event, self)
+
     def draw_title(self):
         """
         Desenha o título do jogo na tela.
@@ -200,68 +208,61 @@ class Game:
             table.append(card)
         return table
     
-    def checkend(self):
+    def checkend(self, running):
         if self.current_phase == 1 and self.bar.width_current >= 200 and self.iron in self.isotopes_found:
-            def renderizar_texto_com_quebra(screen, texto, fonte, cor, largura_maxima, posicao):
-        palavras = texto.split(' ')  # Divide o texto em palavras
-        linhas = []
-        linha_atual = ""
+            
+            
+            self.stop_media()
+            self.update_partial()
 
-        for palavra in palavras:
-            # Verifica se a linha atual, com a próxima palavra, ultrapassa a largura máxima
-            if fonte.size(linha_atual + palavra)[0] <= largura_maxima:
-                linha_atual += palavra + " "
-            else:
+            backingbutton = BackingButton(self.screen, "Bora!", CENTER_X, 3*CENTER_Y//2)
+            texto = (
+                    "Parabéns! Com a energia necessária, o Fe-56 foi fundido, e esse processo levou a estrela a colapsar!"
+                    " Agora você está em um reator nuclear e deve resolver as tarefas!"
+                )
+            
+            palavras = texto.split(' ')  # Divide o texto em palavras
+            linhas = []
+            linha_atual = ""
+
+            for palavra in palavras:
+                # Verifica se a linha atual, com a próxima palavra, ultrapassa a largura máxima
+                if FONT_BUTTON.size(linha_atual + palavra)[0] <= WIDTH_MAX:
+                    linha_atual += palavra + " "
+                else:
+                    linhas.append(linha_atual.strip())
+                    linha_atual = palavra + " "
+
+            if linha_atual:  # Adiciona a última linha
                 linhas.append(linha_atual.strip())
-                linha_atual = palavra + " "
 
-        if linha_atual:  # Adiciona a última linha
-            linhas.append(linha_atual.strip())
+            running2 = True
+            while running2:
+                self.screen.fill(BLACK)
 
-        x, y = posicao
-        for linha in linhas:
-            texto_renderizado = fonte.render(linha, True, cor)
-            screen.blit(texto_renderizado, (x, y))
-            y += fonte.get_height()  # Move para a próxima linha
+                self.updateVideoFrame() #Atualizar video de fundo
+                backingbutton.draw(self.screen)
+                
+                for i, linha in enumerate(linhas):
+                    write(self.screen, linha, FONT_STORY, WHITE, (CENTER_X, CENTER_Y - 150 + i * 35))
+                    
+                # Eventos
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                        sys.exit()
+                    elif event.type == pygame.MOUSEBUTTONDOWN:
+                        running2 = backingbutton.check_click(event, running2)
+                        running = running2
+                pygame.display.flip()
 
-    running = True
-    while running:
-        screen.fill(BLACK)  # Fundo preto
+            
+                
 
-        # Texto com quebra de linha
-        texto = (
-            "Parabéns! Você fundiu o ferro, explodiu a estrela e conseguiu a energia necessária! "
-            "Agora você está em um reator nuclear e deve resolver as tarefas!"
-        )
-        renderizar_texto_com_quebra(
-            screen,
-            texto,
-            font,
-            WHITE,
-            SCREEN_WIDTH - 100,  # Largura máxima para o texto
-            (SCREEN_WIDTH // 2 - 590, SCREEN_HEIGHT // 2 - 150),  # Posição inicial
-        )
 
-        # Botão "Continuar"
-        botao_rect = pygame.Rect(SCREEN_WIDTH // 2 - 100, SCREEN_HEIGHT // 2 + 100, 200, 60)
-        pygame.draw.rect(screen, BLUE, botao_rect)
-        botao_texto = font.render("Fase 2", True, BLACK)
-        botao_texto_rect = botao_texto.get_rect(center=botao_rect.center)
-        screen.blit(botao_texto, botao_texto_rect)
-
-        # Eventos
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            elif event.type == pygame.MOUSEBUTTONDOWN:
-                if botao_rect.collidepoint(event.pos):
-                    running = False  # Sai da tela
-
-        pygame.display.flip()
-        clock.tick(30)
-
-        self.update_for_level_2()
+            self.isotopes_found.extend(list(map(lambda x: [i for i in ISOTOPES if i.name_isotope == x][0], SUPERNOVA)))
+            self.update_for_level_2()
+        return running
 
 class Bar:
     """
@@ -301,7 +302,7 @@ class Bar:
         increase : int
             O valor que será adicionado à largura atual da barra de progresso.
         """
-        increase = 2*increase
+        increase = 3*increase
         if self.width_current + int(increase) >= 0:
             if self.width_current + int(increase) < self.width_max:
                 self.width_current += int(increase)
