@@ -2,6 +2,7 @@ import pygame
 import unittest
 import src.models.achievement as achievement
 from models.fusion import *
+import constants
 
 
 class TestFamilyList(unittest.TestCase):
@@ -139,3 +140,53 @@ class TestGetEnergy(unittest.TestCase):
 
         # Verificar se o resultado corresponde ao esperado
         self.assertEqual(result, 0)
+
+
+class TestFromJson(unittest.TestCase):
+
+    def test_from_json(self):
+        # Criar um arquivo JSON de exemplo
+        test_data = [{
+        "name": "Hidrogênio",
+        "symbol": "H",
+        "atomic_number": 1,
+        "group": 1,
+        "period": 1,
+        "atomic_radius": 25.0,
+        "color": [
+            255,
+            255,
+            255
+        ],
+        "description": "Elemento químico gasoso, incolor e inodoro. É o elemento mais leve e abundante do universo. Presente na água e em todos os compostos orgânicos. Reage quimicamente com a maioria dos elementos. Descoberto por Henry Cavendish em 1776."
+    },
+    {
+        "name": "Hélio",
+        "symbol": "He",
+        "atomic_number": 2,
+        "group": 18,
+        "period": 1,
+        "atomic_radius": 120.0,
+        "color": [
+            123,
+            100,
+            204
+        ],
+        "description": "Elemento gasoso incolor e inodoro, não metálico. Pertence ao grupo 18 da tabela periódica. Possui o ponto de ebulição mais baixo de todos os elementos e só pode ser solidificado sob pressão. Quimicamente inerte, sem compostos conhecidos. Descoberto no espectro solar em 1868 por Lockyer."
+    }]
+        
+        with open('test_data.json', 'w', encoding='utf-8') as f:
+            json.dump(test_data, f, ensure_ascii=False)
+
+        result = constants.from_json(Element, 'test_data.json')
+
+        # Verifica se o retorno é uma lista
+        self.assertIsInstance(result, list)
+
+        # Verifica se todos os itens da lista são instâncias de Element
+        for item in result:
+            self.assertIsInstance(item, Fusion)
+
+        # Limpeza: Deleta o arquivo de teste após o teste
+        import os
+        os.remove('test_data.json')

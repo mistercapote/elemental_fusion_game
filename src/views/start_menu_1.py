@@ -31,7 +31,7 @@ def start_menu(game):
         #Mostrar barra de energia
         game.bar.draw(game.screen, nucleo.increase)
         nucleo.increase = 0
-        game.checkend()
+
         #Nucleo
         nucleo.controler(game) 
         if game.new_found: found += list(map(Ball.turn_ball, game.new_found))   
@@ -46,6 +46,8 @@ def start_menu(game):
             popup = PopUp(game.start_popup[0], game)
             if ancient != popup: pygame.mixer.Sound("assets/audio/new_element.mp3").play()
             popup.draw(game.screen)
+        else:
+            running = game.checkend(running)
         
         #Eventos
         for event in pygame.event.get():
