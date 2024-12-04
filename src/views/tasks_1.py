@@ -7,9 +7,9 @@ WIDTH_MAX = 1280
 HEIGHT_MAX = 720
 
 # Carregar dados dos elementos e isótopos
-with open('data/json/element.json', 'r') as f:
+with open('data/json/element.json', 'r',encoding="utf-8") as f:
     elements_data = json.load(f)
-with open('data/json/isotope.json', 'r') as f:
+with open('data/json/isotope.json', 'r',encoding="utf-8") as f:
     isotopes_data = json.load(f)
 
 pygame.init()
