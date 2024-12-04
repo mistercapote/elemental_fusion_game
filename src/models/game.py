@@ -115,6 +115,7 @@ class Game:
         self.current_phase = 2
         self.video = "assets/videos/video_opening_2.mp4"
         self.music = "assets/audio/audio_opening.mp3"
+        self.story_text = "assets/texts/story_level_2.txt"
         self.start_button = OpeningButton(self.screen, "Jogar", CENTER_X, CENTER_Y - 70, start_menu_2.start_menu)
         self.start_media()
 
@@ -254,10 +255,6 @@ class Game:
                         running2 = backingbutton.check_click(event, running2)
                         running = running2
                 pygame.display.flip()
-
-            
-                
-
 
             self.isotopes_found.extend(list(map(lambda x: [i for i in ISOTOPES if i.name_isotope == x][0], SUPERNOVA)))
             self.update_for_level_2()

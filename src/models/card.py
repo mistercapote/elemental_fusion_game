@@ -111,8 +111,6 @@ class Card:
         pygame.draw.rect(game.screen, WHITE, (CENTER_X-iW//2, CENTER_Y-iH//2, iW, iH), 5)
         write(game.screen, f"Isotopos do {self.isotopes[0].name}", FONT_LARGE, WHITE, (CENTER_X,CENTER_Y-(iH-SQUARE_HEIGHT)//2))
         
-        
-        
         for i, linha in enumerate(linhas):
             write(game.screen, linha, FONT_INFO, WHITE, (CENTER_X,CENTER_Y-iH//2+aH-SQUARE_HEIGHT//2 + i * 15))
         

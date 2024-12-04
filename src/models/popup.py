@@ -48,11 +48,37 @@ class PopUp:
         screen : pygame.Surface
             A superfície do jogo onde o pop-up será desenhado.
         """
-        pygame.draw.rect(screen, BLACK, (CENTER_X-200, CENTER_Y-150, 400, 300))
-        pygame.draw.rect(screen, WHITE, (CENTER_X-200, CENTER_Y-150, 400, 300), 5)
-        write(screen,"Novo isótopo descoberto!",  FONT_LARGE, WHITE, (CENTER_X,CENTER_Y-100))
-        #lembrar de variar a mensagem
 
+        iW = 400
+
+        if self.fusion.description:
+            palavras = self.isotopes[0].description.split(' ')  # Divide o texto em palavras
+        else:
+            palavras = "Descrição ainda não exite."
+        linhas = []
+        linha_atual = ""
+
+        for palavra in palavras:
+            # Verifica se a linha atual, com a próxima palavra, ultrapassa a largura máxima
+            if FONT_LARGE.size(linha_atual + palavra)[0] <= iW - 10:
+                linha_atual += palavra + " "
+            else:
+                linhas.append(linha_atual.strip())
+                linha_atual = palavra + " "
+
+        if linha_atual:  # Adiciona a última linha
+            linhas.append(linha_atual.strip())
+
+        aH = 300
+        iH = aH + len(linhas)*15
+
+        pygame.draw.rect(screen, BLACK, (CENTER_X-200, CENTER_Y-150, iW, iH))
+        pygame.draw.rect(screen, WHITE, (CENTER_X-200, CENTER_Y-150, iW, iH), 5)
+        write(screen,"Novo isótopo descoberto!",  FONT_LARGE, WHITE, (CENTER_X,CENTER_Y-100))
+        for i, linha in enumerate(linhas):
+            write(screen, linha, FONT_INFO, WHITE, (CENTER_X,CENTER_Y-iH//2+aH-SQUARE_HEIGHT//2 + i * 15))
+        write(screen, f"{self.fusion.get_energy()}", FONT_LARGE, WHITE, (CENTER_X,CENTER_Y+55))
+        
         hover_card = None
         i  = -len(self.fusion.product) * (SQUARE_WIDTH+5) // 2
         for card in self.fusion.product:
@@ -66,7 +92,5 @@ class PopUp:
             card.draw_card(screen)
         if hover_card: hover_card.draw_card(screen, -10)
         
-        write(screen, f"{self.fusion.get_energy()}", FONT_LARGE, WHITE, (CENTER_X,CENTER_Y+55))
-        write(screen, "Mensagem sobre esta reação", FONT_LARGE, WHITE, (CENTER_X,CENTER_Y+75))
         self.button.draw(screen)
 
