@@ -2,6 +2,7 @@ import pygame
 import unittest
 import src.models.achievement as achievement
 from models.fusion import *
+import constants
 
 
 class TestFamilyList(unittest.TestCase):
@@ -139,3 +140,25 @@ class TestGetEnergy(unittest.TestCase):
 
         # Verificar se o resultado corresponde ao esperado
         self.assertEqual(result, 0)
+
+
+class TestFromJson(unittest.TestCase):
+    def test_from_json(self):
+        # Criar um arquivo JSON de exemplo
+        test_data = [{'name': 'Element1'}, {'name': 'Element2'}]
+        with open('test_data.json', 'w', encoding='utf-8') as f:
+            json.dump(test_data, f, ensure_ascii=False)
+
+        # Chama a função passando a classe MyClass e o caminho do arquivo criado
+        result = constants.from_json(MyClass, 'test_data.json')
+
+        # Verifica se o retorno é uma lista
+        self.assertIsInstance(result, list)
+
+        # Verifica se todos os itens da lista são instâncias de MyClass
+        for item in result:
+            self.assertIsInstance(item, MyClass)
+
+        # Limpeza: Deleta o arquivo de teste após o teste
+        import os
+        os.remove('test_data.json')
