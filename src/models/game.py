@@ -202,8 +202,66 @@ class Game:
     
     def checkend(self):
         if self.current_phase == 1 and self.bar.width_current >= 200 and self.iron in self.isotopes_found:
-            # animacao de matar entrela
-            self.update_for_level_2()
+            def renderizar_texto_com_quebra(screen, texto, fonte, cor, largura_maxima, posicao):
+        palavras = texto.split(' ')  # Divide o texto em palavras
+        linhas = []
+        linha_atual = ""
+
+        for palavra in palavras:
+            # Verifica se a linha atual, com a próxima palavra, ultrapassa a largura máxima
+            if fonte.size(linha_atual + palavra)[0] <= largura_maxima:
+                linha_atual += palavra + " "
+            else:
+                linhas.append(linha_atual.strip())
+                linha_atual = palavra + " "
+
+        if linha_atual:  # Adiciona a última linha
+            linhas.append(linha_atual.strip())
+
+        x, y = posicao
+        for linha in linhas:
+            texto_renderizado = fonte.render(linha, True, cor)
+            screen.blit(texto_renderizado, (x, y))
+            y += fonte.get_height()  # Move para a próxima linha
+
+    running = True
+    while running:
+        screen.fill(BLACK)  # Fundo preto
+
+        # Texto com quebra de linha
+        texto = (
+            "Parabéns! Você fundiu o ferro, explodiu a estrela e conseguiu a energia necessária! "
+            "Agora você está em um reator nuclear e deve resolver as tarefas!"
+        )
+        renderizar_texto_com_quebra(
+            screen,
+            texto,
+            font,
+            WHITE,
+            SCREEN_WIDTH - 100,  # Largura máxima para o texto
+            (SCREEN_WIDTH // 2 - 590, SCREEN_HEIGHT // 2 - 150),  # Posição inicial
+        )
+
+        # Botão "Continuar"
+        botao_rect = pygame.Rect(SCREEN_WIDTH // 2 - 100, SCREEN_HEIGHT // 2 + 100, 200, 60)
+        pygame.draw.rect(screen, BLUE, botao_rect)
+        botao_texto = font.render("Fase 2", True, BLACK)
+        botao_texto_rect = botao_texto.get_rect(center=botao_rect.center)
+        screen.blit(botao_texto, botao_texto_rect)
+
+        # Eventos
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if botao_rect.collidepoint(event.pos):
+                    running = False  # Sai da tela
+
+        pygame.display.flip()
+        clock.tick(30)
+
+        self.update_for_level_2()
 
 class Bar:
     """
