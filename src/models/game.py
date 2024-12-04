@@ -89,7 +89,7 @@ class Game:
         self.exit_button = OpeningButton(self.screen, "Sair", CENTER_X, CENTER_Y + 210, self.quit)
         self.clock = pygame.time.Clock()
         self.particles_found = [PARTICLES[0], PARTICLES[2]]
-        self.isotopes_found = []
+        self.isotopes_found = ISOTOPES
         self.fusions_found = []
         self.new_found = []
         self.start_popup = []
@@ -210,7 +210,6 @@ class Game:
     
     def checkend(self, running):
         if self.current_phase == 1 and self.bar.width_current >= 200 and self.iron in self.isotopes_found:
-            
             
             self.stop_media()
             self.update_partial()
