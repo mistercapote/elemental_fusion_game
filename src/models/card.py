@@ -86,11 +86,37 @@ class Card:
         None
         """
         iW = (SQUARE_WIDTH * min(12, len(self.isotopes)+2))
-        iH = (SQUARE_HEIGHT * math.ceil(len(self.isotopes)/10 + 2))
+        
+        if self.isotopes[0].description:
+            palavras = self.isotopes[0].description.split(' ')  # Divide o texto em palavras
+        else:
+            palavras = "Descrição ainda não exite."
+        linhas = []
+        linha_atual = ""
+
+        for palavra in palavras:
+            # Verifica se a linha atual, com a próxima palavra, ultrapassa a largura máxima
+            if FONT_LARGE.size(linha_atual + palavra)[0] <= iW - 10:
+                linha_atual += palavra + " "
+            else:
+                linhas.append(linha_atual.strip())
+                linha_atual = palavra + " "
+
+        if linha_atual:  # Adiciona a última linha
+            linhas.append(linha_atual.strip())
+
+        aH = (SQUARE_HEIGHT * math.ceil(len(self.isotopes)/10 + 2))
+        iH = aH + len(linhas)*15
         pygame.draw.rect(game.screen, BLACK, (CENTER_X-iW//2, CENTER_Y-iH//2, iW, iH))
         pygame.draw.rect(game.screen, WHITE, (CENTER_X-iW//2, CENTER_Y-iH//2, iW, iH), 5)
         write(game.screen, f"Isotopos do {self.isotopes[0].name}", FONT_LARGE, WHITE, (CENTER_X,CENTER_Y-(iH-SQUARE_HEIGHT)//2))
         
+        
+        
+        for i, linha in enumerate(linhas):
+            write(game.screen, linha, FONT_INFO, WHITE, (CENTER_X,CENTER_Y-iH//2+aH-SQUARE_HEIGHT//2 + i * 15))
+        
+
         www = CENTER_X-iW//2 + SQUARE_WIDTH
         hhh = CENTER_Y-iH//2 + SQUARE_HEIGHT
 
@@ -118,6 +144,6 @@ class Card:
         if hover_card: hover_card.draw_card(game.screen, -10)
 
         if not self.button:
-            self.button = PopUpButton(game.screen, "OK", CENTER_X+iW//2-40, CENTER_Y+iH//2-30)
+            self.button = PopUpButton(game.screen, "OK", CENTER_X+iW//2-40, CENTER_Y-iH//2 + iH-30)
         self.button.draw(game.screen)
 
