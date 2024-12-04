@@ -2,7 +2,10 @@ import pygame
 from constants import *
 from models.game import Game
 
+from moviepy.editor import VideoFileClip
+
 def main(game : Game):
+    game.checkend(True)
     #Loop principal
     running = True
     while running:
