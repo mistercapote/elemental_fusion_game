@@ -97,6 +97,7 @@ class Game:
         self.bar = Bar()
         self.iron = ISOTOPES[552]
         self.start_media()
+        self.list_symbol = ["Cu", "Ga", "As", "Se", "Br", "Kr", "Rb", "Zr", "Nb", "Mo", "Pd", "In", "Sn", "Cs", "Pr", "Pm", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu", "Ta", "W", "Re", "Ir", "Hg", "Tl", "Pb", "Bi", "Po", "At", "Rn", "Fr", "Ra", "Np", "Am", "Bk", "Es", "Fm", "Md", "No", "Lr", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds", "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og"]
         
     def update_partial(self) -> None:
         """
