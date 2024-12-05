@@ -20,8 +20,7 @@ class PopUp:
             A instância do jogo, necessária para acessar informações como a tela e os botões.
         """
         self.fusion = fusion
-        self.button = PopUpButton(game.screen, "OK", CENTER_X+150, CENTER_Y+120)
-
+       
     def __eq__(self, other):
         """
         Compara a instância atual com outra instância de PopUp.
@@ -52,7 +51,7 @@ class PopUp:
         iW = 400
 
         if self.fusion.description:
-            palavras = self.isotopes[0].description.split(' ')  # Divide o texto em palavras
+            palavras = self.fusion.description.split(' ')  # Divide o texto em palavras
         else:
             palavras = "Descrição ainda não exite."
         linhas = []
@@ -72,6 +71,7 @@ class PopUp:
         aH = 300
         iH = aH + len(linhas)*15
 
+        self.button = PopUpButton(screen, "OK", CENTER_X+iW//2-40, CENTER_Y-iH//2 + iH-15)
         pygame.draw.rect(screen, BLACK, (CENTER_X-200, CENTER_Y-150, iW, iH))
         pygame.draw.rect(screen, WHITE, (CENTER_X-200, CENTER_Y-150, iW, iH), 5)
         write(screen,"Novo isótopo descoberto!",  FONT_LARGE, WHITE, (CENTER_X,CENTER_Y-100))
