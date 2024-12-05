@@ -93,4 +93,3 @@ class PopUp:
         if hover_card: hover_card.draw_card(screen, -10)
         
         self.button.draw(screen)
-
