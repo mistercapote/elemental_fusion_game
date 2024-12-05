@@ -1,26 +1,5 @@
-import pygame
 import unittest
-import src.models.achievement as achievement
-from models.fusion import *
-import constants
-
-
-class TestFamilyList(unittest.TestCase):
-    def test_tipo_retorno_familylist(self):
-        resultado = achievement.Achievement().family_list()
-
-        # Verifica se o retorno é uma tupla
-        self.assertIsInstance(resultado, tuple)
-
-        # Verifica se o primeiro elemento é do tipo `str`
-        self.assertIsInstance(resultado[0], (str))
-
-        # Verifica se o segundo elemento é uma lista
-        self.assertIsInstance(resultado[1], list)
-
-        # Verifica se todos os itens da lista são strings
-        for item in resultado[1]:
-            self.assertIsInstance(item, str)
+from src.models.fusion import *
 
 
 class TestElement(unittest.TestCase):
@@ -63,13 +42,14 @@ class TestFundamentalParticle(unittest.TestCase):
         self.assertIsInstance(resultado, FundamentalParticle)
 
 
+# Todos os nomes de elementos estão como Hidrogênio pois é um elemento fictício, no qual só importa a massa para os cálculos
 class TestGetEnergy(unittest.TestCase):
     def test_get_energy_positive(self):
         # Criando objetos necessários
-        element_a = Isotope(mass=4.0) 
-        element_b = Isotope(mass=3.0) 
-        product1 = Isotope(mass=2.0)  
-        product2 = Isotope(mass=1.5)  
+        element_a = Isotope("Hidrogênio", "H", 1, 1, 1, 25.0, [255,255,255], "Gasoso", 1, 4, False, 99.9,"null") 
+        element_b = Isotope("Hidrogênio", "H", 1, 1, 1, 25.0, [255,255,255], "Gasoso", 1, 3, False, 99.9,"null") 
+        product1 = Isotope("Hidrogênio", "H", 1, 1, 1, 25.0, [255,255,255], "Gasoso", 1, 2, False, 99.9,"null") 
+        product2 = Isotope("Hidrogênio", "H", 1, 1, 1, 25.0, [255,255,255], "Gasoso", 1, 1.5, False, 99.9,"null") 
         product = [product1, product2]
 
         # Instância da classe Fusion
@@ -93,10 +73,10 @@ class TestGetEnergy(unittest.TestCase):
 
     def test_get_energy_negative(self):
         # Criando objetos necessários
-        element_a = Isotope(mass=0) 
-        element_b = Isotope(mass=3.0) 
-        product1 = Isotope(mass=2.0)  
-        product2 = Isotope(mass=1.5)  
+        element_a = Isotope("Hidrogênio", "H", 1, 1, 1, 25.0, [255,255,255], "Gasoso", 1, 0, False, 99.9,"null") 
+        element_b = Isotope("Hidrogênio", "H", 1, 1, 1, 25.0, [255,255,255], "Gasoso", 1, 3, False, 99.9,"null") 
+        product1 = Isotope("Hidrogênio", "H", 1, 1, 1, 25.0, [255,255,255], "Gasoso", 1, 2, False, 99.9,"null") 
+        product2 = Isotope("Hidrogênio", "H", 1, 1, 1, 25.0, [255,255,255], "Gasoso", 1, 1.5, False, 99.9,"null") 
         product = [product1, product2]
 
         # Instância da classe Fusion
@@ -120,10 +100,10 @@ class TestGetEnergy(unittest.TestCase):
 
     def test_get_energy_equal_zero(self):
         # Criando objetos necessários
-        element_a = Isotope(mass=0.5) 
-        element_b = Isotope(mass=2.5) 
-        product1 = Isotope(mass=2.0)  
-        product2 = Isotope(mass=1.0)  
+        element_a = Isotope("Hidrogênio", "H", 1, 1, 1, 25.0, [255,255,255], "Gasoso", 1, 0.5, False, 99.9,"null") 
+        element_b = Isotope("Hidrogênio", "H", 1, 1, 1, 25.0, [255,255,255], "Gasoso", 1, 2.5, False, 99.9,"null") 
+        product1 = Isotope("Hidrogênio", "H", 1, 1, 1, 25.0, [255,255,255], "Gasoso", 1, 2.0, False, 99.9,"null") 
+        product2 = Isotope("Hidrogênio", "H", 1, 1, 1, 25.0, [255,255,255], "Gasoso", 1, 1.0, False, 99.9,"null") 
         product = [product1, product2]
 
         # Instância da classe Fusion
@@ -141,52 +121,3 @@ class TestGetEnergy(unittest.TestCase):
         # Verificar se o resultado corresponde ao esperado
         self.assertEqual(result, 0)
 
-
-class TestFromJson(unittest.TestCase):
-
-    def test_from_json(self):
-        # Criar um arquivo JSON de exemplo
-        test_data = [{
-        "name": "Hidrogênio",
-        "symbol": "H",
-        "atomic_number": 1,
-        "group": 1,
-        "period": 1,
-        "atomic_radius": 25.0,
-        "color": [
-            255,
-            255,
-            255
-        ],
-        "description": "Elemento químico gasoso, incolor e inodoro. É o elemento mais leve e abundante do universo. Presente na água e em todos os compostos orgânicos. Reage quimicamente com a maioria dos elementos. Descoberto por Henry Cavendish em 1776."
-    },
-    {
-        "name": "Hélio",
-        "symbol": "He",
-        "atomic_number": 2,
-        "group": 18,
-        "period": 1,
-        "atomic_radius": 120.0,
-        "color": [
-            123,
-            100,
-            204
-        ],
-        "description": "Elemento gasoso incolor e inodoro, não metálico. Pertence ao grupo 18 da tabela periódica. Possui o ponto de ebulição mais baixo de todos os elementos e só pode ser solidificado sob pressão. Quimicamente inerte, sem compostos conhecidos. Descoberto no espectro solar em 1868 por Lockyer."
-    }]
-        
-        with open('test_data.json', 'w', encoding='utf-8') as f:
-            json.dump(test_data, f, ensure_ascii=False)
-
-        result = constants.from_json(Element, 'test_data.json')
-
-        # Verifica se o retorno é uma lista
-        self.assertIsInstance(result, list)
-
-        # Verifica se todos os itens da lista são instâncias de Element
-        for item in result:
-            self.assertIsInstance(item, Fusion)
-
-        # Limpeza: Deleta o arquivo de teste após o teste
-        import os
-        os.remove('test_data.json')

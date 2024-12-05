@@ -49,4 +49,3 @@ FUSIONS = from_json(Fusion, "data/json/fusion.json", PARTICLES, ISOTOPES)
 ACHIEVEMENTS = from_json(Achievement, "data/json/achievement.json")
 
 SUPERNOVA = ["Ni-56", "Fe-54", "Fe-56", "Co-56", "Ag-107", "Ag-109", "Au-197", "Pt-195", "Pt-196", "Pt-198", "U-235", "U-238", "Th-232", "Pu-239", "Pu-244", "Sr-88", "Sr-89", "Y-89", "Tc-99", "Ba-137", "Ba-138", "Ce-140", "Ce-142", "Nd-144", "Nd-146", "I-129", "Rh-103", "Rh-105", "Ru-106", "Sm-150", "Sm-152", "Eu-151", "Eu-153", "Gd-155", "Gd-157", "Ni-57", "Co-57", "Fe-57", "Ni-58", "Co-59", "Fe-58", "Fe-60", "Zn-64", "Zn-66", "Zn-68", "Ge-70", "Ge-72", "Al-26", "Ca-41", "Sc-46", "La-139", "La-140", "Ac-227", "Pa-231", "Rh-102", "Ag-108", "Cd-113", "Te-130", "Xe-136", "Cm-247", "Cf-249", "Sb-123", "Sb-125", "Hf-182", "Os-187"]
-
