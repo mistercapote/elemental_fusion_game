@@ -195,6 +195,7 @@ class Game:
         Cria e retorna a tabela periódica do jogo, com os elementos e suas respectivas informações.
         """
         table = []
+        iso = self.isotopes_found + list(map(lambda x: [i for i in ISOTOPES if i.name_isotope == x][0], SUPERNOVA))
         for element in ELEMENTS:
             if element.group == None or element.atomic_number == 57 or element.atomic_number == 89:
                 if element.period == 6: left_x = int(element.atomic_number-53) * SQUARE_WIDTH
@@ -203,7 +204,7 @@ class Game:
             else:
                 left_x = int(element.group) * SQUARE_WIDTH
                 top_y = int(element.period) * SQUARE_HEIGHT
-            if list(filter(lambda x: x.atomic_number == element.atomic_number, self.isotopes_found)):
+            if list(filter(lambda x: x.atomic_number == element.atomic_number, iso)):
                 card = Card(element, left_x, top_y)
             else:
                 card = Card(None, left_x, top_y)
@@ -257,7 +258,6 @@ class Game:
                         running = running2
                 pygame.display.flip()
 
-            self.isotopes_found.extend(list(map(lambda x: [i for i in ISOTOPES if i.name_isotope == x][0], SUPERNOVA)))
             self.update_for_level_2()
         return running
 
@@ -299,7 +299,7 @@ class Bar:
         increase : int
             O valor que será adicionado à largura atual da barra de progresso.
         """
-        increase = 2*increase
+        increase = 10*increase
         if self.width_current + int(increase) >= 0:
             if self.width_current + int(increase) < self.width_max:
                 self.width_current += int(increase)
