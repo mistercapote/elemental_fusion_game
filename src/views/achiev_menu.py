@@ -28,16 +28,7 @@ def achiev_menu(game):
             if event.type == pygame.QUIT:
                 game.quit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                # if game.table_popup: 
-                #     game.table_popup[0].button.check_click(event, game, "achiev")
-                # else:
-                #     for achiev in ACHIEVEMENTS: 
-                #         if achiev.done == True:
-                #             if event.pos[0] > achiev.xpos and event.pos[0] < achiev.xpos + SQUARE_WIDTH and event.pos[1] > achiev.ypos and event.pos[1] < achiev.ypos + SQUARE_HEIGHT:
-                #                 game.table_popup.append(achiev)
                 running = back_button.check_click(event, running)
         
-        # if game.achiev_popup: 
-        #     game.table_popup[0].draw_popup(game)
          
         pygame.display.flip()

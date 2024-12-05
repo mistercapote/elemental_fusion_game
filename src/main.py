@@ -3,7 +3,6 @@ from constants import *
 from models.game import Game
 
 def main(game : Game):
-    game.update_for_level_2()
     #Loop principal
     running = True
     while running:

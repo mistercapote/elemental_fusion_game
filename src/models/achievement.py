@@ -86,6 +86,7 @@ class Achievement:
         else:
             name_text = self.name
             pygame.draw.rect(screen, self.color, (self.xpos - coef, self.ypos - coef, ACHIE_WIDTH + 2*coef, ACHIE_HEIGHT + 2*coef)) 
+        pygame.draw.rect(screen, BLACK, (self.xpos - coef -1, self.ypos - coef -1, ACHIE_WIDTH + 2*coef +2, ACHIE_HEIGHT + 2*coef +2), 1) 
         
         write(screen, name_text, FONT_LARGE, BLACK, (self.xpos+ACHIE_WIDTH//2, self.ypos+ACHIE_HEIGHT//2))
         
