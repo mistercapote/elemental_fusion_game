@@ -1,6 +1,7 @@
 import pygame
 from constants import *
 from abc import ABC, abstractmethod
+from game import Game
 
 class Button(ABC):
     """
@@ -24,7 +25,7 @@ class Button(ABC):
     action : callable or None
         A ação que será executada ao clicar no botão. Pode ser uma função ou método. Inicialmente é None.
     """
-    def __init__(self, screen, text, x, y, action=None):
+    def __init__(self, screen: pygame.Surface, text: str, x: int, y: int, action=None):
         """
         Inicializa o botão com um texto, posição, e uma ação opcional a ser executada ao clicar.
 
@@ -49,7 +50,7 @@ class Button(ABC):
         self.rect = self.rects(screen)
         self.action = action
 
-    def draw(self, screen):
+    def draw(self, screen: pygame.Surface):
         """
         Desenha o botão na tela. 
         Modifica a aparência do botão se o mouse estiver sobre ele (efeito de hover).
@@ -63,7 +64,7 @@ class Button(ABC):
         else: self.hovered = False
         self.rects(screen)
 
-    def rects(self, screen):
+    def rects(self, screen: pygame.Surface):
         """
         Desenha o texto no botão e retorna o retângulo de colisão.
         A cor do texto e a renderização do botão mudam dependendo do estado de hover.
@@ -104,7 +105,7 @@ class OpeningButton(Button):
     --------
     check_click : Verifica se o botão foi clicado e executa a ação associada.
     """
-    def check_click(self, event, game):
+    def check_click(self, event: pygame.event, game: Game) -> None:
         """
         Verifica o clique no botão e executa a ação associada. 
         Controla a pausa e reinício da mídia (como música) ao clicar.
@@ -136,7 +137,7 @@ class CleaningButton(Button):
     --------
     check_click : Verifica se o botão foi clicado e executa a ação associada.
     """
-    def check_click(self, event):
+    def check_click(self, event: pygame.event):
         """
         Verifica o clique no botão e executa a ação associada.
 
@@ -162,7 +163,7 @@ class BackingButton(Button):
     --------
     check_click : Verifica se o botão foi clicado e interrompe o jogo e a música.
     """
-    def check_click(self, event, running):
+    def check_click(self, event: pygame.event, running: bool) -> bool:
         """
         Verifica o clique no botão e, se clicado, para a música e encerra o jogo.
 
@@ -198,7 +199,7 @@ class PopUpButton(Button):
     --------
     check_click : Verifica se o botão foi clicado e fecha o pop-up associado.
     """
-    def check_click(self, event, game, label):
+    def check_click(self, event: pygame.event, game: Game, label: str):
         """
         Verifica o clique no botão e fecha o pop-up correspondente com base no rótulo.
 

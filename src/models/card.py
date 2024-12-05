@@ -2,6 +2,7 @@ import pygame
 from constants import *
 from models.button import PopUpButton
 import math
+from game import Game
 
 class Card:
     """
@@ -15,7 +16,7 @@ class Card:
         button: Botão associado ao cartão para ações (como fechar pop-ups).
         isotopes: Lista de isótopos associados ao elemento, se o cartão for de um elemento.
     """
-    def __init__(self, entity, x, y):
+    def __init__(self, entity: Element | None, x: int, y: int) -> None:
         """
         Inicializa o cartão com a entidade (elemento ou isótopo), 
         suas coordenadas e a configuração do botão e isótopos, se aplicável.
@@ -37,7 +38,7 @@ class Card:
             self.isotopes = [obj for obj in ISOTOPES if (obj.atomic_number == entity.atomic_number)]
         else: self.isotopes = None
 
-    def draw_card(self, screen, coef=1):
+    def draw_card(self, screen: pygame.surface, coef=1) -> None:
         """
         Desenha o cartão na tela, exibindo as informações do elemento ou isótopo associado.
 
@@ -72,7 +73,7 @@ class Card:
             if isinstance(self.entity, Isotope):
                 write(screen, f"{self.entity.mass_number}", FONT_SMALL, BLACK, (self.xpos+7*SQUARE_WIDTH//8-coef, self.ypos+SQUARE_HEIGHT//8+coef))
 
-    def draw_popup(self, game):
+    def draw_popup(self, game:Game) -> None:
         """
         Exibe um pop-up com os isótopos de um elemento, mostrando os cartões dos isótopos descobertos.
 

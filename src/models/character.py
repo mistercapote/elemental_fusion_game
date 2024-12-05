@@ -47,7 +47,7 @@ class Character:
         self.scenario = pygame.transform.scale(pygame.image.load("assets/images/acelerador_de_particulas_sprite.png").convert_alpha(), [WIDTH_MAX,HEIGHT_MAX])
         self.scenario_rect = self.scenario.get_rect(topleft=(0, 0))
 
-    def collision(self, vector):
+    def collision(self, vector: list) -> bool:
         """
         Verifica se o personagem colide com o cenário.
 
@@ -109,7 +109,7 @@ class Character:
         if not self.collision(vector):
             self.xpos, self.ypos = int(vector[0]), int(vector[1])
 
-    def draw(self, screen):
+    def draw(self, screen: pygame.surface):
         """
         Desenha o personagem na tela.
 
@@ -129,7 +129,7 @@ class DoorButton:
     """
     Representa um botão transparente no cenário, que aparece na colisão do personagem.
     """
-    def __init__(self, x, y, width, height, number, action=None):
+    def __init__(self, x: int, y: int, width: int, height: int, number:int, action=None) -> None:
         self.rect = pygame.Rect(x, y, width, height)  # Área do botão
         self.color = (0, 255, 0)  # Cor visível na colisão (verde claro)
         self.number = number  # Número da porta
@@ -137,7 +137,7 @@ class DoorButton:
         self.action = action  # Função associada ao botão
         self.font = pygame.font.Font(None, 36)  # Fonte para desenhar o número da porta
 
-    def check_collision(self, player_rect):
+    def check_collision(self, player_rect) -> None:
         """
         Verifica colisão com o personagem e torna o botão visível se houver colisão.
         """
@@ -146,7 +146,7 @@ class DoorButton:
         else:
             self.visible = False
 
-    def draw(self, screen):
+    def draw(self, screen: pygame.surface):
         """
         Desenha o botão na tela se estiver visível.
         """
