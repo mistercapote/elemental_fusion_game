@@ -191,7 +191,6 @@ class Nucleo:
                             game.new_found.append(each)
                     break
             if done == len(self.fusions):
-                #mudar mensagem do Popup
-                print("Todos os produtos dessa fusao ja foram descobertos")
+                pass
         else:
-            print(f"O elemento {a.name} decai, mas não sei ainda o q vira")
+            pass

@@ -59,154 +59,41 @@ Mg-26;n;Na-22, He;;O Sódio-22 é um isótopo radioativo do sódio que é utilizado e
 Na-22;;Ne-22, e-, ve;;O Neônio-22 é um isótopo estável do neônio.
 N-14;n;C-14, H-1;;O Carbono-14 é um isótopo radioativo do carbono amplamente utilizado em datação de materiais orgânicos.
 N-14;He-4;O-18, y;;O Oxigênio-18 é um isótopo estável do oxigênio utilizado em estudos isotópicos.
-He-4;B-4;B-11, n, ?;Formação de Elementos Pesados;A fusão de He-4 com B-4 gera B-11, emitindo nêutrons e raios gama.
-B-11;;B-11, ?;Decaimento Radioativo;A reação de B-11 com emissão de raios gama.
-He-4;Ti-4;Ti-46, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Ti-4 gera Ti-46, emitindo nêutrons e raios gama.
-Ti-46;;Ti-46, ?;Decaimento Radioativo;A reação de Ti-46 com emissão de raios gama.
-He-4;Ca-4;Ca-48, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Ca-4 gera Ca-48, emitindo nêutrons e raios gama.
-Ca-48;;Ca-48, ?;Decaimento Radioativo;A reação de Ca-48 com emissão de raios gama.
-He-4;Sc-4;Sc-45, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Sc-4 gera Sc-45, emitindo nêutrons e raios gama.
-Sc-45;;Sc-45, ?;Decaimento Radioativo;A reação de Sc-45 com emissão de raios gama.
-He-4;Ni-4;Ni-58, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Ni-4 gera Ni-58, emitindo nêutrons e raios gama.
-Ni-58;;Ni-58, ?;Decaimento Radioativo;A reação de Ni-58 com emissão de raios gama.
-He-4;Ni-4;Ni-64, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Ni-4 gera Ni-64, emitindo nêutrons e raios gama.
-Ni-64;;Ni-64, ?;Decaimento Radioativo;A reação de Ni-64 com emissão de raios gama.
-He-4;K-4;K-40, n, ?;Formação de Elementos Pesados;A fusão de He-4 com K-4 gera K-40, emitindo nêutrons e raios gama.
-K-40;;K-40, ?;Decaimento Radioativo;A reação de K-40 com emissão de raios gama.
-He-4;Br-4;Br-79, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Br-4 gera Br-79, emitindo nêutrons e raios gama.
-Br-79;;Br-79, ?;Decaimento Radioativo;A reação de Br-79 com emissão de raios gama.
-He-4;He-4;Be-9, ?;Formação de Berílio;A fusão de dois núcleos de He-4 gera Be-9 e raios gama.
-Be-9;;Be-9, ?;Decaimento Radioativo;A reação de Be-9 com emissão de raios gama.
-He-4;Th-4;Th-232, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Th-4 gera Th-232, emitindo nêutrons e raios gama.
-Th-232;;Th-232, ?;Decaimento Radioativo;A reação de Th-232 com emissão de raios gama.
-He-4;Ga-4;Ga-69, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Ga-4 gera Ga-69, emitindo nêutrons e raios gama.
-Ga-69;;Ga-69, ?;Decaimento Radioativo;A reação de Ga-69 com emissão de raios gama.
-He-4;Ge-4;Ge-74, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Ge-4 gera Ge-74, emitindo nêutrons e raios gama.
-Ge-74;;Ge-74, ?;Decaimento Radioativo;A reação de Ge-74 com emissão de raios gama.
-He-4;Ti-4;Ti-49, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Ti-4 gera Ti-49, emitindo nêutrons e raios gama.
-Ti-49;;Ti-49, ?;Decaimento Radioativo;A reação de Ti-49 com emissão de raios gama.
-He-4;Kr-4;Kr-78, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Kr-4 gera Kr-78, emitindo nêutrons e raios gama.
-Kr-78;;Kr-78, ?;Decaimento Radioativo;A reação de Kr-78 com emissão de raios gama.
-He-4;Mn-4;Mn-55, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Mn-4 gera Mn-55, emitindo nêutrons e raios gama.
-Mn-55;;Mn-55, ?;Decaimento Radioativo;A reação de Mn-55 com emissão de raios gama.
-He-4;F-4;F-19, n, ?;Formação de Elementos Pesados;A fusão de He-4 com F-4 gera F-19, emitindo nêutrons e raios gama.
-F-19;;F-19, ?;Decaimento Radioativo;A reação de F-19 com emissão de raios gama.
-He-4;Zn-4;Zn-66, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Zn-4 gera Zn-66, emitindo nêutrons e raios gama.
-Zn-66;;Zn-66, ?;Decaimento Radioativo;A reação de Zn-66 com emissão de raios gama.
-He-4;Cr-4;Cr-52, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Cr-4 gera Cr-52, emitindo nêutrons e raios gama.
-Cr-52;;Cr-52, ?;Decaimento Radioativo;A reação de Cr-52 com emissão de raios gama.
-He-4;H-3;Li-6, ?;Formação de Lítio;A fusão de He-4 com H-3 gera Li-6, liberando raios gama.
-Li-6;;Li-6, ?;Decaimento Radioativo;A reação de Li-6 com emissão de raios gama.
-He-4;Ti-4;Ti-48, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Ti-4 gera Ti-48, emitindo nêutrons e raios gama.
-Ti-48;;Ti-48, ?;Decaimento Radioativo;A reação de Ti-48 com emissão de raios gama.
-He-4;Ar-4;Ar-40, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Ar-4 gera Ar-40, emitindo nêutrons e raios gama.
-Ar-40;;Ar-40, ?;Decaimento Radioativo;A reação de Ar-40 com emissão de raios gama.
-He-4;Se-4;Se-76, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Se-4 gera Se-76, emitindo nêutrons e raios gama.
-Se-76;;Se-76, ?;Decaimento Radioativo;A reação de Se-76 com emissão de raios gama.
-He-4;Zn-4;Zn-64, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Zn-4 gera Zn-64, emitindo nêutrons e raios gama.
-Zn-64;;Zn-64, ?;Decaimento Radioativo;A reação de Zn-64 com emissão de raios gama.
-He-4;Cl-4;Cl-37, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Cl-4 gera Cl-37, emitindo nêutrons e raios gama.
-Cl-37;;Cl-37, ?;Decaimento Radioativo;A reação de Cl-37 com emissão de raios gama.
-He-4;Ni-4;Ni-61, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Ni-4 gera Ni-61, emitindo nêutrons e raios gama.
-Ni-61;;Ni-61, ?;Decaimento Radioativo;A reação de Ni-61 com emissão de raios gama.
-He-4;Ge-4;Ge-70, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Ge-4 gera Ge-70, emitindo nêutrons e raios gama.
-Ge-70;;Ge-70, ?;Decaimento Radioativo;A reação de Ge-70 com emissão de raios gama.
-He-4;Zn-4;Zn-67, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Zn-4 gera Zn-67, emitindo nêutrons e raios gama.
-Zn-67;;Zn-67, ?;Decaimento Radioativo;A reação de Zn-67 com emissão de raios gama.
-He-4;V-4;V-50, n, ?;Formação de Elementos Pesados;A fusão de He-4 com V-4 gera V-50, emitindo nêutrons e raios gama.
-V-50;;V-50, ?;Decaimento Radioativo;A reação de V-50 com emissão de raios gama.
-He-4;As-4;As-75, n, ?;Formação de Elementos Pesados;A fusão de He-4 com As-4 gera As-75, emitindo nêutrons e raios gama.
-As-75;;As-75, ?;Decaimento Radioativo;A reação de As-75 com emissão de raios gama.
-He-4;Se-4;Se-78, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Se-4 gera Se-78, emitindo nêutrons e raios gama.
-Se-78;;Se-78, ?;Decaimento Radioativo;A reação de Se-78 com emissão de raios gama.
-He-4;Kr-4;Kr-80, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Kr-4 gera Kr-80, emitindo nêutrons e raios gama.
-Kr-80;;Kr-80, ?;Decaimento Radioativo;A reação de Kr-80 com emissão de raios gama.
-He-4;U-4;U-238, n, ?;Formação de Elementos Pesados;A fusão de He-4 com U-4 gera U-238, emitindo nêutrons e raios gama.
-U-238;;U-238, ?;Decaimento Radioativo;A reação de U-238 com emissão de raios gama.
-He-4;Fe-4;Fe-57, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Fe-4 gera Fe-57, emitindo nêutrons e raios gama.
-Fe-57;;Fe-57, ?;Decaimento Radioativo;A reação de Fe-57 com emissão de raios gama.
-He-4;K-4;K-41, n, ?;Formação de Elementos Pesados;A fusão de He-4 com K-4 gera K-41, emitindo nêutrons e raios gama.
-K-41;;K-41, ?;Decaimento Radioativo;A reação de K-41 com emissão de raios gama.
-He-4;Kr-4;Kr-86, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Kr-4 gera Kr-86, emitindo nêutrons e raios gama.
-Kr-86;;Kr-86, ?;Decaimento Radioativo;A reação de Kr-86 com emissão de raios gama.
-He-4;Cr-4;Cr-50, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Cr-4 gera Cr-50, emitindo nêutrons e raios gama.
-Cr-50;;Cr-50, ?;Decaimento Radioativo;A reação de Cr-50 com emissão de raios gama.
-He-4;Zn-4;Zn-68, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Zn-4 gera Zn-68, emitindo nêutrons e raios gama.
-Zn-68;;Zn-68, ?;Decaimento Radioativo;A reação de Zn-68 com emissão de raios gama.
-He-4;Ni-4;Ni-62, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Ni-4 gera Ni-62, emitindo nêutrons e raios gama.
-Ni-62;;Ni-62, ?;Decaimento Radioativo;A reação de Ni-62 com emissão de raios gama.
-He-4;Ge-4;Ge-72, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Ge-4 gera Ge-72, emitindo nêutrons e raios gama.
-Ge-72;;Ge-72, ?;Decaimento Radioativo;A reação de Ge-72 com emissão de raios gama.
-He-4;Cu-4;Cu-63, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Cu-4 gera Cu-63, emitindo nêutrons e raios gama.
-Cu-63;;Cu-63, ?;Decaimento Radioativo;A reação de Cu-63 com emissão de raios gama.
-He-4;Cr-4;Cr-54, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Cr-4 gera Cr-54, emitindo nêutrons e raios gama.
-Cr-54;;Cr-54, ?;Decaimento Radioativo;A reação de Cr-54 com emissão de raios gama.
-He-4;S-4;S-34, n, ?;Formação de Elementos Pesados;A fusão de He-4 com S-4 gera S-34, emitindo nêutrons e raios gama.
-S-34;;S-34, ?;Decaimento Radioativo;A reação de S-34 com emissão de raios gama.
-He-4;Ge-4;Ge-73, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Ge-4 gera Ge-73, emitindo nêutrons e raios gama.
-Ge-73;;Ge-73, ?;Decaimento Radioativo;A reação de Ge-73 com emissão de raios gama.
-He-4;S-4;S-36, n, ?;Formação de Elementos Pesados;A fusão de He-4 com S-4 gera S-36, emitindo nêutrons e raios gama.
-S-36;;S-36, ?;Decaimento Radioativo;A reação de S-36 com emissão de raios gama.
-He-4;Ar-4;Ar-38, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Ar-4 gera Ar-38, emitindo nêutrons e raios gama.
-Ar-38;;Ar-38, ?;Decaimento Radioativo;A reação de Ar-38 com emissão de raios gama.
-He-4;Ca-4;Ca-46, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Ca-4 gera Ca-46, emitindo nêutrons e raios gama.
-Ca-46;;Ca-46, ?;Decaimento Radioativo;A reação de Ca-46 com emissão de raios gama.
-He-4;S-4;S-33, n, ?;Formação de Elementos Pesados;A fusão de He-4 com S-4 gera S-33, emitindo nêutrons e raios gama.
-S-33;;S-33, ?;Decaimento Radioativo;A reação de S-33 com emissão de raios gama.
-He-4;Ca-4;Ca-43, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Ca-4 gera Ca-43, emitindo nêutrons e raios gama.
-Ca-43;;Ca-43, ?;Decaimento Radioativo;A reação de Ca-43 com emissão de raios gama.
-He-4;Ni-4;Ni-60, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Ni-4 gera Ni-60, emitindo nêutrons e raios gama.
-Ni-60;;Ni-60, ?;Decaimento Radioativo;A reação de Ni-60 com emissão de raios gama.
-He-4;Pu-4;Pu-239, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Pu-4 gera Pu-239, emitindo nêutrons e raios gama.
-Pu-239;;Pu-239, ?;Decaimento Radioativo;A reação de Pu-239 com emissão de raios gama.
-He-4;Kr-4;Kr-83, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Kr-4 gera Kr-83, emitindo nêutrons e raios gama.
-Kr-83;;Kr-83, ?;Decaimento Radioativo;A reação de Kr-83 com emissão de raios gama.
-He-4;Ca-4;Ca-44, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Ca-4 gera Ca-44, emitindo nêutrons e raios gama.
-Ca-44;;Ca-44, ?;Decaimento Radioativo;A reação de Ca-44 com emissão de raios gama.
-He-4;Ga-4;Ga-71, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Ga-4 gera Ga-71, emitindo nêutrons e raios gama.
-Ga-71;;Ga-71, ?;Decaimento Radioativo;A reação de Ga-71 com emissão de raios gama.
-He-4;V-4;V-51, n, ?;Formação de Elementos Pesados;A fusão de He-4 com V-4 gera V-51, emitindo nêutrons e raios gama.
-V-51;;V-51, ?;Decaimento Radioativo;A reação de V-51 com emissão de raios gama.
-He-4;K-4;K-39, n, ?;Formação de Elementos Pesados;A fusão de He-4 com K-4 gera K-39, emitindo nêutrons e raios gama.
-K-39;;K-39, ?;Decaimento Radioativo;A reação de K-39 com emissão de raios gama.
-He-4;Kr-4;Kr-82, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Kr-4 gera Kr-82, emitindo nêutrons e raios gama.
-Kr-82;;Kr-82, ?;Decaimento Radioativo;A reação de Kr-82 com emissão de raios gama.
-He-4;Fe-4;Fe-54, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Fe-4 gera Fe-54, emitindo nêutrons e raios gama.
-Fe-54;;Fe-54, ?;Decaimento Radioativo;A reação de Fe-54 com emissão de raios gama.
-He-4;Ti-4;Ti-50, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Ti-4 gera Ti-50, emitindo nêutrons e raios gama.
-Ti-50;;Ti-50, ?;Decaimento Radioativo;A reação de Ti-50 com emissão de raios gama.
-He-4;B-4;B-10, n, ?;Formação de Elementos Pesados;A fusão de He-4 com B-4 gera B-10, emitindo nêutrons e raios gama.
-B-10;;B-10, ?;Decaimento Radioativo;A reação de B-10 com emissão de raios gama.
-He-4;U-4;U-235, n, ?;Formação de Elementos Pesados;A fusão de He-4 com U-4 gera U-235, emitindo nêutrons e raios gama.
-U-235;;U-235, ?;Decaimento Radioativo;A reação de U-235 com emissão de raios gama.
-He-4;Ca-4;Ca-42, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Ca-4 gera Ca-42, emitindo nêutrons e raios gama.
-Ca-42;;Ca-42, ?;Decaimento Radioativo;A reação de Ca-42 com emissão de raios gama.
-He-4;Cr-4;Cr-53, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Cr-4 gera Cr-53, emitindo nêutrons e raios gama.
-Cr-53;;Cr-53, ?;Decaimento Radioativo;A reação de Cr-53 com emissão de raios gama.
-He-4;Al-4;Al-27, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Al-4 gera Al-27, emitindo nêutrons e raios gama.
-Al-27;;Al-27, ?;Decaimento Radioativo;A reação de Al-27 com emissão de raios gama.
-He-4;Co-4;Co-59, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Co-4 gera Co-59, emitindo nêutrons e raios gama.
-Co-59;;Co-59, ?;Decaimento Radioativo;A reação de Co-59 com emissão de raios gama.
-He-4;Se-4;Se-82, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Se-4 gera Se-82, emitindo nêutrons e raios gama.
-Se-82;;Se-82, ?;Decaimento Radioativo;A reação de Se-82 com emissão de raios gama.
-He-4;Cu-4;Cu-65, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Cu-4 gera Cu-65, emitindo nêutrons e raios gama.
-Cu-65;;Cu-65, ?;Decaimento Radioativo;A reação de Cu-65 com emissão de raios gama.
-He-4;Br-4;Br-81, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Br-4 gera Br-81, emitindo nêutrons e raios gama.
-Br-81;;Br-81, ?;Decaimento Radioativo;A reação de Br-81 com emissão de raios gama.
-He-4;Ti-4;Ti-47, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Ti-4 gera Ti-47, emitindo nêutrons e raios gama.
-Ti-47;;Ti-47, ?;Decaimento Radioativo;A reação de Ti-47 com emissão de raios gama.
-He-4;Ge-4;Ge-76, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Ge-4 gera Ge-76, emitindo nêutrons e raios gama.
-Ge-76;;Ge-76, ?;Decaimento Radioativo;A reação de Ge-76 com emissão de raios gama.
-He-4;Se-4;Se-74, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Se-4 gera Se-74, emitindo nêutrons e raios gama.
-Se-74;;Se-74, ?;Decaimento Radioativo;A reação de Se-74 com emissão de raios gama.
-He-4;Se-4;Se-80, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Se-4 gera Se-80, emitindo nêutrons e raios gama.
-Se-80;;Se-80, ?;Decaimento Radioativo;A reação de Se-80 com emissão de raios gama.
-He-4;Fe-4;Fe-58, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Fe-4 gera Fe-58, emitindo nêutrons e raios gama.
-Fe-58;;Fe-58, ?;Decaimento Radioativo;A reação de Fe-58 com emissão de raios gama.
-He-4;Se-4;Se-77, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Se-4 gera Se-77, emitindo nêutrons e raios gama.
-Se-77;;Se-77, ?;Decaimento Radioativo;A reação de Se-77 com emissão de raios gama.
-He-4;Zn-4;Zn-70, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Zn-4 gera Zn-70, emitindo nêutrons e raios gama.
-Zn-70;;Zn-70, ?;Decaimento Radioativo;A reação de Zn-70 com emissão de raios gama.
-He-4;Kr-4;Kr-84, n, ?;Formação de Elementos Pesados;A fusão de He-4 com Kr-4 gera Kr-84, emitindo nêutrons e raios gama.
-Kr-84;;Kr-84, ?;Decaimento Radioativo;A reação de Kr-84 com emissão de raios gama.
-p;e;H-1;;O átomo mais simples
+Ar-36;He-4;K-39, n;; O argônio-36 pode capturar uma partícula alfa, resultando na formação de potássio-39 e liberando um nêutron.
+Ar-38;H-1;K-39, y;;O argônio-38 pode capturar um próton para formar potássio-39, emitindo um raio gama.
+K-39;n;K-40;;O potássio-39 pode capturar um nêutron livre durante processos de captura lenta de nêutrons (s-process), formando potássio-40.
+K-40;n;K-41;;O potássio-40 captura outro nêutron, resultando em potássio-41
+Cr-50;H-1;Mn-51, y;;
+Mn-51;;Fe-51, e+, ve;;
+Fe-51;H-1;Co-52, y;;
+Co-52;;V-51, e+, ve;;Através de uma série de capturas de prótons e decaimentos beta, cromo-50 pode eventualmente levar à formação de vanádio-51
+Ti-49;n;Ti-50;;
+Ti-50;H-1;V-51, y;;
+V-51;n;V-52;;
+V-52;;Cr-52, e+, ve;;
+V-51;e;V-50, ve;;O vanádio-50 pode ser formado a partir do vanádio-51 através de captura eletrônica durante processos de captura lenta de nêutrons.
+Cr-54;H-1;Mn-55, y;;O cromo-54 captura um próton, resultando em manganês-55.
+Mn-54;n;Mn-55;;O manganês-54 captura um nêutron para formar manganês-55.
+Si-28;Si-28;Cr-54, n;;
+Ti-46;He-4;Cr-50, y;;
+S-34;He-4;Ar-38, y;;
+Ca-45;He-4;Ti-46, y;;
+Cr-53;H-1;Mn-54, y;;
+Ca-42;He-4;Ti-46, y;;
+Si-30;He-4;S-34, y;;
+Ca-44;n;Ca-45, y;;
+p;e;H-1;;O átomo mais simples do universo
+Cr-52;n;Cr-53, y;;
+Ar-38;He-4;Ca-42, y;;
+Si-28;;S-32, y;;
+S-32;;Ar-36, y;;
+Ar-36;;Ca-40, y;;
+Ca-40;;Ti-44, y;;
+Ar-38;;Ca-42, y;;
+Mg-26;He-4;Si-30, y;;
+C-12;Ne-20;Si-32, y;;
+Si-32;;Si-30, n;;
+Ar-40;He-4;Ca-44;;
+Si-28;Ne-16;Ca-44, y;;
+Ti-48;He-4;Cr-52, y;;
+Cr-50;n;Cr-52, y;;

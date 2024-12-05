@@ -2,6 +2,7 @@ import pygame
 import numpy as np
 from views.start_menu_1 import start_menu
 from views.tasks_1 import start_task
+from views.table_menu import table_menu
 from constants import *
 
 
@@ -172,8 +173,8 @@ def open_door_1(game):
 def open_door_2(game):
     start_task(game)
 
-def open_door_3():
-    pass
+def open_door_3(game):
+    table_menu(game)
 
 
 # Criar botões para cada porta
