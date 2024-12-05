@@ -1,4 +1,5 @@
 import json
+from fusion import Fusion
 
 class Element:
     """
@@ -8,7 +9,7 @@ class Element:
     grupo, período, raio atômico, cor e descrição. Também possui um método de classe para 
     criar uma instância de um elemento a partir de um dicionário de dados.
     """
-    def __init__(self, name, symbol, atomic_number, group, period, atomic_radius, color, description):
+    def __init__(self, name: str, symbol: str, atomic_number:int, group: int, period: int, atomic_radius:float, color: tuple, description: str) -> None:
         """
         Constrói um objeto Element.
 
@@ -41,7 +42,7 @@ class Element:
         self.description = description
 
     @classmethod
-    def from_dict(cls, data):
+    def from_dict(cls, data: dict):
         """
         Cria um objeto Element a partir de um dicionário de dados.
 
@@ -73,7 +74,7 @@ class Isotope(Element):
     Herda da classe Element e adiciona informações sobre o número de massa, 
     massa, radioatividade, abundância e nome do isótopo.
     """
-    def __init__(self, name, symbol, atomic_number, group, period, atomic_radius, color, description, mass_number, mass, is_radioactive, abundance, name_isotope):
+    def __init__(self, name: str, symbol: str, atomic_number: int, group: int, period: int, atomic_radius: float, color: tuple, description: str, mass_number: int, mass:float, is_radioactive:bool, abundance: float, name_isotope: str) -> None:
         """
         Construtor da classe Isotope.
 
@@ -114,7 +115,7 @@ class Isotope(Element):
         self.name_isotope = name_isotope if name_isotope else f"{symbol}-{mass_number}"
         self.neutrons = mass_number - atomic_number
         
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         """
         Compara dois isótopos para verificar se são iguais.
 
@@ -132,7 +133,7 @@ class Isotope(Element):
         return self.atomic_number == other.atomic_number and self.mass_number == other.mass_number
     
     @classmethod
-    def from_dict(cls, data, ELEMENTS):
+    def from_dict(cls, data: dict, ELEMENTS: list):
         """
         Cria um objeto Isotope a partir de um dicionário de dados.
 
@@ -170,7 +171,7 @@ class FundamentalParticle:
     """
     Classe para representar uma partícula fundamental.
     """
-    def __init__(self, name, symbol, mass, charge, spin, color):
+    def __init__(self, name: str, symbol: str, mass:float, charge: float, spin: float, color: tuple):
         """
         Inicializa uma partícula fundamental com os seguintes atributos:
         
@@ -186,7 +187,7 @@ class FundamentalParticle:
             A carga elétrica da partícula.
         spin : float
             O spin da partícula.
-        color : str
+        color : tuple
             A cor associada à partícula.
         """
         self.name = name
@@ -196,7 +197,7 @@ class FundamentalParticle:
         self.spin = spin
         self.color = color
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         """
         Compara duas partículas fundamentais para verificar se são iguais.
 
@@ -214,7 +215,7 @@ class FundamentalParticle:
         return self.symbol == other.symbol
     
     @classmethod
-    def from_dict(cls, data):
+    def from_dict(cls, data: dict):
         """
         Cria uma instância de FundamentalParticle a partir de um dicionário.
 
@@ -241,7 +242,7 @@ class Fusion:
     """
     Classe que representa uma fusão entre dois elementos ou partículas.
     """
-    def __init__(self, process, element_a, element_b, product, description):
+    def __init__(self, process: str, element_a: Isotope, element_b: Isotope|FundamentalParticle|None, product: list, description: str):
         """
         Inicializa uma fusão com os seguintes atributos:
 
@@ -264,7 +265,7 @@ class Fusion:
         self.product = product # Lista de Objetos das classes Isotope e FuntamentalParticle
         self.description = description # Texto falando um pouco sobre a fusão
 
-    def __eq__(self, other):
+    def __eq__(self, other: Fusion) -> bool:
         """
         Verifica se duas instâncias de fusão são iguais.
 
@@ -300,7 +301,7 @@ class Fusion:
         return round(energy_mev, 4)
     
     @classmethod
-    def from_dict(cls, data, PARTICLES, ISOTOPES):
+    def from_dict(cls, data: dict, PARTICLES: list, ISOTOPES:list) -> Fusion:
         """
         Cria uma instância da classe Fusion a partir de um dicionário.
 
@@ -320,7 +321,7 @@ class Fusion:
         """
         """Cria uma instância da classe a partir de um dicionário."""
         
-        def aux1(data):
+        def aux1(data: dict) -> Isotope|FundamentalParticle|None:
             """
             Auxilia na determinação do segundo elemento da fusão.
 
@@ -341,7 +342,7 @@ class Fusion:
             else:
                 return next((obj for obj in PARTICLES if obj.symbol == data["element_a"]), None) 
         
-        def aux2(data):
+        def aux2(data: dict) -> Isotope|FundamentalParticle|None:
             """
             Auxilia na determinação do segundo elemento da fusão.
 
@@ -362,7 +363,7 @@ class Fusion:
             else:
                 return next((obj for obj in PARTICLES if obj.symbol == data["element_b"]), None) 
         
-        def aux3(data):
+        def aux3(data: dict) -> list:
             """
             Auxilia na determinação dos produtos da fusão.
 
