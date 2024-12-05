@@ -1,7 +1,6 @@
 import pygame
 from constants import *
 from abc import ABC, abstractmethod
-from game import Game
 
 class Button(ABC):
     """
@@ -105,7 +104,7 @@ class OpeningButton(Button):
     --------
     check_click : Verifica se o botão foi clicado e executa a ação associada.
     """
-    def check_click(self, event: pygame.event, game: Game) -> None:
+    def check_click(self, event: pygame.event, game) -> None:
         """
         Verifica o clique no botão e executa a ação associada. 
         Controla a pausa e reinício da mídia (como música) ao clicar.
@@ -199,7 +198,7 @@ class PopUpButton(Button):
     --------
     check_click : Verifica se o botão foi clicado e fecha o pop-up associado.
     """
-    def check_click(self, event: pygame.event, game: Game, label: str):
+    def check_click(self, event: pygame.event, game, label: str):
         """
         Verifica o clique no botão e fecha o pop-up correspondente com base no rótulo.
 

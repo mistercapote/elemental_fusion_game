@@ -1,7 +1,7 @@
 import pygame
 from constants import *
 from abc import ABC, abstractmethod
-from nucleo import Nucleo
+from models.nucleo import Nucleo
 
 class Ball(ABC):
     """

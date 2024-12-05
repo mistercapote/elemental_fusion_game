@@ -161,17 +161,17 @@ class DoorButton:
             number_rect = number_text.get_rect(center=self.rect.center)
             screen.blit(number_text, number_rect)
 
-    def click(self):
+    def click(self, game):
         if self.action:
-            self.action()
+            self.action(game)
 
 
 
-def open_door_1():
-    start_menu()
+def open_door_1(game):
+    start_menu(game)
 
-def open_door_2():
-    start_task()
+def open_door_2(game):
+    start_task(game)
 
 def open_door_3():
     pass
@@ -179,7 +179,7 @@ def open_door_3():
 
 # Criar botões para cada porta
 doors = [
-    DoorButton(790, 95, 50, 50, number=1, action= open_door_1),
+    DoorButton(790, 95, 50, 50, number=1, action=open_door_1),
     DoorButton(900, 140, 50, 50, number=2, action= open_door_2),
     DoorButton(987, 210, 50, 50, number=3, action=open_door_3),
 ]

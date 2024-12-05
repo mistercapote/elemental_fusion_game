@@ -2,7 +2,6 @@ import pygame
 from constants import *
 from models.button import PopUpButton
 import math
-from game import Game
 
 class Card:
     """
@@ -73,7 +72,7 @@ class Card:
             if isinstance(self.entity, Isotope):
                 write(screen, f"{self.entity.mass_number}", FONT_SMALL, BLACK, (self.xpos+7*SQUARE_WIDTH//8-coef, self.ypos+SQUARE_HEIGHT//8+coef))
 
-    def draw_popup(self, game:Game) -> None:
+    def draw_popup(self, game) -> None:
         """
         Exibe um pop-up com os isótopos de um elemento, mostrando os cartões dos isótopos descobertos.
 
