@@ -1,6 +1,7 @@
 import pygame
 from constants import *
 from abc import ABC, abstractmethod
+from nucleo import Nucleo
 
 class Ball(ABC):
     """
@@ -20,7 +21,7 @@ class Ball(ABC):
     ypos : int
         Posição vertical (y) da bola na tela.
     """
-    def __init__(self, entity):
+    def __init__(self, entity: None|Isotope|FundamentalParticle) -> None:
         """
         Inicializa a bola com a entidade associada e define o estado de arrasto e posições iniciais.
 
@@ -34,7 +35,7 @@ class Ball(ABC):
         self.dragging = False
         self.xpos, self.ypos = self.position()
 
-    def check_down(self): 
+    def check_down(self) -> None: 
         """
         Verifica se o botão do mouse está pressionado sobre a bola.
         Se a distância do mouse ao centro da bola for menor que o raio, o arrasto é iniciado.
@@ -46,7 +47,7 @@ class Ball(ABC):
             self.dragging = True 
             self.drag_center = [self.xpos, self.ypos]
 
-    def check_up(self, nucleo): 
+    def check_up(self, nucleo: Nucleo) -> Nucleo: 
         """
         Finaliza o arrasto da bola e verifica se ela pode ser adicionada ao núcleo.
         Se a bola estiver à direita da tela e houver espaço no núcleo, ela é adicionada.
@@ -73,7 +74,7 @@ class Ball(ABC):
                 pass
         return nucleo
     
-    def check_motion(self, event): 
+    def check_motion(self, event: pygame.event) -> None: 
         """
         Atualiza a posição da bola enquanto está sendo arrastada, de acordo com a posição do mouse.
         A bola é mantida dentro dos limites da tela.
@@ -92,7 +93,7 @@ class Ball(ABC):
             self.drag_center = new_pos
 
     @staticmethod
-    def turn_ball(entity):
+    def turn_ball(entity: None|Isotope|FundamentalParticle):
         """
         Converte uma entidade (elemento ou partícula) em um tipo específico de bola.
 
@@ -119,7 +120,7 @@ class Ball(ABC):
         ElementBall.start_draw()
         ParticleBall.start_draw()
 
-    def draw_ball(self, screen):
+    def draw_ball(self, screen: pygame.Surface):
         """
         Desenha a bola na tela em sua posição inicial (posição original).
 
@@ -130,7 +131,7 @@ class Ball(ABC):
         """
         self.draw(screen, self.xpos, self.ypos)
 
-    def draw_drag_ball(self, screen):
+    def draw_drag_ball(self, screen: pygame.Surface):
         """
         Desenha a bola na tela na posição atual de arrasto (seguindo o mouse).
 
@@ -142,7 +143,7 @@ class Ball(ABC):
         self.draw(screen, self.drag_center[0], self.drag_center[1])
 
     @abstractmethod
-    def draw(self, screen, x, y):
+    def draw(self, screen: pygame.Surface, x: int, y: int) -> None:
         """
         Método abstrato que deve ser implementado pelas subclasses para desenhar a bola.
 
@@ -218,7 +219,7 @@ class ElementBall(Ball):
         ElementBall.line_break +=1
         return ElementBall.www, ElementBall.hhh
 
-    def draw(self, screen, x, y):
+    def draw(self, screen: pygame.Surface, x: int, y: int):
         """
         Desenha a bola do elemento na tela como um círculo colorido.
         Dentro do círculo, desenha o número de massa e o símbolo do elemento.
@@ -286,7 +287,7 @@ class ParticleBall(Ball):
         ParticleBall.line_break +=1
         return ParticleBall.www, ParticleBall.hhh
 
-    def draw(self, screen, x, y):
+    def draw(self, screen: pygame.Surface, x: int, y: int):
         """
         Desenha a bola da partícula na tela como um círculo colorido.
         Dentro do círculo, desenha o símbolo da partícula fundamental.
