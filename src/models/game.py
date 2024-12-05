@@ -89,7 +89,7 @@ class Game:
         self.exit_button = OpeningButton(self.screen, "Sair", CENTER_X, CENTER_Y + 210, self.quit)
         self.clock = pygame.time.Clock()
         self.particles_found = [PARTICLES[0], PARTICLES[2]]
-        self.isotopes_found = [ISOTOPES[0]]
+        self.isotopes_found = []
         self.fusions_found = []
         self.new_found = []
         self.start_popup = []
@@ -97,7 +97,7 @@ class Game:
         self.bar = Bar()
         self.iron = ISOTOPES[552]
         self.start_media()
-        self.list_symbol = ["Cu", "Ga", "As", "Se", "Br", "Kr", "Rb", "Zr", "Nb", "Mo", "Pd", "In", "Sn", "Cs", "Pr", "Pm", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu", "Ta", "W", "Re", "Ir", "Hg", "Tl", "Pb", "Bi", "Po", "At", "Rn", "Fr", "Ra", "Np", "Am", "Bk", "Es", "Fm", "Md", "No", "Lr", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds", "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og"]
+        # self.list_symbol = ["Cu", "Ga", "As", "Se", "Br", "Kr", "Rb", "Zr", "Nb", "Mo", "Pd", "In", "Sn", "Cs", "Pr", "Pm", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu", "Ta", "W", "Re", "Ir", "Hg", "Tl", "Pb", "Bi", "Po", "At", "Rn", "Fr", "Ra", "Np", "Am", "Bk", "Es", "Fm", "Md", "No", "Lr", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds", "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og"]
         
     def update_partial(self) -> None:
         """
@@ -299,7 +299,7 @@ class Bar:
         increase : int
             O valor que será adicionado à largura atual da barra de progresso.
         """
-        increase = 3*increase
+        increase = 2*increase
         if self.width_current + int(increase) >= 0:
             if self.width_current + int(increase) < self.width_max:
                 self.width_current += int(increase)
@@ -309,5 +309,5 @@ class Bar:
         if self.width_current > 5:
             pygame.draw.rect(screen, YELLOW, (self.pos_x, self.pos_y, self.width_current, self.height), 0, -1, 10, 10, 10, 10)
         pygame.draw.rect(screen, WHITE, (self.pos_x, self.pos_y, self.width_max, self.height), 3, -1, 10, 10, 10, 10)
-
+        write(screen, "Energia", FONT_INFO, DARK_YELLOW, (self.pos_x + self.width_max//2, self.pos_y + self.height//2))
         

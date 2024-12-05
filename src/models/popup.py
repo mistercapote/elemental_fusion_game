@@ -71,13 +71,13 @@ class PopUp:
         aH = 300
         iH = aH + len(linhas)*15
 
-        self.button = PopUpButton(screen, "OK", CENTER_X+iW//2-40, CENTER_Y-iH//2 + iH-15)
+        self.button = PopUpButton(screen, "OK", CENTER_X+iW//2-42, CENTER_Y-iH//2 + iH-18)
         pygame.draw.rect(screen, BLACK, (CENTER_X-200, CENTER_Y-150, iW, iH))
         pygame.draw.rect(screen, WHITE, (CENTER_X-200, CENTER_Y-150, iW, iH), 5)
         write(screen,"Novo isótopo descoberto!",  FONT_LARGE, WHITE, (CENTER_X,CENTER_Y-100))
         for i, linha in enumerate(linhas):
             write(screen, linha, FONT_INFO, WHITE, (CENTER_X,CENTER_Y-iH//2+aH-SQUARE_HEIGHT//2 + i * 15))
-        write(screen, f"{self.fusion.get_energy()}", FONT_LARGE, WHITE, (CENTER_X,CENTER_Y+55))
+        write(screen, f"Energia: {self.fusion.get_energy()}", FONT_LARGE, WHITE, (CENTER_X,CENTER_Y+55))
         
         hover_card = None
         i  = -len(self.fusion.product) * (SQUARE_WIDTH+5) // 2

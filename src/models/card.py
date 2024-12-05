@@ -57,12 +57,18 @@ class Card:
                        (self.xpos+SQUARE_WIDTH-coef, self.ypos+SQUARE_HEIGHT-coef), 
                        (self.xpos+coef, self.ypos+SQUARE_HEIGHT-coef)]
         
+        coordenates2 = [(self.xpos+coef-1,self.ypos+coef-1), 
+                       (self.xpos+SQUARE_WIDTH-coef+1, self.ypos+coef-1), 
+                       (self.xpos+SQUARE_WIDTH-coef+1, self.ypos+SQUARE_HEIGHT-coef+1), 
+                       (self.xpos+coef-1, self.ypos+SQUARE_HEIGHT-coef+1)]
+        
         if not self.entity:
             name_text, symbol_text = "", "?"
             pygame.draw.polygon(screen, GRAY, coordenates) 
         else:
             name_text, symbol_text = self.entity.name, self.entity.symbol
             pygame.draw.polygon(screen, self.entity.color, coordenates) 
+        pygame.draw.polygon(screen, BLACK, coordenates2, 1)
         
         if coef != 1: write(screen, name_text, FONT_SMALL, BLACK, (self.xpos+SQUARE_WIDTH//2, self.ypos+7*SQUARE_HEIGHT//8-coef))
         write(screen, symbol_text, FONT_LARGE, BLACK, (self.xpos+SQUARE_WIDTH//2, self.ypos+SQUARE_HEIGHT//2))
