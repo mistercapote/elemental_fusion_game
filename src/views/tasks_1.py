@@ -3,6 +3,24 @@ import json
 import random
 import math
 from constants import *
+from models.button import BackingButton
+
+# Carregar dados dos elementos e isótopos
+with open('data/json/element.json', 'r',encoding="utf-8") as f:
+    elements_data = json.load(f)
+with open('data/json/isotope.json', 'r',encoding="utf-8") as f:
+    isotopes_data = json.load(f)
+
+pygame.init()
+screen = pygame.display.set_mode((WIDTH_MAX, HEIGHT_MAX))
+clock = pygame.time.Clock()
+
+FONT = pygame.font.Font(None, 36)
+
+# Definindo os níveis de energia
+energy_levels = {1: 2, 2: 8, 3: 18}
+ATOMIC_NUMBER_LIMIT = 10
+
 
 def choose_element():
     """
@@ -186,7 +204,7 @@ def draw_button(screen, rect, text, color, text_color):
         A cor do texto, no formato RGB (ex: (255, 255, 255) para branco).
     """
     pygame.draw.rect(screen, color, rect)
-    text_surface = FONT.render(text, True, text_color)
+    text_surface = FONT_LARGE.render(text, True, text_color)
     text_rect = text_surface.get_rect(center=rect.center)
     screen.blit(text_surface, text_rect)
 
@@ -346,26 +364,13 @@ def run_atom_builder():
 
     return element, isotope, proton_count, neutron_count, electron_count, all_particles, nucleus_particles, electrons, reset_button_rect, verify_button_rect
 
-def start_task():
 
-    # Carregar dados dos elementos e isótopos
-    with open('data/json/element.json', 'r',encoding="utf-8") as f:
-        elements_data = json.load(f)
-    with open('data/json/isotope.json', 'r',encoding="utf-8") as f:
-        isotopes_data = json.load(f)
+element, isotope, proton_count, neutron_count, electron_count, all_particles, nucleus_particles, electrons, reset_button_rect, verify_button_rect = run_atom_builder()
 
-    pygame.init()
-    screen = pygame.display.set_mode((WIDTH_MAX, HEIGHT_MAX))
-    clock = pygame.time.Clock()
-
-    FONT = pygame.font.Font(None, 36)
-
-    # Definindo os níveis de energia
-    energy_levels = {1: 2, 2: 8, 3: 18}
-    ATOMIC_NUMBER_LIMIT = 10
-    element, isotope, proton_count, neutron_count, electron_count, all_particles, nucleus_particles, electrons, reset_button_rect, verify_button_rect = run_atom_builder()
-
-
+def start_task(game):
+    back_button = BackingButton(game.screen, "Voltar", 18*SQUARE_WIDTH, 11*SQUARE_HEIGHT)
+    back_button.draw(game.screen)
+    
     # Variável para o estado de validação
     validation_result = None
 
@@ -375,6 +380,7 @@ def start_task():
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
+                running = back_button.check_click(event, running)
                 if reset_button_rect.collidepoint(event.pos):
                     reset_atom(all_particles, nucleus_particles, electrons)
                     validation_result = None  # Limpar o estado da validação
@@ -393,7 +399,8 @@ def start_task():
         # Atualizar as partículas
         all_particles.update(pygame.mouse.get_pos())
         screen.fill(BLACK)
-
+        back_button.draw(game.screen)
+        
         # Exibir titulo
         title = pygame.font.Font(None, 50).render(f"Monte o átomo de {element['name']} ({element['symbol']})", True, WHITE)
         screen.blit(title, (30, 55))
@@ -419,9 +426,7 @@ def start_task():
             display_validation_result(screen, validation_result)
 
         pygame.display.flip()
-        clock.tick(30)
 
-    pygame.quit()
 
 
 
