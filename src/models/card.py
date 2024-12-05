@@ -127,7 +127,7 @@ class Card:
         hover_card = None
         contador = 0
         for isotope in self.isotopes:
-            if isotope in game.isotopes_found: 
+            if isotope in (game.isotopes_found + list(map(lambda x: [i for i in ISOTOPES if i.name_isotope == x][0], SUPERNOVA))): 
                 card = Card(isotope, www, hhh)
             else: 
                 card = Card(None, www, hhh)
