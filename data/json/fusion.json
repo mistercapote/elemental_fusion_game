@@ -1,14 +1,5 @@
 [
     {
-    "element_a":"p",
-    "element_b":"e",
-    "product":[
-        "H-1"
-    ],
-    "process":null,
-    "description":null
-    },
-    {
         "element_a":"H-1",
         "element_b":"H-1",
         "product":[
@@ -28,7 +19,7 @@
             "ve"
         ],
         "process":"Cadeia PP I",
-        "description":null
+        "description":"O Hélio-3 é um isótopo leve do hélio essencial em reações nucleares como a Cadeia Próton-Próton."
     },
     {
         "element_a":"He-3",
@@ -49,7 +40,7 @@
             "y"
         ],
         "process":"Cadeia PP II",
-        "description":null
+        "description":"O Berílio-7 é um isótopo radioativo formado na Cadeia Próton-Próton."
     },
     {
         "element_a":"Be-7",
@@ -59,7 +50,7 @@
             "ve"
         ],
         "process":"Cadeia PP II",
-        "description":null
+        "description":"O Lítio-7 é um isótopo estável formado na nucleossíntese estelar pela Cadeia Próton-Próton."
     },
     {
         "element_a":"Li-7",
@@ -69,7 +60,7 @@
             "He-4"
         ],
         "process":"Cadeia PP II",
-        "description":null
+        "description":"O Hélio-4 é um núcleo estável formado pela fusão de prótons e nêutrons na Cadeia Próton-Próton."
     },
     {
         "element_a":"Be-7",
@@ -79,7 +70,7 @@
             "y"
         ],
         "process":"Cadeia PP III",
-        "description":null
+        "description":"O Boro-8 é um isótopo radioativo produzido em reações nucleares estelares pela Cadeia Próton-Próton."
     },
     {
         "element_a":"B-8",
@@ -90,7 +81,7 @@
             "ve"
         ],
         "process":"Cadeia PP III",
-        "description":null
+        "description":"O Berílio-8 é um isótopo extremamente instável formado na Cadeia Próton-Próton."
     },
     {
         "element_a":"He-4",
@@ -99,7 +90,7 @@
             "Be-8"
         ],
         "process":"Triplo Alpha",
-        "description":null
+        "description":"Essa é uma maneira alternativa de chegar ao Berílio-8 pelo ciclo Tripla Alpha"
     },
     {
         "element_a":"Be-8",
@@ -109,7 +100,7 @@
             "y"
         ],
         "process":"Triplo Alpha",
-        "description":null
+        "description":"O Carbono-12 é um isótopo estável formado no ciclo Triplo Alpha em estrelas e fundamental para a formação da vida."
     },
     {
         "element_a":"C-12",
@@ -119,7 +110,7 @@
             "y"
         ],
         "process":"Ciclo CNO-I",
-        "description":null
+        "description":"O Nitrogênio-13 é um isótopo radioativo do nitrogênio formado no Ciclo CNO-I."
     },
     {
         "element_a":"N-13",
@@ -130,7 +121,7 @@
             "ve"
         ],
         "process":"Ciclo CNO-I",
-        "description":null
+        "description":"O Carbono-13 é um isótopo estável do carbono que surge do decaimento do Nitrogênio-13 no Ciclo CNO-I."
     },
     {
         "element_a":"C-13",
@@ -140,7 +131,7 @@
             "y"
         ],
         "process":"Ciclo CNO-I",
-        "description":null
+        "description":"O Nitrogênio-14  é o isótopo mais abundante do elemento na Terra formado no Ciclo CNO-I."
     },
     {
         "element_a":"N-14",
@@ -150,7 +141,7 @@
             "y"
         ],
         "process":"Ciclo CNO-I",
-        "description":null
+        "description":"O Oxigênio-15 é um isótopo radioativo do oxigênio formado no Ciclo CNO-I."
     },
     {
         "element_a":"O-15",
@@ -161,7 +152,7 @@
             "ve"
         ],
         "process":"Ciclo CNO-I",
-        "description":null
+        "description":"O Nitrogênio-15 é o usado em estudos de isotopia e reações nucleares e formado no Ciclo CNO-I."
     },
     {
         "element_a":"N-15",
@@ -171,7 +162,7 @@
             "He-4"
         ],
         "process":"Ciclo CNO-I",
-        "description":null
+        "description":"Essa é uma maneira alternativa de chegar ao Carbono-12 e ao Hélio-4 pelo Ciclo CNO-I."
     },
     {
         "element_a":"N-15",
@@ -181,7 +172,7 @@
             "y"
         ],
         "process":"Ciclo CNO-II",
-        "description":null
+        "description":"O Oxigênio-16 é o isótopo mais abundante do elemento no universo, formado no Ciclo CNO-I."
     },
     {
         "element_a":"O-16",
@@ -191,7 +182,7 @@
             "y"
         ],
         "process":"Ciclo CNO-II",
-        "description":null
+        "description":"O Ferro-17 é um isótopo raro e instável do ferro formado no Ciclo CNO-I."
     },
     {
         "element_a":"F-17",
@@ -202,7 +193,7 @@
             "ve"
         ],
         "process":"Ciclo CNO-II",
-        "description":null
+        "description":"O Oxigênio-17 é utilizado em estudos isotópicos e processos de datação e formado no Ciclo CNO-I."
     },
     {
         "element_a":"O-17",
@@ -212,7 +203,7 @@
             "He-4"
         ],
         "process":"Ciclo CNO-II",
-        "description":null
+        "description":"Essa é uma maneira alternativa de chegar ao Nitrogênio-14 e ao Hélio-4 pelo Ciclo CNO-I."
     },
     {
         "element_a":"C-12",
@@ -222,7 +213,7 @@
             "y"
         ],
         "process":"Fusão do Carbono",
-        "description":null
+        "description":"O Magnésio-24 é um isótopo estável do magnésio formado pela Fusão do Carbono."
     },
     {
         "element_a":"C-12",
@@ -232,7 +223,7 @@
             "n"
         ],
         "process":"Fusão do Carbono",
-        "description":null
+        "description":"O Magnésio-23 é um isótopo raro e instável do magnésio formado pela Fusão do Carbono"
     },
     {
         "element_a":"C-12",
@@ -242,7 +233,7 @@
             "H-1"
         ],
         "process":"Fusão do Carbono",
-        "description":null
+        "description":"O Sódio-23 é o único isótopo estável do sódio formado pela Fusão do Carbono."
     },
     {
         "element_a":"C-12",
@@ -252,7 +243,7 @@
             "He-4"
         ],
         "process":"Fusão do Carbono",
-        "description":null
+        "description":"O Neônio-20 é um isótopo estável do neônio formado pela Fusão do Carbono."
     },
     {
         "element_a":"C-12",
@@ -263,7 +254,7 @@
             "He-4"
         ],
         "process":"Fusão do Carbono",
-        "description":null
+        "description":"Essa é uma maneira alternativa de chegar ao Oxigênio-16 e ao Hélio-4 pela Fusão do Carbono."
     },
     {
         "element_a":"Ne-20",
@@ -273,7 +264,7 @@
             "He-4"
         ],
         "process":"Fusão do Neônio",
-        "description":null
+        "description":"Essa é uma maneira alternativa de chegar ao Oxigênio-16 e ao Hélio-4 pela Fusão do Neônio."
     },
     {
         "element_a":"Ne-20",
@@ -283,7 +274,7 @@
             "y"
         ],
         "process":"Fusão do Neônio",
-        "description":null
+        "description":"Essa é uma maneira alternativa de chegar ao Magnésio-24 pela Fusão do Neônio."
     },
     {
         "element_a":"Ne-20",
@@ -293,7 +284,7 @@
             "y"
         ],
         "process":"Fusão do Neônio",
-        "description":null
+        "description":"O Neônio-21 é um isótopo estável do neônio formado pela Fusão do Neônio."
     },
     {
         "element_a":"Ne-21",
@@ -303,7 +294,7 @@
             "n"
         ],
         "process":"Fusão do Neônio",
-        "description":null
+        "description":"Essa é uma maneira alternativa de chegar ao Magnésio-24 pela Fusão do Neônio."
     },
     {
         "element_a":"O-16",
@@ -313,7 +304,7 @@
             "He-4"
         ],
         "process":"Fusão do Oxigênio",
-        "description":null
+        "description":"O Silício-28 é um isótopo estável do silício formado pela Fusão do Oxigênio."
     },
     {
         "element_a":"O-16",
@@ -323,7 +314,7 @@
             "H-1"
         ],
         "process":"Fusão do Oxigênio",
-        "description":null
+        "description":"O Fósforo-31 é o único isótopo estável do fósforo e é formado pela Fusão do Oxigênio."
     },
     {
         "element_a":"O-16",
@@ -333,7 +324,7 @@
             "n"
         ],
         "process":"Fusão do Oxigênio",
-        "description":null
+        "description":"O Enxofre-31 é um isótopo instável do enxofre formado pela Fusão do Oxigênio."
     },
     {
         "element_a":"O-16",
@@ -344,7 +335,7 @@
             "H-1"
         ],
         "process":"Fusão do Oxigênio",
-        "description":null
+        "description":"O Silício-30 é um isótopo instável do silício formado pela Fusão do Oxigênio."
     },
     {
         "element_a":"O-16",
@@ -354,7 +345,7 @@
             "H-2"
         ],
         "process":"Fusão do Oxigênio",
-        "description":null
+        "description":"O Fósforo-30 é um isótopo instável do fósforo formado pela Fusão do Oxigênio."
     },
     {
         "element_a":"O-16",
@@ -364,7 +355,7 @@
             "y"
         ],
         "process":"Fusão do Oxigênio",
-        "description":null
+        "description":"O Enxofre-32 é um isótopo instável do enxofre formado pela Fusão do Oxigênio."
     },
     {
         "element_a":"O-16",
@@ -375,7 +366,7 @@
             "He-4"
         ],
         "process":"Fusão do Oxigênio",
-        "description":null
+        "description":"Essa é uma maneira alternativa de chegar ao Magnésio-24 e ao Hélio-4 pela Fusão do Oxigênio."
     },
     {
         "element_a":"Si-28",
@@ -385,7 +376,7 @@
             "y"
         ],
         "process":"Queima do Silício",
-        "description":null
+        "description":"O Níquel-56 é um isótopo instável do níquel frequentemente produzido em supernovas por meio da Queima do Silício"
     },
     {
         "element_a":"Si-28",
@@ -395,7 +386,7 @@
             "y"
         ],
         "process":"Queima do Silício",
-        "description":null
+        "description":"Essa é uma maneira alternativa de chegar ao Enxofre-32 por meio da Queima do Silício."
     },
     {
         "element_a":"S-32",
@@ -405,7 +396,7 @@
             "y"
         ],
         "process":"Queima do Silício",
-        "description":null
+        "description":"O Argônio-36 é um isótopo estável do argônio formado pela Queima do Silício."
     },
     {
         "element_a":"Ar-36",
@@ -415,7 +406,7 @@
             "y"
         ],
         "process":"Queima do Silício",
-        "description":null
+        "description":"O Cálcio-40 é um isótopo estável do cálcio formado pela Queima do Silício."
     },
     {
         "element_a":"Ca-40",
@@ -425,7 +416,7 @@
             "y"
         ],
         "process":"Queima do Silício",
-        "description":null
+        "description":"O Titânio-44 é um isótopo estável do titânio formado pela Queima do Silício."
     },
     {
         "element_a":"Ti-44",
@@ -435,7 +426,7 @@
             "y"
         ],
         "process":"Queima do Silício",
-        "description":null
+        "description":"O Cromo-48 é um isótopo estável do cromo formado pela Queima do Silício."
     },
     {
         "element_a":"Cr-48",
@@ -445,7 +436,7 @@
             "y"
         ],
         "process":"Queima do Silício",
-        "description":null
+        "description":"O Ferro-52 é um isótopo estável do ferro formado pela Queima do Silício."
     },
     {
         "element_a":"Fe-52",
@@ -455,7 +446,7 @@
             "y"
         ],
         "process":"Queima do Silício",
-        "description":null
+        "description":"Essa é uma maneira alternativa de chegar ao Níquel-56 por meio da Queima do Silício."
     },
     {
         "element_a":"Ni-56",
@@ -466,7 +457,7 @@
             "ve"
         ],
         "process":"Queima do Silício",
-        "description":null
+        "description":"O Cobalto-56 é importante em processos nucleares e na produção de radiação em reatores, e é formado pela Queima do Silício."
     },
     {
         "element_a":"Co-56",
@@ -477,7 +468,7 @@
             "ve"
         ],
         "process":"Queima do Silício",
-        "description":null
+        "description":"O Ferro-56 é essencial em processos nucleares, como a fusão estelar, e é formado pela Queima do Silício."
     },
     {
         "element_a":"H-2",
@@ -486,7 +477,7 @@
             "H-3"
         ],
         "process":null,
-        "description":null
+        "description":"O Hidrogênio-3, também conhecido como trítio, é  utilizado em reações de fusão nuclear e como marcador radioativo."
     },
     {
         "element_a":"H-3",
@@ -497,7 +488,7 @@
             "ve_"
         ],
         "process":null,
-        "description":null
+        "description":"Essa é uma maneira alternativa de chegar ao Hélio-3."
     },
     {
         "element_a":"C-12",
@@ -507,7 +498,7 @@
             "y"
         ],
         "process":null,
-        "description":null
+        "description":"Essa é uma maneira alternativa de chegar ao Oxigênio-16."
     },
     {
         "element_a":"C-12",
@@ -517,7 +508,7 @@
             "y"
         ],
         "process":null,
-        "description":null
+        "description":"O Magnésio-25 é um isótopo estável do magnésio."
     },
     {
         "element_a":"C-12",
@@ -527,7 +518,7 @@
             "y"
         ],
         "process":null,
-        "description":null
+        "description":"Essa é uma maneira alternativa de chegar ao Silício-28"
     },
     {
         "element_a":"P-31",
@@ -537,7 +528,7 @@
             "y"
         ],
         "process":null,
-        "description":null
+        "description":"O Cloro-35 é um isótopo estável do cloro."
     },
     {
         "element_a":"Mg-24",
@@ -547,7 +538,7 @@
             "y"
         ],
         "process":null,
-        "description":null
+        "description":"Essa é uma maneira alternativa de chegar ao Silício-28"
     },
     {
         "element_a":"Mg-25",
@@ -557,7 +548,7 @@
             "y"
         ],
         "process":null,
-        "description":null
+        "description":"O Silício-29 é um isótopo estável do silício utilizado em estudos isotópicos e pesquisas científicas."
     },
     {
         "element_a":"Mg-25",
@@ -567,7 +558,7 @@
             "y"
         ],
         "process":null,
-        "description":null
+        "description":"O Alumínio-26 é um isótopo radioativo do alumínio."
     },
     {
         "element_a":"Al-26",
@@ -578,7 +569,7 @@
             "ve"
         ],
         "process":null,
-        "description":null
+        "description":"O Magnésio-26 é um isótopo estável do magnésio"
     },
     {
         "element_a":"Mg-26",
@@ -588,7 +579,7 @@
             "He"
         ],
         "process":null,
-        "description":null
+        "description":"O Sódio-22 é um isótopo radioativo do sódio que é utilizado em estudos de imagens e em processos de radioterapia."
     },
     {
         "element_a":"Na-22",
@@ -599,7 +590,7 @@
             "ve"
         ],
         "process":null,
-        "description":null
+        "description":"O Neônio-22 é um isótopo estável do neônio."
     },
     {
         "element_a":"N-14",
@@ -609,7 +600,7 @@
             "H-1"
         ],
         "process":null,
-        "description":null
+        "description":"O Carbono-14 é um isótopo radioativo do carbono amplamente utilizado em datação de materiais orgânicos."
     },
     {
         "element_a":"N-14",
@@ -619,7 +610,1588 @@
             "y"
         ],
         "process":null,
-        "description":null
+        "description":"O Oxigênio-18 é um isótopo estável do oxigênio utilizado em estudos isotópicos."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"B-4",
+        "product":[
+            "B-11",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com B-4 gera B-11, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"B-11",
+        "element_b":null,
+        "product":[
+            "B-11",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de B-11 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Ti-4",
+        "product":[
+            "Ti-46",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Ti-4 gera Ti-46, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Ti-46",
+        "element_b":null,
+        "product":[
+            "Ti-46",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Ti-46 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Ca-4",
+        "product":[
+            "Ca-48",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Ca-4 gera Ca-48, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Ca-48",
+        "element_b":null,
+        "product":[
+            "Ca-48",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Ca-48 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Sc-4",
+        "product":[
+            "Sc-45",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Sc-4 gera Sc-45, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Sc-45",
+        "element_b":null,
+        "product":[
+            "Sc-45",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Sc-45 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Ni-4",
+        "product":[
+            "Ni-58",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Ni-4 gera Ni-58, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Ni-58",
+        "element_b":null,
+        "product":[
+            "Ni-58",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Ni-58 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Ni-4",
+        "product":[
+            "Ni-64",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Ni-4 gera Ni-64, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Ni-64",
+        "element_b":null,
+        "product":[
+            "Ni-64",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Ni-64 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"K-4",
+        "product":[
+            "K-40",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com K-4 gera K-40, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"K-40",
+        "element_b":null,
+        "product":[
+            "K-40",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de K-40 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Br-4",
+        "product":[
+            "Br-79",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Br-4 gera Br-79, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Br-79",
+        "element_b":null,
+        "product":[
+            "Br-79",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Br-79 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"He-4",
+        "product":[
+            "Be-9",
+            "?"
+        ],
+        "process":"Formação de Berílio",
+        "description":"A fusão de dois núcleos de He-4 gera Be-9 e raios gama."
+    },
+    {
+        "element_a":"Be-9",
+        "element_b":null,
+        "product":[
+            "Be-9",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Be-9 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Th-4",
+        "product":[
+            "Th-232",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Th-4 gera Th-232, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Th-232",
+        "element_b":null,
+        "product":[
+            "Th-232",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Th-232 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Ga-4",
+        "product":[
+            "Ga-69",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Ga-4 gera Ga-69, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Ga-69",
+        "element_b":null,
+        "product":[
+            "Ga-69",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Ga-69 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Ge-4",
+        "product":[
+            "Ge-74",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Ge-4 gera Ge-74, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Ge-74",
+        "element_b":null,
+        "product":[
+            "Ge-74",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Ge-74 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Ti-4",
+        "product":[
+            "Ti-49",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Ti-4 gera Ti-49, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Ti-49",
+        "element_b":null,
+        "product":[
+            "Ti-49",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Ti-49 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Kr-4",
+        "product":[
+            "Kr-78",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Kr-4 gera Kr-78, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Kr-78",
+        "element_b":null,
+        "product":[
+            "Kr-78",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Kr-78 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Mn-4",
+        "product":[
+            "Mn-55",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Mn-4 gera Mn-55, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Mn-55",
+        "element_b":null,
+        "product":[
+            "Mn-55",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Mn-55 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"F-4",
+        "product":[
+            "F-19",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com F-4 gera F-19, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"F-19",
+        "element_b":null,
+        "product":[
+            "F-19",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de F-19 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Zn-4",
+        "product":[
+            "Zn-66",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Zn-4 gera Zn-66, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Zn-66",
+        "element_b":null,
+        "product":[
+            "Zn-66",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Zn-66 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Cr-4",
+        "product":[
+            "Cr-52",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Cr-4 gera Cr-52, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Cr-52",
+        "element_b":null,
+        "product":[
+            "Cr-52",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Cr-52 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"H-3",
+        "product":[
+            "Li-6",
+            "?"
+        ],
+        "process":"Formação de Lítio",
+        "description":"A fusão de He-4 com H-3 gera Li-6, liberando raios gama."
+    },
+    {
+        "element_a":"Li-6",
+        "element_b":null,
+        "product":[
+            "Li-6",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Li-6 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Ti-4",
+        "product":[
+            "Ti-48",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Ti-4 gera Ti-48, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Ti-48",
+        "element_b":null,
+        "product":[
+            "Ti-48",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Ti-48 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Ar-4",
+        "product":[
+            "Ar-40",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Ar-4 gera Ar-40, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Ar-40",
+        "element_b":null,
+        "product":[
+            "Ar-40",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Ar-40 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Se-4",
+        "product":[
+            "Se-76",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Se-4 gera Se-76, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Se-76",
+        "element_b":null,
+        "product":[
+            "Se-76",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Se-76 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Zn-4",
+        "product":[
+            "Zn-64",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Zn-4 gera Zn-64, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Zn-64",
+        "element_b":null,
+        "product":[
+            "Zn-64",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Zn-64 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Cl-4",
+        "product":[
+            "Cl-37",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Cl-4 gera Cl-37, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Cl-37",
+        "element_b":null,
+        "product":[
+            "Cl-37",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Cl-37 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Ni-4",
+        "product":[
+            "Ni-61",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Ni-4 gera Ni-61, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Ni-61",
+        "element_b":null,
+        "product":[
+            "Ni-61",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Ni-61 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Ge-4",
+        "product":[
+            "Ge-70",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Ge-4 gera Ge-70, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Ge-70",
+        "element_b":null,
+        "product":[
+            "Ge-70",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Ge-70 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Zn-4",
+        "product":[
+            "Zn-67",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Zn-4 gera Zn-67, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Zn-67",
+        "element_b":null,
+        "product":[
+            "Zn-67",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Zn-67 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"V-4",
+        "product":[
+            "V-50",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com V-4 gera V-50, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"V-50",
+        "element_b":null,
+        "product":[
+            "V-50",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de V-50 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"As-4",
+        "product":[
+            "As-75",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com As-4 gera As-75, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"As-75",
+        "element_b":null,
+        "product":[
+            "As-75",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de As-75 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Se-4",
+        "product":[
+            "Se-78",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Se-4 gera Se-78, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Se-78",
+        "element_b":null,
+        "product":[
+            "Se-78",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Se-78 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Kr-4",
+        "product":[
+            "Kr-80",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Kr-4 gera Kr-80, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Kr-80",
+        "element_b":null,
+        "product":[
+            "Kr-80",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Kr-80 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"U-4",
+        "product":[
+            "U-238",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com U-4 gera U-238, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"U-238",
+        "element_b":null,
+        "product":[
+            "U-238",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de U-238 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Fe-4",
+        "product":[
+            "Fe-57",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Fe-4 gera Fe-57, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Fe-57",
+        "element_b":null,
+        "product":[
+            "Fe-57",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Fe-57 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"K-4",
+        "product":[
+            "K-41",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com K-4 gera K-41, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"K-41",
+        "element_b":null,
+        "product":[
+            "K-41",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de K-41 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Kr-4",
+        "product":[
+            "Kr-86",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Kr-4 gera Kr-86, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Kr-86",
+        "element_b":null,
+        "product":[
+            "Kr-86",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Kr-86 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Cr-4",
+        "product":[
+            "Cr-50",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Cr-4 gera Cr-50, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Cr-50",
+        "element_b":null,
+        "product":[
+            "Cr-50",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Cr-50 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Zn-4",
+        "product":[
+            "Zn-68",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Zn-4 gera Zn-68, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Zn-68",
+        "element_b":null,
+        "product":[
+            "Zn-68",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Zn-68 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Ni-4",
+        "product":[
+            "Ni-62",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Ni-4 gera Ni-62, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Ni-62",
+        "element_b":null,
+        "product":[
+            "Ni-62",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Ni-62 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Ge-4",
+        "product":[
+            "Ge-72",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Ge-4 gera Ge-72, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Ge-72",
+        "element_b":null,
+        "product":[
+            "Ge-72",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Ge-72 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Cu-4",
+        "product":[
+            "Cu-63",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Cu-4 gera Cu-63, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Cu-63",
+        "element_b":null,
+        "product":[
+            "Cu-63",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Cu-63 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Cr-4",
+        "product":[
+            "Cr-54",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Cr-4 gera Cr-54, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Cr-54",
+        "element_b":null,
+        "product":[
+            "Cr-54",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Cr-54 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"S-4",
+        "product":[
+            "S-34",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com S-4 gera S-34, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"S-34",
+        "element_b":null,
+        "product":[
+            "S-34",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de S-34 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Ge-4",
+        "product":[
+            "Ge-73",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Ge-4 gera Ge-73, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Ge-73",
+        "element_b":null,
+        "product":[
+            "Ge-73",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Ge-73 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"S-4",
+        "product":[
+            "S-36",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com S-4 gera S-36, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"S-36",
+        "element_b":null,
+        "product":[
+            "S-36",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de S-36 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Ar-4",
+        "product":[
+            "Ar-38",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Ar-4 gera Ar-38, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Ar-38",
+        "element_b":null,
+        "product":[
+            "Ar-38",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Ar-38 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Ca-4",
+        "product":[
+            "Ca-46",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Ca-4 gera Ca-46, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Ca-46",
+        "element_b":null,
+        "product":[
+            "Ca-46",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Ca-46 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"S-4",
+        "product":[
+            "S-33",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com S-4 gera S-33, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"S-33",
+        "element_b":null,
+        "product":[
+            "S-33",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de S-33 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Ca-4",
+        "product":[
+            "Ca-43",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Ca-4 gera Ca-43, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Ca-43",
+        "element_b":null,
+        "product":[
+            "Ca-43",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Ca-43 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Ni-4",
+        "product":[
+            "Ni-60",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Ni-4 gera Ni-60, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Ni-60",
+        "element_b":null,
+        "product":[
+            "Ni-60",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Ni-60 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Pu-4",
+        "product":[
+            "Pu-239",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Pu-4 gera Pu-239, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Pu-239",
+        "element_b":null,
+        "product":[
+            "Pu-239",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Pu-239 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Kr-4",
+        "product":[
+            "Kr-83",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Kr-4 gera Kr-83, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Kr-83",
+        "element_b":null,
+        "product":[
+            "Kr-83",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Kr-83 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Ca-4",
+        "product":[
+            "Ca-44",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Ca-4 gera Ca-44, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Ca-44",
+        "element_b":null,
+        "product":[
+            "Ca-44",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Ca-44 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Ga-4",
+        "product":[
+            "Ga-71",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Ga-4 gera Ga-71, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Ga-71",
+        "element_b":null,
+        "product":[
+            "Ga-71",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Ga-71 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"V-4",
+        "product":[
+            "V-51",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com V-4 gera V-51, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"V-51",
+        "element_b":null,
+        "product":[
+            "V-51",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de V-51 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"K-4",
+        "product":[
+            "K-39",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com K-4 gera K-39, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"K-39",
+        "element_b":null,
+        "product":[
+            "K-39",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de K-39 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Kr-4",
+        "product":[
+            "Kr-82",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Kr-4 gera Kr-82, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Kr-82",
+        "element_b":null,
+        "product":[
+            "Kr-82",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Kr-82 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Fe-4",
+        "product":[
+            "Fe-54",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Fe-4 gera Fe-54, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Fe-54",
+        "element_b":null,
+        "product":[
+            "Fe-54",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Fe-54 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Ti-4",
+        "product":[
+            "Ti-50",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Ti-4 gera Ti-50, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Ti-50",
+        "element_b":null,
+        "product":[
+            "Ti-50",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Ti-50 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"B-4",
+        "product":[
+            "B-10",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com B-4 gera B-10, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"B-10",
+        "element_b":null,
+        "product":[
+            "B-10",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de B-10 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"U-4",
+        "product":[
+            "U-235",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com U-4 gera U-235, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"U-235",
+        "element_b":null,
+        "product":[
+            "U-235",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de U-235 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Ca-4",
+        "product":[
+            "Ca-42",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Ca-4 gera Ca-42, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Ca-42",
+        "element_b":null,
+        "product":[
+            "Ca-42",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Ca-42 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Cr-4",
+        "product":[
+            "Cr-53",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Cr-4 gera Cr-53, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Cr-53",
+        "element_b":null,
+        "product":[
+            "Cr-53",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Cr-53 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Al-4",
+        "product":[
+            "Al-27",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Al-4 gera Al-27, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Al-27",
+        "element_b":null,
+        "product":[
+            "Al-27",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Al-27 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Co-4",
+        "product":[
+            "Co-59",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Co-4 gera Co-59, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Co-59",
+        "element_b":null,
+        "product":[
+            "Co-59",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Co-59 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Se-4",
+        "product":[
+            "Se-82",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Se-4 gera Se-82, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Se-82",
+        "element_b":null,
+        "product":[
+            "Se-82",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Se-82 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Cu-4",
+        "product":[
+            "Cu-65",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Cu-4 gera Cu-65, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Cu-65",
+        "element_b":null,
+        "product":[
+            "Cu-65",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Cu-65 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Br-4",
+        "product":[
+            "Br-81",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Br-4 gera Br-81, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Br-81",
+        "element_b":null,
+        "product":[
+            "Br-81",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Br-81 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Ti-4",
+        "product":[
+            "Ti-47",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Ti-4 gera Ti-47, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Ti-47",
+        "element_b":null,
+        "product":[
+            "Ti-47",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Ti-47 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Ge-4",
+        "product":[
+            "Ge-76",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Ge-4 gera Ge-76, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Ge-76",
+        "element_b":null,
+        "product":[
+            "Ge-76",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Ge-76 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Se-4",
+        "product":[
+            "Se-74",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Se-4 gera Se-74, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Se-74",
+        "element_b":null,
+        "product":[
+            "Se-74",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Se-74 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Se-4",
+        "product":[
+            "Se-80",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Se-4 gera Se-80, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Se-80",
+        "element_b":null,
+        "product":[
+            "Se-80",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Se-80 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Fe-4",
+        "product":[
+            "Fe-58",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Fe-4 gera Fe-58, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Fe-58",
+        "element_b":null,
+        "product":[
+            "Fe-58",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Fe-58 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Se-4",
+        "product":[
+            "Se-77",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Se-4 gera Se-77, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Se-77",
+        "element_b":null,
+        "product":[
+            "Se-77",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Se-77 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Zn-4",
+        "product":[
+            "Zn-70",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Zn-4 gera Zn-70, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Zn-70",
+        "element_b":null,
+        "product":[
+            "Zn-70",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Zn-70 com emissão de raios gama."
+    },
+    {
+        "element_a":"He-4",
+        "element_b":"Kr-4",
+        "product":[
+            "Kr-84",
+            "n",
+            "?"
+        ],
+        "process":"Formação de Elementos Pesados",
+        "description":"A fusão de He-4 com Kr-4 gera Kr-84, emitindo nêutrons e raios gama."
+    },
+    {
+        "element_a":"Kr-84",
+        "element_b":null,
+        "product":[
+            "Kr-84",
+            "?"
+        ],
+        "process":"Decaimento Radioativo",
+        "description":"A reação de Kr-84 com emissão de raios gama."
+    },
+    {
+        "element_a":"p",
+        "element_b":"e",
+        "product":[
+            "H-1"
+        ],
+        "process":null,
+        "description":"O átomo mais simples"
     }
-    
 ]

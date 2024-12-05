@@ -1,5 +1,7 @@
 import pygame
 import numpy as np
+from views.start_menu_1 import start_menu
+from views.tasks_1 import start_task
 from constants import *
 
 
@@ -166,13 +168,13 @@ class DoorButton:
 
 
 def open_door_1():
-    print("Porta 1 aberta!")
+    start_menu()
 
 def open_door_2():
-    print("Porta 2 aberta!")
+    start_task()
 
 def open_door_3():
-    print("Porta 3 aberta!")
+    pass
 
 
 # Criar botões para cada porta

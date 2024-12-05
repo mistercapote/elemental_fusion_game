@@ -89,7 +89,7 @@ class Game:
         self.exit_button = OpeningButton(self.screen, "Sair", CENTER_X, CENTER_Y + 210, self.quit)
         self.clock = pygame.time.Clock()
         self.particles_found = [PARTICLES[0], PARTICLES[2]]
-        self.isotopes_found = ISOTOPES
+        self.isotopes_found = [ISOTOPES[0]]
         self.fusions_found = []
         self.new_found = []
         self.start_popup = []

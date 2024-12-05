@@ -2,27 +2,7 @@ import pygame
 import json
 import random
 import math
-
-WIDTH_MAX = 1280
-HEIGHT_MAX = 720
-
-# Carregar dados dos elementos e isótopos
-with open('data/json/element.json', 'r',encoding="utf-8") as f:
-    elements_data = json.load(f)
-with open('data/json/isotope.json', 'r',encoding="utf-8") as f:
-    isotopes_data = json.load(f)
-
-pygame.init()
-screen = pygame.display.set_mode((WIDTH_MAX, HEIGHT_MAX))
-clock = pygame.time.Clock()
-
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-FONT = pygame.font.Font(None, 36)
-
-# Definindo os níveis de energia
-energy_levels = {1: 2, 2: 8, 3: 18}
-ATOMIC_NUMBER_LIMIT = 10
+from constants import *
 
 def choose_element():
     """
@@ -366,68 +346,82 @@ def run_atom_builder():
 
     return element, isotope, proton_count, neutron_count, electron_count, all_particles, nucleus_particles, electrons, reset_button_rect, verify_button_rect
 
+def start_task():
 
-element, isotope, proton_count, neutron_count, electron_count, all_particles, nucleus_particles, electrons, reset_button_rect, verify_button_rect = run_atom_builder()
+    # Carregar dados dos elementos e isótopos
+    with open('data/json/element.json', 'r',encoding="utf-8") as f:
+        elements_data = json.load(f)
+    with open('data/json/isotope.json', 'r',encoding="utf-8") as f:
+        isotopes_data = json.load(f)
 
+    pygame.init()
+    screen = pygame.display.set_mode((WIDTH_MAX, HEIGHT_MAX))
+    clock = pygame.time.Clock()
 
-# Variável para o estado de validação
-validation_result = None
+    FONT = pygame.font.Font(None, 36)
 
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            if reset_button_rect.collidepoint(event.pos):
-                reset_atom(all_particles, nucleus_particles, electrons)
-                validation_result = None  # Limpar o estado da validação
-            elif verify_button_rect.collidepoint(event.pos):
-                # Quando o jogador clicar no botão "Verificar", realiza a validação
-                validation_result = validate_atom(nucleus_particles, electrons, proton_count, neutron_count, electron_count)
-            for particle in all_particles:
-                if particle.rect.collidepoint(event.pos):
-                    particle.dragging = True
-        elif event.type == pygame.MOUSEBUTTONUP:
-            for particle in all_particles:
-                if particle.dragging:
-                    particle.dragging = False
-                    place_particle(particle, nucleus_particles, electrons)
-
-    # Atualizar as partículas
-    all_particles.update(pygame.mouse.get_pos())
-    screen.fill(BLACK)
-
-    # Exibir titulo
-    title = pygame.font.Font(None, 50).render(f"Monte o átomo de {element['name']} ({element['symbol']})", True, WHITE)
-    screen.blit(title, (30, 55))
-
-    # Desenhar o núcleo e os níveis de energia
-    pygame.draw.circle(screen, WHITE, nucleus_rect.center, nucleus_rect.width // 2, 2)
-    for level, rect in level_rects.items():
-        pygame.draw.circle(screen, WHITE, nucleus_rect.center, rect.width // 2, 1)
-
-    # Exibir o cartão com informações do elemento
-    draw_element_card(screen, element, xpos=WIDTH_MAX - 500, ypos=HEIGHT_MAX // 2 - 125)
+    # Definindo os níveis de energia
+    energy_levels = {1: 2, 2: 8, 3: 18}
+    ATOMIC_NUMBER_LIMIT = 10
+    element, isotope, proton_count, neutron_count, electron_count, all_particles, nucleus_particles, electrons, reset_button_rect, verify_button_rect = run_atom_builder()
 
 
-    # Desenhar os botões
-    draw_button(screen, reset_button_rect, "Reset", (200, 200, 200), BLACK)
-    draw_button(screen, verify_button_rect, "Verificar", (200, 200, 200), BLACK)
+    # Variável para o estado de validação
+    validation_result = None
 
-    
-    all_particles.draw(screen)
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if reset_button_rect.collidepoint(event.pos):
+                    reset_atom(all_particles, nucleus_particles, electrons)
+                    validation_result = None  # Limpar o estado da validação
+                elif verify_button_rect.collidepoint(event.pos):
+                    # Quando o jogador clicar no botão "Verificar", realiza a validação
+                    validation_result = validate_atom(nucleus_particles, electrons, proton_count, neutron_count, electron_count)
+                for particle in all_particles:
+                    if particle.rect.collidepoint(event.pos):
+                        particle.dragging = True
+            elif event.type == pygame.MOUSEBUTTONUP:
+                for particle in all_particles:
+                    if particle.dragging:
+                        particle.dragging = False
+                        place_particle(particle, nucleus_particles, electrons)
 
-    # Verifica resultado da validação
-    if validation_result is not None:
-        display_validation_result(screen, validation_result)
+        # Atualizar as partículas
+        all_particles.update(pygame.mouse.get_pos())
+        screen.fill(BLACK)
 
-    pygame.display.flip()
-    clock.tick(30)
+        # Exibir titulo
+        title = pygame.font.Font(None, 50).render(f"Monte o átomo de {element['name']} ({element['symbol']})", True, WHITE)
+        screen.blit(title, (30, 55))
 
-pygame.quit()
+        # Desenhar o núcleo e os níveis de energia
+        pygame.draw.circle(screen, WHITE, nucleus_rect.center, nucleus_rect.width // 2, 2)
+        for level, rect in level_rects.items():
+            pygame.draw.circle(screen, WHITE, nucleus_rect.center, rect.width // 2, 1)
+
+        # Exibir o cartão com informações do elemento
+        draw_element_card(screen, element, xpos=WIDTH_MAX - 500, ypos=HEIGHT_MAX // 2 - 125)
+
+
+        # Desenhar os botões
+        draw_button(screen, reset_button_rect, "Reset", (200, 200, 200), BLACK)
+        draw_button(screen, verify_button_rect, "Verificar", (200, 200, 200), BLACK)
+
+        
+        all_particles.draw(screen)
+
+        # Verifica resultado da validação
+        if validation_result is not None:
+            display_validation_result(screen, validation_result)
+
+        pygame.display.flip()
+        clock.tick(30)
+
+    pygame.quit()
 
 
 
-
-run_atom_builder()
