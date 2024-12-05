@@ -1,5 +1,4 @@
-import json
-from fusion import Fusion
+
 
 class Element:
     """
@@ -265,7 +264,7 @@ class Fusion:
         self.product = product # Lista de Objetos das classes Isotope e FuntamentalParticle
         self.description = description # Texto falando um pouco sobre a fusão
 
-    def __eq__(self, other: Fusion) -> bool:
+    def __eq__(self, other) -> bool:
         """
         Verifica se duas instâncias de fusão são iguais.
 
@@ -301,7 +300,7 @@ class Fusion:
         return round(energy_mev, 4)
     
     @classmethod
-    def from_dict(cls, data: dict, PARTICLES: list, ISOTOPES:list) -> Fusion:
+    def from_dict(cls, data: dict, PARTICLES: list, ISOTOPES:list):
         """
         Cria uma instância da classe Fusion a partir de um dicionário.
 

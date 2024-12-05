@@ -41,8 +41,10 @@ class Character:
         posição inicial e velocidade. Carrega também a imagem do cenário.
         """
         self.color = (0, 128, 255)
-        self.width = 50
-        self.height = 50
+        self.img = pygame.image.load("assets/images/cientista.png")
+        self.img = pygame.transform.scale(self.img, (56, 80))
+
+        self.width, self.height = self.img.get_size()
         self.xpos = CENTER_X//2
         self.ypos = CENTER_Y//2
         self.speed = 1
@@ -77,7 +79,7 @@ class Character:
                 relative_x = int(corner[0] - self.scenario_rect.x)
                 relative_y = int(corner[1] - self.scenario_rect.y)
                 pixel_color = self.scenario.get_at((relative_x, relative_y))[:3]  # Ignorar o canal alfa
-                if pixel_color in [(210, 211, 213), (169, 171, 174), (139, 140, 143), (96, 96, 98)]:
+                if pixel_color in [(211, 110, 94), (149, 163, 171), (119, 142, 156), (81, 111, 129), (158, 161, 166), (139, 140, 143), (132, 134, 136)]:
                     return True
         return False
     
@@ -124,8 +126,7 @@ class Character:
         ------
         Desenha um retângulo representando o personagem na tela, na posição atual.
         """
-        pygame.draw.rect(screen, self.color, (self.xpos, self.ypos, self.width, self.height))
-
+        screen.blit(self.img, (self.xpos, self.ypos))
 
 class DoorButton:
     """
@@ -164,8 +165,6 @@ class DoorButton:
     def click(self, game):
         if self.action:
             self.action(game)
-
-
 
 def open_door_1(game):
     start_menu(game)
