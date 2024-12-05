@@ -1,5 +1,5 @@
 import pygame
-from models.fusion import Element
+from .fusion import *
 
 pygame.init()
 def write(screen : pygame.Surface, text : str, font : pygame.font.Font, color : tuple[int, int, int], center : tuple[int, int]) -> None:
