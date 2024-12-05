@@ -7,7 +7,7 @@ class PopUp:
     """
     Classe responsável pela criação e controle dos pop-ups no jogo.
     """
-    def __init__(self, fusion, game):
+    def __init__(self, fusion: Fusion, game) -> None:
         """
         Inicializa a instância do pop-up.
 
@@ -21,7 +21,7 @@ class PopUp:
         """
         self.fusion = fusion
        
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         """
         Compara a instância atual com outra instância de PopUp.
 
@@ -38,7 +38,7 @@ class PopUp:
         if not isinstance(other, PopUp): return False
         return self.fusion == other.fusion
     
-    def draw(self, screen):
+    def draw(self, screen: pygame.surface) -> None:
         """
         Desenha o pop-up na tela do jogo.
 
