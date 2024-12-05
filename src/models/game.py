@@ -7,7 +7,7 @@ from views import achiev_menu, start_menu_1, start_menu_2, story_menu, table_men
 from models.button import OpeningButton, BackingButton
 
 class Game:
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Inicializa a instância do jogo, configurando os recursos necessários e a interface gráfica.
 
@@ -98,7 +98,7 @@ class Game:
         self.iron = ISOTOPES[552]
         self.start_media()
         
-    def update_partial(self):
+    def update_partial(self) -> None:
         """
         Atualiza o as mídias para uma tela parcial.
         """
@@ -106,7 +106,7 @@ class Game:
         self.music = "assets/audio/supernova.mp3"
         self.start_media()
 
-    def update_for_level_2(self):
+    def update_for_level_2(self) -> None:
         """
         Atualiza o jogo para o nível 2, alterando o título, a fase atual, 
         o vídeo e a música de abertura, e inicia a mídia associada.
@@ -119,14 +119,14 @@ class Game:
         self.start_button = OpeningButton(self.screen, "Jogar", CENTER_X, CENTER_Y - 70, start_menu_2.start_menu)
         self.start_media()
 
-    def draw_button(self):
+    def draw_button(self) -> None:
         self.start_button.draw(self.screen)
         self.story_button.draw(self.screen)
         self.table_button.draw(self.screen)
         self.settings_button.draw(self.screen)
         self.exit_button.draw(self.screen)
 
-    def check_button(self, event):
+    def check_button(self, event:pygame.event) -> None:
         self.start_button.check_click(event, self)
         self.story_button.check_click(event, self)
         self.table_button.check_click(event, self)
@@ -139,7 +139,7 @@ class Game:
         """
         write(self.screen, self.title, FONT_GIGANT, WHITE, (CENTER_X, 2*HEIGHT_MAX//9))
     
-    def start_media(self):
+    def start_media(self) -> None:
         """
         Inicia a reprodução do vídeo de abertura e a música de fundo.
         """
@@ -147,7 +147,7 @@ class Game:
         pygame.mixer.music.load(self.music)
         pygame.mixer.music.play(-1)
     
-    def stop_media(self):
+    def stop_media(self) -> None:
         """
         Para a reprodução do vídeo e da música de fundo.
         """
@@ -155,7 +155,7 @@ class Game:
         pygame.mixer.music.stop()
     
     @staticmethod
-    def quit(game=None):
+    def quit(game=None) -> None:
         """
         Encerra o jogo e fecha a janela do pygame.
 
@@ -167,7 +167,7 @@ class Game:
         pygame.quit()
         sys.exit()
 
-    def updateVideoFrame(self):
+    def updateVideoFrame(self) -> None:
         """
         Atualiza o quadro de vídeo atual, exibindo o próximo frame do vídeo de abertura.
         """
@@ -264,7 +264,7 @@ class Bar:
     """
     Classe que representa uma barra de progresso, usada para indicar o avanço em uma determinada fase do jogo.    
     """
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Inicializa a instância da barra de progresso.
 
@@ -287,7 +287,7 @@ class Bar:
         self.pos_x = CENTER_X // 2 - 100
         self.pos_y = CENTER_Y // 9 - 25
 
-    def draw(self, screen, increase : int):
+    def draw(self, screen: pygame.surface, increase : int) -> None:
         """
         Desenha a barra de progresso na tela e aumenta seu tamanho de acordo com o progresso.
 
