@@ -32,7 +32,7 @@ def start_menu(game):
 
                 for button in doors:
                     if button.visible and button.rect.collidepoint(event.pos):
-                        button.click()
+                        button.click(game)
 
         pygame.display.flip()
 
