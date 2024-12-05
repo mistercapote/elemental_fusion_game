@@ -7,7 +7,7 @@ class Nucleo:
     Classe que gerencia a física e animação do núcleo, incluindo fusões e explosões.
     Também controla a interação com o som e o estado de fusão dos elementos.
     """
-    def __init__(self): 
+    def __init__(self) -> None: 
         """
         Inicializa o núcleo, incluindo as variáveis de controle de som, animação e estado.
         Carrega as imagens de fundo e as animações de explosão.
@@ -23,7 +23,7 @@ class Nucleo:
         self.explosion = [pygame.image.load(f"assets/images/explosion/PNG/Circle_explosion/Circle_explosion{i}.png").convert_alpha() for i in range(1, 11)]
         self.start_nucleo()
 
-    def start_nucleo(self):
+    def start_nucleo(self) -> None:
         """
         Reinicia as variáveis associadas ao núcleo, como a lista de elementos reagentes e as variáveis de animação.
         """
@@ -36,7 +36,7 @@ class Nucleo:
         self.canal1.stop()
         self.canal2.stop()
 
-    def reacting_lenght(self):
+    def reacting_lenght(self) -> int:
         """
         Retorna a quantidade de elementos que estão reagindo no núcleo.
 
@@ -46,7 +46,7 @@ class Nucleo:
         """
         return len(self.reacting)
     
-    def reacting_append(self, ball):
+    def reacting_append(self, ball) -> None:
         """
         Adiciona um novo elemento à lista de reações.
 
@@ -60,7 +60,7 @@ class Nucleo:
         """
         Atualiza a posição dos elementos em reação com base no ângulo e raio.
         """
-        def position(radius : float , angle : float):
+        def position(radius : float , angle : float) -> list:
             """
             Calcula a posição com base no raio e ângulo.
 
@@ -80,7 +80,7 @@ class Nucleo:
                   position(self.radius, self.angle+np.pi)
         ]
 
-    def not_fusion(self):
+    def not_fusion(self) -> None:
         """
         Executa a lógica quando não há fusão entre os elementos reagindo.
         """
@@ -88,7 +88,7 @@ class Nucleo:
             self.start_nucleo()
             self.canal2.play(pygame.mixer.Sound("assets/audio/no_fusion.mp3"))
     
-    def rotation_animation(self, screen : pygame.Surface):
+    def rotation_animation(self, screen : pygame.Surface) -> None:
         """
         Executa a animação de rotação dos elementos em reação.
 
@@ -108,7 +108,7 @@ class Nucleo:
             if self.fusions: self.radius += self.fusion_speed # Velocidade de aproximação
             else: self.radius += self.not_fusion_speed # Velocidade de afastamento
 
-    def explosion_animation(self, screen : pygame.Surface):
+    def explosion_animation(self, screen : pygame.Surface) -> None:
         """
         Executa a animação de explosão quando a fusão é bem-sucedida.
 
@@ -125,7 +125,7 @@ class Nucleo:
         self.frame += self.explosion_speed
         if self.frame >= 10: self.radius = 0
     
-    def fusion(self, game ):
+    def fusion(self, game) -> None:
         """
         Realiza a fusão dos dois elementos reagindo e chama o processo recursivo de fusão.
 
@@ -139,7 +139,7 @@ class Nucleo:
         game = self.recursive_fusion(game, a, b)
         self.start_nucleo()
 
-    def controler(self, game):
+    def controler(self, game) -> None:
         """
         Controla o processo de fusão ou explosão de acordo com o estado dos elementos.
 
@@ -154,7 +154,7 @@ class Nucleo:
             elif self.radius > 0: self.explosion_animation(game.screen)
             else: game = self.fusion(game)
 
-    def recursive_fusion(self, game, a, b):
+    def recursive_fusion(self, game, a: Element, b: Element):
         """
         Realiza a fusão recursiva dos elementos, verificando se o produto já foi descoberto.
 
