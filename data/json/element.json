@@ -490,7 +490,7 @@
         "description": "Elemento halogênio. Líquido volátil vermelho à temperatura ambiente. Sua reatividade está entre o cloro e o iodo. Prejudicial ao tecido humano no estado líquido, seus vapores irritam os olhos e a garganta. Descoberto em 1826 por Antoine Balard."
     },
     {
-        "name": "Kriptônio",
+        "name": "Criptônio",
         "symbol": "Kr",
         "atomic_number": 36,
         "group": 18,
@@ -916,7 +916,7 @@
         "description": "Elemento metálico macio e prateado que pertence aos lantanoides. Seis isotopos naturais estáveis são conhecidos. Doze radioisótopos artificiais também foram identificados. Usado em tecnologia nuclear como absorvedor de nêutrons. Está sendo investigado para outras possíveis aplicações. Descoberto por Carl G. Mosander em 1843."
     },
     {
-        "name": "Tulium",
+        "name": "Túlio",
         "symbol": "Tm",
         "atomic_number": 69,
         "group": null,
@@ -930,7 +930,7 @@
         "description": "Elemento metálico cinza macio que pertence aos lantanoides. Existe apenas um isotopo natural, o Tm-169, e dezessete radioisótopos artificiais foram produzidos. Não há usos conhecidos para o elemento. Descoberto em 1879 por Per Theodor Cleve."
     },
     {
-        "name": "Iterbium",
+        "name": "Itérbio",
         "symbol": "Yb",
         "atomic_number": 70,
         "group": null,
@@ -1084,7 +1084,7 @@
         "description": "Elemento metálico pesado e líquido prateado, pertence ao grupo do zinco. Usado em termômetros, barômetros e outros aparelhos científicos. Menos reativo que o zinco e o cádmio, não desloca hidrogênio dos ácidos. Forma vários complexos e compostos organomercúrios."
     },
     {
-        "name": "Talio",
+        "name": "Tálio",
         "symbol": "Tl",
         "atomic_number": 81,
         "group": 13,
@@ -1294,7 +1294,7 @@
         "description": "Elemento metálico radioativo transurânico, pertencente à série dos actinídeos. Dez isótopos conhecidos. O Am-243 é o isótopo mais estável, com uma meia-vida de 7,95*10^3 anos. Descoberto por Glenn T. Seaborg e associados em 1945, foi obtido bombardeando Urânio-238 com partículas alfa."
     },
     {
-        "name": "Curio",
+        "name": "Cúrio",
         "symbol": "Cm",
         "atomic_number": 96,
         "group": null,
@@ -1588,7 +1588,7 @@
         "description": null
     },
     {
-        "name": "Tenessino",
+        "name": "Tenesso",
         "symbol": "Ts",
         "atomic_number": 117,
         "group": 17,
