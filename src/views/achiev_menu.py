@@ -3,7 +3,12 @@ from models.button import BackingButton
 
 def achiev_menu(game):
     back_button = BackingButton(game.screen, "Voltar", 18*SQUARE_WIDTH, 11*SQUARE_HEIGHT)
-    for each in (game.isotopes_found + list(map(lambda x: [i for i in ISOTOPES if i.name_isotope == x][0], SUPERNOVA))):
+    if game.current_phase == 1:
+            iso = game.isotopes_found
+    else:
+        iso = game.isotopes_found + list(map(lambda x: [i for i in ISOTOPES if i.name_isotope == x][0], SUPERNOVA))
+
+    for each in (iso):
         for achiev in ACHIEVEMENTS: 
             achiev.add_element(each) 
                             
